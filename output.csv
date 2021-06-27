@@ -1,0 +1,1993 @@
+series,week,celebrity,professional,dance,score
+1,1,Natasha,Brendan,Cha-Cha-Cha,27
+1,1,Lesley,Anton,Waltz,29
+1,1,Christopher,Hanna,Cha-Cha-Cha,19
+1,1,Jason,Kylie,Waltz,21
+1,1,Verona,Paul,Cha-Cha-Cha,27
+1,1,Claire,John,Waltz,27
+1,1,David,Camilla,Cha-Cha-Cha,16
+1,1,Martin,Erin,Waltz,25
+1,2,Natasha,Brendan,Quickstep,31
+1,2,Martin,Erin,Rumba,21
+1,2,Christopher,Hanna,Quickstep,23
+1,2,Claire,John,Rumba,26
+1,2,Verona,Paul,Quickstep,24
+1,2,Jason,Kylie,Rumba,19
+1,2,David,Camilla,Quickstep,21
+1,2,Lesley,Anton,Rumba,27
+1,3,Verona,Paul,Jive,24
+1,3,Lesley,Anton,Tango,29
+1,3,Martin,Erin,Jive,21
+1,3,David,Camilla,Tango,20
+1,3,Christopher,Hanna,Jive,19
+1,3,Claire,John,Tango,34
+1,3,Natasha,Brendan,Jive,26
+1,4,Claire,John,Paso Doble,31
+1,4,Christopher,Hanna,Foxtrot,28
+1,4,Verona,Paul,Paso Doble,24
+1,4,Natasha,Brendan,Foxtrot,35
+1,4,Lesley,Anton,Paso Doble,30
+1,4,Martin,Erin,Foxtrot,24
+1,5,Lesley,Anton,Samba,27
+1,5,Martin,Erin,Samba,22
+1,5,Christopher,Hanna,Samba,15
+1,5,Claire,John,Samba,32
+1,5,Natasha,Brendan,Samba,37
+1,6,Martin,Erin,Quickstep,24
+1,6,Martin,Erin,Cha Cha Cha,24
+1,6,Natasha,Brendan,Tango,31
+1,6,Natasha,Brendan,Rumba,36
+1,6,Christopher,Hanna,Waltz,22
+1,6,Christopher,Hanna,Paso Doble,15
+1,6,Lesley,Anton,Foxtrot,34
+1,6,Lesley,Anton,Cha Cha Cha,26
+1,7,Lesley,Anton,Quickstep,33
+1,7,Lesley,Anton,Jive,29
+1,7,Natasha,Brendan,Waltz,36
+1,7,Natasha,Brendan,Paso Doble,35
+1,7,Christopher,Hanna,Tango,21
+1,7,Christopher,Hanna,Rumba,16
+1,8,Natasha,Brendan,Quickstep,36
+1,8,Natasha,Brendan,Samba,31
+1,8,Natasha,Brendan,Showdance,35
+1,8,Christopher,Hanna,Waltz,24
+1,8,Christopher,Hanna,Jive,17
+1,8,Christopher,Hanna,Showdance,22
+series,week,celebrity,professional,dance,score
+2,1,Julian,Erin,Cha Cha Cha,19
+2,1,Carol,Paul,Waltz,22
+2,1,Diarmuid,Nicole,Cha Cha Cha,12
+2,1,Esther,Anton,Waltz,24
+2,1,Quentin,Hazel,Cha Cha Cha,8
+2,1,Sarah,Brendan,Waltz,28
+2,1,Roger,Camilla,Cha Cha Cha,25
+2,1,Denise,Ian,Waltz,31
+2,1,Aled,Lilia,Cha Cha Cha,29
+2,1,Jill,Darren,Waltz,27
+2,2,Jill,Darren,Rumba,32
+2,2,Aled,Lilia,Quickstep,27
+2,2,Sarah,Brendan,Rumba,23
+2,2,Roger,Camilla,Quickstep,22
+2,2,Esther,Anton,Rumba,16
+2,2,Diarmuid,Nicole,Quickstep,12
+2,2,Carol,Paul,Rumba,20
+2,2,Julian,Erin,Quickstep,27
+2,2,Denise,Ian,Rumba,32
+2,3,Roger,Camilla,Jive,25
+2,3,Julian,Erin,Tango,27
+2,3,Jill,Darren,Jive,35
+2,3,Esther,Anton,Tango,16
+2,3,Denise,Ian,Jive,25
+2,3,Diarmuid,Nicole,Tango,14
+2,3,Aled,Lilia,Jive,32
+2,3,Sarah,Brendan,Tango,31
+2,4,Denise,Ian,Foxtrot,30
+2,4,Sarah,Brendan,Paso Doble,29
+2,4,Aled,Lilia,Foxtrot,25
+2,4,Julian,Erin,Paso Doble,20
+2,4,Roger,Camilla,Foxtrot,29
+2,4,Diarmuid,Nicole,Paso Doble,17
+2,4,Jill,Darren,Foxtrot,34
+2,5,Sarah,Brendan,Samba,23
+2,5,Julian,Erin,Samba,24
+2,5,Denise,Ian,Samba,32
+2,5,Roger,Camilla,Samba,23
+2,5,Jill,Darren,Samba,35
+2,5,Aled,Lilia,Samba,30
+2,6,Roger,Camilla,Waltz,22
+2,6,Roger,Camilla,Rumba,19
+2,6,Jill,Darren,Quickstep,32
+2,6,Jill,Darren,Cha Cha Cha,36
+2,6,Julian,Erin,Waltz,28
+2,6,Julian,Erin,Rumba,27
+2,6,Denise,Ian,Quickstep,34
+2,6,Denise,Ian,Cha Cha Cha,33
+2,6,Aled,Lilia,Waltz,29
+2,6,Aled,Lilia,Rumba,27
+2,7,Aled,Lilia,Tango,27
+2,7,Jill,Darren,Tango,29
+2,7,Julian,Erin,Foxtrot,24
+2,7,Denise,Ian,Tango,35
+2,7,Aled,Lilia,Paso Doble,30
+2,7,Jill,Darren,Paso Doble,37
+2,7,Julian,Erin,Jive,21
+2,7,Denise,Ian,Paso Doble,36
+2,8,Denise,Ian,Quickstep,38
+2,8,Jill,Darren,Foxtrot,34
+2,8,Julian,Erin,Quickstep,29
+2,8,Denise,Ian,Samba,33
+2,8,Jill,Darren,Jive,40
+2,8,Julian,Erin,Samba,23
+series,week,celebrity,professional,dance,score
+3,1,Darren,Lilia,Cha-Cha-Cha,19
+3,1,Patsy,Anton,Waltz,19
+3,1,Colin,Erin,Cha-Cha-Cha,32
+3,1,Siobhan,Matthew,Waltz,15
+3,1,James,Camilla,Cha-Cha-Cha,22
+3,1,Gloria,Darren,Waltz,22
+3,1,Will,Hanna,Cha-Cha-Cha,18
+3,1,Jaye,Andrew,Waltz,25
+3,1,Bill,Karen,Cha-Cha-Cha,29
+3,1,Fiona,Brendan,Waltz,11
+3,1,Dennis,Izabela,Cha-Cha-Cha,20
+3,1,Zoe,Ian,Waltz,35
+3,2,James,Camilla,Quickstep,29
+3,2,Jaye,Andrew,Rumba,21
+3,2,Dennis,Izabela,Quickstep,18
+3,2,Patsy,Anton,Rumba,26
+3,2,Darren,Lilia,Quickstep,30
+3,2,Zoe,Ian,Rumba,32
+3,2,Will,Hanna,Quickstep,29
+3,2,Gloria,Darren,Rumba,17
+3,2,Bill,Karen,Quickstep,23
+3,2,Fiona,Brendan,Rumba,13
+3,2,Colin,Erin,Quickstep,36
+3,3,Zoe,Ian,Jive,29
+3,3,Bill,Karen,Tango,20
+3,3,Dennis,Izabela,Jive,22
+3,3,Patsy,Anton,Tango,34
+3,3,Will,Hanna,Jive,25
+3,3,Colin,Erin,Tango,26
+3,3,Gloria,Darren,Jive,19
+3,3,James,Camilla,Tango,28
+3,3,Fiona,Brendan,Jive,16
+3,3,Darren,Lilia,Tango,33
+3,4,Colin,Erin,Paso Doble,31
+3,4,Zoe,Ian,Foxtrot,36
+3,4,Dennis,Izabela,Paso Doble,15
+3,4,Will,Hanna,Foxtrot,34
+3,4,James,Camilla,Paso Doble,29
+3,4,Fiona,Brendan,Foxtrot,20
+3,4,Bill,Karen,Paso Doble,25
+3,4,Patsy,Anton,Foxtrot,31
+3,4,Darren,Lilia,Paso Doble,34
+3,5,Darren,Lilia,Viennese Waltz,28
+3,5,Dennis,Izabela,Samba,23
+3,5,Will,Hanna,Viennese Waltz,23
+3,5,Colin,Erin,Samba,32
+3,5,Bill,Karen,Viennese Waltz,27
+3,5,Patsy,Anton,Samba,26
+3,5,James,Camilla,Viennese Waltz,29
+3,5,Zoe,Ian,Samba,35
+3,6,James,Camilla,Jive,20
+3,6,Zoe,Ian,Quickstep,36
+3,6,Bill,Karen,Rumba,17
+3,6,Will,Hanna,Tango,28
+3,6,Patsy,Anton,Quickstep,31
+3,6,Darren,Lilia,Jive,30
+3,6,Colin,Erin,Foxtrot,32
+3,7,Bill,Karen,Waltz,25
+3,7,Patsy,Anton,Cha-Cha-Cha,24
+3,7,Colin,Erin,Viennese Waltz,34
+3,7,Zoe,Ian,Tango,38
+3,7,Darren,Lilia,Foxtrot,34
+3,7,James,Camilla,Waltz,32
+3,8,Colin,Erin,Rumba,36
+3,8,Colin,Erin,American Smooth,37
+3,8,James,Camilla,Samba,20
+3,8,James,Camilla,American Smooth,28
+3,8,Patsy,Anton,Jive,27
+3,8,Patsy,Anton,American Smooth,31
+3,8,Darren,Lilia,Rumba,30
+3,8,Darren,Lilia,American Smooth,32
+3,8,Zoe,Ian,Cha-Cha-Cha,32
+3,8,Zoe,Ian,American Smooth,36
+3,9,Darren,Lilia,Waltz,35
+3,9,Darren,Lilia,Samba,29
+3,9,Zoe,Ian,Viennese Waltz,36
+3,9,Zoe,Ian,Paso Doble,33
+3,9,James,Camilla,Foxtrot,33
+3,9,James,Camilla,Rumba,22
+3,9,Colin,Erin,Waltz,37
+3,9,Colin,Erin,Jive,30
+3,10,Colin,Erin,Quickstep,39
+3,10,Colin,Erin,Rumba,36
+3,10,Darren,Lilia,Foxtrot,36
+3,10,Darren,Lilia,Paso Doble,36
+3,10,Zoe,Ian,Tango,38
+3,10,Zoe,Ian,Samba,38
+series,week,celebrity,professional,dance,score
+4,1,Matt,Lilia,Cha-Cha-Cha,19
+4,1,Nicholas,Nicole,Waltz,14
+4,1,Ray,Camilla,Cha-Cha-Cha,27
+4,1,Peter,Erin,Waltz,25
+4,1,Spoony,Ola,Cha-Cha-Cha,27
+4,1,Jimmy,Flavia,Waltz,17
+4,1,Mark,Karen,Cha-Cha-Cha,27
+4,2,Carol,Matthew,Quickstep,25
+4,2,Mica,Ian,Rumba,20
+4,2,Louisa,Vincent,Quickstep,28
+4,2,Georgina,James,Rumba,14
+4,2,Jan,Anton,Quickstep,24
+4,2,Claire,Brendan,Rumba,21
+4,2,Emma,Darren,Quickstep,33
+4,3,Ray,Camilla,Tango,29
+4,3,Carol,Matthew,Jive,27
+4,3,Matt,Lilia,Tango,30
+4,3,Georgina,James,Jive,18
+4,3,Spoony,Ola,Tango,27
+4,3,Claire,Brendan,Jive,22
+4,3,Jan,Anton,Jive,18
+4,3,Mark,Karen,Tango,32
+4,3,Emma,Darren,Jive,33
+4,3,Peter,Erin,Tango,31
+4,3,Louisa,Vincent,Jive,36
+4,4,Emma,Darren,Foxtrot,30
+4,4,Matt,Lilia,Paso Doble,28
+4,4,Jan,Anton,Foxtrot,24
+4,4,Mark,Karen,Paso Doble,35
+4,4,Carol,Matthew,Foxtrot,29
+4,4,Georgina,James,Foxtrot,26
+4,4,Peter,Erin,Paso Doble,19
+4,4,Louisa,Vincent,Foxtrot,26
+4,4,Ray,Camilla,Paso Doble,30
+4,4,Claire,Brendan,Foxtrot,24
+4,5,Louisa,Vincent,Salsa,29
+4,5,Matt,Lilia,Salsa,25
+4,5,Jan,Anton,Viennese Waltz,25
+4,5,Ray,Camilla,Viennese Waltz,35
+4,5,Claire,Brendan,Salsa,21
+4,5,Emma,Darren,Viennese Waltz,34
+4,5,Carol,Matthew,Salsa,29
+4,5,Peter,Erin,Viennese Waltz,28
+4,5,Mark,Karen,Salsa,36
+4,6,Ray,Camilla,Samba,26
+4,6,Claire,Brendan,American Smooth,32
+4,6,Emma,Darren,Samba,36
+4,6,Mark,Karen,American Smooth,33
+4,6,Louisa,Vincent,Samba,32
+4,6,Matt,Lilia,American Smooth,34
+4,6,Peter,Erin,Samba,19
+4,6,Carol,Matthew,American Smooth,27
+4,7,Emma,Darren,Cha-Cha-Cha,30
+4,7,Claire,Brendan,Tango,29
+4,7,Mark,Karen,Rumba,27
+4,7,Carol,Matthew,Cha-Cha-Cha,30
+4,7,Peter,Erin,Foxtrot,26
+4,7,Louisa,Vincent,Tango,35
+4,7,Matt,Lilia,Waltz,37
+4,8,Matt,Lilia,Jive,28
+4,8,Carol,Matthew,Waltz,30
+4,8,Louisa,Vincent,Paso Doble,34
+4,8,Emma,Darren,American Smooth,34
+4,8,Claire,Brendan,Samba,25
+4,8,Mark,Karen,Viennese Waltz,36
+4,9,Carol,Matthew,Viennese Waltz,34
+4,9,Carol,Matthew,Samba,34
+4,9,Matt,Lilia,Quickstep,34
+4,9,Matt,Lilia,Rumba,27
+4,9,Emma,Darren,Waltz,37
+4,9,Emma,Darren,Paso Doble,37
+4,9,Mark,Karen,Foxtrot,28
+4,9,Mark,Karen,Samba,36
+4,9,Louisa,Vincent,Viennese Waltz,33
+4,9,Louisa,Vincent,Cha-Cha-Cha,36
+4,10,Mark,Karen,Waltz,36
+4,10,Mark,Karen,Jive,27
+4,10,Louisa,Vincent,American Smooth,31
+4,10,Louisa,Vincent,Rumba,28
+4,10,Matt,Lilia,Viennese Waltz,29
+4,10,Matt,Lilia,Samba,32
+4,10,Emma,Darren,Tango,35
+4,10,Emma,Darren,Rumba,34
+4,11,Matt,Lilia,Foxtrot,35
+4,11,Matt,Lilia,Argentine Tango,30
+4,11,Emma,Darren,Argentine Tango,36
+4,11,Emma,Darren,Salsa,33
+4,11,Mark,Karen,Quickstep,34
+4,11,Mark,Karen,Argentine Tango,39
+4,12,Matt,Lilia,Waltz,38
+4,12,Matt,Lilia,Samba,31
+4,12,Matt,Lilia,Quickstep,36
+4,12,Mark,Karen,Tango,34
+4,12,Mark,Karen,Salsa,40
+4,12,Mark,Karen,Samba,36
+series,week,celebrity,professional,dance,score
+5,1,Matt,Flavia,Cha-Cha-Cha,23
+5,1,Brian,Karen,Waltz,18
+5,1,Dominic,Lilia,Cha-Cha-Cha,25
+5,1,Willie,Erin,Waltz,24
+5,1,Gethin,Camilla,Cha-Cha-Cha,22
+5,1,Kenny,Ola,Waltz,21
+5,1,John,Nicole,Cha-Cha-Cha,26
+5,2,Stephanie,Vincent,Quickstep,24
+5,2,Letitia,Darren,Rumba,23
+5,2,Kate,Anton,Quickstep,15
+5,2,Alesha,Matthew,Rumba,31
+5,2,Penny,Ian,Quickstep,33
+5,2,Kelly,Brendan,Rumba,33
+5,2,Gabby,James,Quickstep,29
+5,3,Gabby,James,Jive,31
+5,3,Gethin,Camilla,Tango,29
+5,3,Penny,Ian,Jive,25
+5,3,Kenny,Ola,Tango,25
+5,3,Matt,Flavia,Jive,30
+5,3,Kate,Anton,Tango,19
+5,3,Dominic,Lilia,Jive,25
+5,3,Letitia,Darren,Tango,27
+5,3,John,Nicole,Jive,27
+5,3,Willie,Erin,Tango,23
+5,3,Alesha,Matthew,Jive,36
+5,3,Kelly,Brendan,Tango,35
+5,4,Alesha,Matthew,American Smooth,33
+5,4,Gabby,James,Samba,30
+5,4,Dominic,Lilia,American Smooth,26
+5,4,Kate,Anton,Samba,16
+5,4,John,Nicole,American Smooth,22
+5,4,Kenny,Ola,Samba,18
+5,4,Kelly,Brendan,American Smooth,34
+5,4,Gethin,Camilla,Samba,26
+5,4,Letitia,Darren,American Smooth,31
+5,4,Penny,Ian,Samba,32
+5,4,Matt,Flavia,American Smooth,36
+5,5,Kelly,Brendan,Paso Doble,28
+5,5,John,Nicole,Foxtrot,24
+5,5,Letitia,Darren,Paso Doble,31
+5,5,Gethin,Camilla,Foxtrot,31
+5,5,Kenny,Ola,Paso Doble,21
+5,5,Alesha,Matthew,Foxtrot,36
+5,5,Dominic,Lilia,Paso Doble,25
+5,5,Kate,Anton,Foxtrot,26
+5,5,Matt,Flavia,Paso Doble,31
+5,5,Penny,Ian,Foxtrot,35
+5,6,Gethin,Camilla,Viennese Waltz,36
+5,6,Penny,Ian,Salsa,25
+5,6,Matt,Flavia,Viennese Waltz,29
+5,6,Kate,Anton,Salsa,18
+5,6,Letitia,Darren,Salsa,25
+5,6,Kenny,Ola,Viennese Waltz,26
+5,6,John,Nicole,Salsa,36
+5,6,Kelly,Brendan,Viennese Waltz,36
+5,6,Alesha,Matthew,Salsa,35
+5,7,Kelly,Brendan,Jive,36
+5,7,Letitia,Darren,Foxtrot,34
+5,7,Kenny,Ola,Cha-Cha-Cha,22
+5,7,Gethin,Camilla,Rumba,31
+5,7,John,Nicole,Tango,28
+5,7,Kate,Anton,Paso Doble,21
+5,7,Alesha,Matthew,Waltz,38
+5,7,Matt,Flavia,Quickstep,34
+5,8,Gethin,Camilla,Quickstep,34
+5,8,John,Nicole,Samba,27
+5,8,Letitia,Darren,Viennese Waltz,32
+5,8,Kelly,Brendan,Samba,29
+5,8,Kenny,Ola,American Smooth,30
+5,8,Matt,Flavia,Salsa,38
+5,8,Alesha,Matthew,Cha-Cha-Cha,39
+5,9,Matt,Flavia,Tango,32
+5,9,Matt,Flavia,Rumba,33
+5,9,Gethin,Camilla,Waltz,39
+5,9,Gethin,Camilla,Salsa,35
+5,9,Letitia,Darren,Quickstep,30
+5,9,Letitia,Darren,Cha-Cha-Cha,26
+5,9,Kenny,Ola,Foxtrot,30
+5,9,Kenny,Ola,Rumba,23
+5,9,Alesha,Matthew,Tango,38
+5,9,Alesha,Matthew,Samba,36
+5,10,Gethin,Camilla,American Smooth,38
+5,10,Gethin,Camilla,Jive,37
+5,10,Alesha,Matthew,Viennese Waltz,38
+5,10,Alesha,Matthew,Paso Doble,36
+5,10,Letitia,Darren,Waltz,35
+5,10,Letitia,Darren,Jive,30
+5,10,Matt,Flavia,Foxtrot,26
+5,10,Matt,Flavia,Samba,29
+5,11,Alesha,Matthew,Quickstep,38
+5,11,Alesha,Matthew,Argentine Tango,38
+5,11,Matt,Flavia,Argentine Tango,35
+5,11,Matt,Flavia,Waltz,40
+5,11,Gethin,Camilla,Paso Doble,34
+5,11,Gethin,Camilla,Argentine Tango,36
+5,12,Matt,Flavia,American Smooth,36
+5,12,Matt,Flavia,Salsa,39
+5,12,Matt,Flavia,Quickstep,35
+5,12,Alesha,Matthew,Waltz,39
+5,12,Alesha,Matthew,Cha-Cha-Cha,38
+5,12,Alesha,Matthew,Jive,35
+series,week,celebrity,professional,dance,score
+6,1,Tom,Camilla,Cha-Cha-Cha,28
+6,1,Phil,Flavia,Waltz,20
+6,1,Don,Lilia,Cha-Cha-Cha,19
+6,1,Austin,Erin,Waltz,32
+6,1,Mark,Hayley,Waltz,22
+6,1,Gary,Karen,Cha-Cha-Cha,17
+6,1,John,Kristina,Waltz,22
+6,1,Andrew,Ola,Cha-Cha-Cha,23
+6,2,Jessie,Darren,Salsa,20
+6,2,Christine,Matthew,Foxtrot,27
+6,2,Lisa,Brendan,Salsa,22
+6,2,Jodie,Ian,Foxtrot,25
+6,2,Heather,Brian,Salsa,26
+6,2,Gillian,Anton,Foxtrot,22
+6,2,Rachel,Vincent,Salsa,31
+6,2,Cherie,James,Foxtrot,33
+6,3,Austin,Erin,Jive,34
+6,3,Mark,Hayley,Tango,24
+6,3,Gary,Karen,Jive,18
+6,3,John,Kristina,Tango,22
+6,3,Andrew,Ola,Tango,22
+6,3,Tom,Camilla,Jive,33
+6,3,Don,Lilia,Tango,30
+6,4,Christine,Matthew,Quickstep,26
+6,4,Jodie,Ian,Rumba,22
+6,4,Heather,Brian,Quickstep,23
+6,4,Cherie,James,Rumba,35
+6,4,Jessie,Darren,Quickstep,19
+6,4,Lisa,Brendan,Rumba,32
+6,4,Rachel,Vincent,Quickstep,33
+6,5,Rachel,Vincent,Samba,30
+6,5,Lisa,Brendan,American Smooth,35
+6,5,Heather,Brian,Samba,23
+6,5,Cherie,James,American Smooth,34
+6,5,Mark,Hayley,Samba,17
+6,5,Don,Lilia,American Smooth,25
+6,5,Austin,Erin,Samba,32
+6,5,Andrew,Ola,American Smooth,17
+6,5,Christine,Matthew,Samba,30
+6,5,Jodie,Ian,American Smooth,30
+6,5,John,Kristina,Samba,16
+6,5,Tom,Camilla,American Smooth,35
+6,6,Lisa,Brendan,Paso Doble,29
+6,6,Andrew,Ola,Viennese Waltz,24
+6,6,Christine,Matthew,Paso Doble,22
+6,6,Austin,Erin,Viennese Waltz,34
+6,6,Cherie,James,Paso Doble,31
+6,6,Heather,Brian,Viennese Waltz,27
+6,6,Mark,Hayley,Paso Doble,16
+6,6,Tom,Camilla,Viennese Waltz,32
+6,6,John,Kristina,Paso Doble,21
+6,6,Rachel,Vincent,Viennese Waltz,32
+6,6,Jodie,Ian,Paso Doble,26
+6,7,Austin,Erin,Quickstep,36
+6,7,Heather,Brian,Cha-Cha-Cha,23
+6,7,Jodie,Ian,Waltz,31
+6,7,Andrew,Ola,Samba,21
+6,7,Lisa,Brendan,Tango,35
+6,7,Cherie,James,Salsa,26
+6,7,John,Kristina,Foxtrot,20
+6,7,Tom,Camilla,Paso Doble,34
+6,7,Christine,Matthew,American Smooth,29
+6,7,Rachel,Vincent,Jive,32
+6,8,Tom,Camilla,Quickstep,36
+6,8,Jodie,Ian,Samba,23
+6,8,Heather,Brian,Tango,27
+6,8,Austin,Erin,Rumba,29
+6,8,Cherie,James,Waltz,36
+6,8,Christine,Matthew,Jive,31
+6,8,Rachel,Vincent,American Smooth,35
+6,8,John,Kristina,Cha Cha Cha,12
+6,8,Lisa,Brendan,Viennese Waltz,36
+6,9,Jodie,Ian,Quickstep,33
+6,9,Lisa,Brendan,Samba,30
+6,9,Christine,Matthew,Waltz,34
+6,9,Cherie,James,Cha Cha Cha,32
+6,9,Austin,Erin,Tango,38
+6,9,Rachel,Vincent,Rumba,39
+6,9,John,Kristina,American Smooth,25
+6,9,Tom,Camilla,Salsa,35
+6,10,Lisa,Brendan,Quickstep,35
+6,10,Christine,Matthew,Cha Cha Cha,27
+6,10,Jodie,Ian,Jive,30
+6,10,Tom,Camilla,Tango,36
+6,10,Rachel,Vincent,Foxtrot,40
+6,10,Austin,Erin,Cha Cha Cha,35
+6,11,Rachel,Vincent,Waltz,39
+6,11,Rachel,Vincent,Paso Doble,32
+6,11,Lisa,Brendan,Foxtrot,39
+6,11,Lisa,Brendan,Cha-Cha-Cha,37
+6,11,Christine,Matthew,Tango,28
+6,11,Christine,Matthew,Salsa,30
+6,11,Austin,Erin,Foxtrot,36
+6,11,Austin,Erin,Paso Doble,38
+6,11,Tom,Camilla,Waltz,35
+6,11,Tom,Camilla,Samba,35
+6,12,Austin,Erin,American Smooth,34
+6,12,Austin,Erin,Salsa,36
+6,12,Lisa,Brendan,Waltz,39
+6,12,Lisa,Brendan,Jive,33
+6,12,Tom,Camilla,Foxtrot,39
+6,12,Tom,Camilla,Rumba,34
+6,12,Rachel,Vincent,Tango,39
+6,12,Rachel,Vincent,Cha-Cha-Cha,37
+6,13,Lisa,Brendan,Argentine Tango,35
+6,13,Lisa,Brendan,Quickstep,40
+6,13,Tom,Camilla,Jive,33
+6,13,Tom,Camilla,Argentine Tango,34
+6,13,Rachel,Vincent,Argentine Tango,39
+6,13,Rachel,Vincent,American Smooth,36
+6,14,Rachel,Vincent,Foxtrot,40
+6,14,Rachel,Vincent,Rumba,39
+6,14,Tom,Camilla,Foxtrot,35
+6,14,Tom,Camilla,Salsa,38
+6,14,Lisa,Brendan,Foxtrot,40
+6,14,Lisa,Brendan,Cha-Cha-Cha,40
+series,week,celebrity,professional,dance,score
+7,3,Ali,Brian,Quickstep,32
+7,3,Lynda,Darren,Paso Doble,25
+7,3,Chris,Ola,Quickstep,23
+7,3,Zöe,James,Paso Doble,31
+7,3,Rav,Aliona,Quickstep,20
+7,3,Natalie,Vincent,Paso Doble,28
+7,3,Craig,Flavia,Quickstep,21
+7,3,Ricky W.,Natalie,Paso Doble,35
+7,3,Jade,Ian,Quickstep,31
+7,3,Joe,Kristina,Paso Doble,19
+7,3,Laila,Anton,Quickstep,30
+7,3,Jo,Brendan,Paso Doble,20
+7,3,Phil,Katya,Quickstep,24
+7,3,Ricky G.,Erin,Paso Doble,29
+7,4,Zöe,James,Foxtrot,33
+7,4,Chris,Ola,Salsa,25
+7,4,Lynda,Darren,Foxtrot,24
+7,4,Ali,Brian,Salsa,32
+7,4,Jo,Brendan,Foxtrot,20
+7,4,Natalie,Vincent,Salsa,29
+7,4,Joe,Kristina,Foxtrot,20
+7,4,Laila,Anton,Foxtrot,34
+7,4,Ricky W.,Natalie,Salsa,32
+7,4,Craig,Flavia,Foxtrot,24
+7,4,Jade,Ian,Salsa,29
+7,4,Ricky G.,Erin,Foxtrot,28
+7,4,Phil,Katya,Salsa,24
+7,5,Ricky G.,Erin,Jive,25
+7,5,Jade,Ian,Viennese Waltz,35
+7,5,Ali,Brian,Jive,29
+7,5,Jo,Brendan,Viennese Waltz,23
+7,5,Zöe,James,Jive,30
+7,5,Ricky W.,Natalie,Viennese Waltz,36
+7,5,Craig,Flavia,Jive,20
+7,5,Joe,Kristina,Jive,21
+7,5,Natalie,Vincent,Viennese Waltz,27
+7,5,Laila,Anton,Jive,22
+7,5,Phil,Katya,Viennese Waltz,27
+7,5,Chris,Ola,Jive,22
+7,6,Jade,Ian,Samba,32
+7,6,Chris,Ola,American Smooth,28
+7,6,Phil,Katya,Samba,25
+7,6,Zöe,James,American Smooth,33
+7,6,Craig,Flavia,Samba,18
+7,6,Ricky G.,Erin,American Smooth,29
+7,6,Ricky W.,Natalie,Samba,32
+7,6,Natalie,Vincent,American Smooth,29
+7,6,Jo,Brendan,Samba,14
+7,6,Ali,Brian,American Smooth,37
+7,6,Laila,Anton,Samba,28
+7,7,Natalie,Vincent,Jive,30
+7,7,Ali,Brian,Paso Doble,33
+7,7,Craig,Flavia,Waltz,24
+7,7,Chris,Ola,Cha-Cha-Cha,29
+7,7,Jade,Ian,Foxtrot,35
+7,7,Zöe,James,Samba,32
+7,7,Ricky G.,Erin,Rumba,24
+7,7,Laila,Anton,Viennese Waltz,33
+7,7,Phil,Katya,Tango,30
+7,7,Ricky W.,Natalie,Quickstep,39
+7,8,Ricky W.,Natalie,Tango,35
+7,8,Natalie,Vincent,Quickstep,31
+7,8,Jade,Ian,Jive,33
+7,8,Ali,Brian,Viennese Waltz,40
+7,8,Ricky G.,Erin,Salsa,25
+7,8,Laila,Anton,Paso Doble,30
+7,8,Phil,Katya,Rumba,28
+7,8,Chris,Ola,Foxtrot,34
+7,8,Craig,Flavia,Cha-Cha-Cha,17
+7,9,Phil,Katya,American Smooth,31
+7,9,Ricky W.,Natalie,Jive,35
+7,9,Ricky G.,Erin,Viennese Waltz,29
+7,9,Chris,Ola,Paso Doble,30
+7,9,Laila,Anton,Rumba,22
+7,9,Natalie,Vincent,Foxtrot,34
+7,9,Ali,Brian,Cha-Cha-Cha,35
+7,10,Ali,Brian,Foxtrot,35
+7,10,Natalie,Vincent,Samba,26
+7,10,Chris,Ola,Viennese Waltz,29
+7,10,Ricky W.,Natalie,American Smooth,36
+7,10,Laila,Anton,Waltz,29
+7,10,Ricky G.,Erin,Tango,22
+7,11,Chris,Ola,Charleston,34
+7,11,Ricky W.,Natalie,Rock 'n' Roll,31
+7,11,Ali,Brian,Charleston,37
+7,11,Natalie,Vincent,Rock 'n' Roll,26
+7,11,Laila,Anton,Charleston,31
+7,12,Ali,Brian,Tango,42
+7,12,Ali,Brian,Samba,44
+7,12,Laila,Anton,American Smooth,33
+7,12,Laila,Anton,Salsa,26
+7,12,Chris,Ola,Waltz,41
+7,12,Chris,Ola,Samba,39
+7,12,Ricky W.,Natalie,Foxtrot,48
+7,12,Ricky W.,Natalie,Cha-Cha-Cha,47
+7,13,Chris,Ola,Rumba,38
+7,13,Chris,Ola,Argentine Tango,42
+7,13,Ali,Brian,Argentine Tango,42
+7,13,Ali,Brian,American Smooth,50
+7,13,Ricky W.,Natalie,Waltz,47
+7,13,Ricky W.,Natalie,Argentine Tango,49
+7,14,Ricky W.,Natalie,Quickstep,50
+7,14,Chris,Ola,Foxtrot,46
+7,14,Chris,Ola,Lindy Hop,44
+7,14,Ricky W.,Natalie,Chris & Ola,43
+7,14,Ricky W.,Natalie,Cha-Cha-Cha,48
+7,14,Ricky W.,Natalie,Showdance,49
+series,week,celebrity,professional,dance,score
+8,2,Matt,Aliona,Foxtrot,31
+8,2,Peter,Erin,Salsa,17
+8,2,Tina,Jared,Foxtrot,26
+8,2,Patsy,Robin,Salsa,28
+8,2,Paul,Ola,Foxtrot,21
+8,2,Scott,Natalie,Salsa,32
+8,2,Michelle,Brendan,Foxtrot,26
+8,2,Goldie,Kristina,Foxtrot,26
+8,2,Pamela,James,Salsa,32
+8,2,Felicity,Vincent,Foxtrot,25
+8,2,Ann,Anton,Salsa,12
+8,2,Kara,Artem,Foxtrot,32
+8,2,Gavin,Katya,Salsa,19
+8,2,Jimi,Flavia,Foxtrot,30
+8,3,Kara,Artem,Quickstep,31
+8,3,Felicity,Vincent,Rumba,29
+8,3,Patsy,Robin,Quickstep,24
+8,3,Paul,Ola,Rumba,16
+8,3,Matt,Aliona,Quickstep,31
+8,3,Gavin,Katya,Rumba,22
+8,3,Scott,Natalie,Quickstep,34
+8,3,Michelle,Brendan,Rumba,24
+8,3,Peter,Erin,Quickstep,26
+8,3,Jimi,Flavia,Rumba,25
+8,3,Ann,Anton,Quickstep,18
+8,3,Pamela,James,Rumba,35
+8,4,Jimi,Flavia,Charleston,27
+8,4,Scott,Natalie,Tango,35
+8,4,Tina,Jared,Charleston,29
+8,4,Felicity,Vincent,Tango,29
+8,4,Patsy,Robin,Charleston,28
+8,4,Gavin,Katya,Tango,23
+8,4,Peter,Erin,Charleston,17
+8,4,Pamela,James,Tango,34
+8,4,Matt,Aliona,Charleston,35
+8,4,Michelle,Ian*,Tango,27
+8,4,Kara,Artem,Charleston,32
+8,4,Ann,Anton,Tango,21
+8,5,Pamela,James,Jive,27
+8,5,Tina,Jared,Argentine Tango,28
+8,5,Kara,Artem,Paso Doble,37
+8,5,Patsy,Robin,Jive,31
+8,5,Felicity,Vincent,Viennese Waltz,26
+8,5,Jimi,Flavia,Paso Doble,30
+8,5,Michelle,Brendan,Jive,29
+8,5,Gavin,Katya,Paso Doble,26
+8,5,Scott,Natalie,Viennese Waltz,39
+8,5,Ann,Anton,Paso Doble,16
+8,5,Matt,Aliona,Argentine Tango,34
+8,6,Kara,Artem,Salsa,36
+8,6,Pamela,James,Foxtrot,33
+8,6,Felicity,Vincent,Paso Doble,29
+8,6,Jimi,Flavia,Quickstep,32
+8,6,Matt,Aliona,Viennese Waltz,35
+8,6,Ann,Anton,Charleston,17
+8,6,Michelle,Brendan,Waltz,30
+8,6,Patsy,Robin,Cha-Cha-Cha,29
+8,6,Scott,Natalie,Rumba,28
+8,6,Gavin,Katya,Cha-Cha-Cha,29
+8,7,Pamela,James,Cha-Cha-Cha,32
+8,7,Michelle,Brendan,Paso Doble,24
+8,7,Patsy,Robin,Viennese Waltz,32
+8,7,Gavin,Katya,Quickstep,33
+8,7,Ann,Anton,Foxtrot,20
+8,7,Kara,Artem,Argentine Tango,38
+8,7,Felicity,Vincent,Salsa,26
+8,7,Matt,Aliona,Rumba,35
+8,7,Scott,Natalie,Jive,39
+8,8,Patsy,Robin,Samba,28
+8,8,Kara,Artem,American Smooth,35
+8,8,Matt,Aliona,Samba,38
+8,8,Felicity,Vincent,American Smooth,30
+8,8,Gavin,Katya,American Smooth,27
+8,8,Scott,Natalie,Samba,32
+8,8,Pamela,James,American Smooth,37
+8,8,Ann,Anton,Samba,13
+8,9,Kara,Artem,Jive,34
+8,9,Ann,Anton,Rumba,14
+8,9,Patsy,Robin,Argentine Tango,30
+8,9,Scott,Natalie,American Smooth,31
+8,9,Gavin,Katya,Jive,22
+8,9,Matt,Aliona,American Smooth,33
+8,9,Pamela,James,Charleston,38
+8,10,Scott,Natalie,Paso Doble,35
+8,10,Ann,Anton,American Smooth,14
+8,10,Matt,Aliona,Jive,35
+8,10,Pamela,James,Viennese Waltz,40
+8,10,Gavin,Katya,Foxtrot,33
+8,10,Kara,Artem,Tango,38
+8,11,Pamela,James,Paso Doble,35
+8,11,Kara,Artem,Viennese Waltz,39
+8,11,Gavin,Katya,Samba,27
+8,11,Scott,Natalie,Argentine Tango,33
+8,11,Matt,Aliona,Salsa,28
+8,11,Scott,Natalie,Charleston,35
+8,11,Kara,Artem,Rumba,39
+8,11,Matt,Aliona,Tango,38
+8,11,Gavin,Katya,Viennese Waltz,31
+8,11,Pamela,James,Quickstep,40
+series,week,celebrity,professional,dance,score
+9,2,Chelsee,Pasha,Salsa,29
+9,2,Edwina,Vincent,Foxtrot,19
+9,2,Audley,Natalie,Salsa,23
+9,2,Alex,James,Foxtrot,29
+9,2,Dan,Katya,Salsa,21
+9,2,Lulu,Brendan,Foxtrot,25
+9,2,Holly,Artem,Salsa,30
+9,2,Rory,Erin,Salsa,22
+9,2,Robbie,Ola,Foxtrot,29
+9,2,Anita,Robin,Salsa,28
+9,2,Jason,Kristina,Foxtrot,33
+9,2,Nancy,Anton,Salsa,14
+9,2,Harry,Aliona,Foxtrot,27
+9,2,Russell,Flavia,Salsa,25
+9,3,Holly,Artem,Tango,30
+9,3,Dan,Katya,Viennese Waltz,24
+9,3,Anita,Robin,Jive,27
+9,3,Alex,James,Viennese Waltz,32
+9,3,Rory,Erin,Quickstep,31
+9,3,Lulu,Brendan,Rumba,26
+9,3,Nancy,Anton,Tango,20
+9,3,Audley,Natalie,Quickstep,24
+9,3,Robbie,Ola,Tango,30
+9,3,Russell,Flavia,Foxtrot,28
+9,3,Jason,Kristina,Tango,36
+9,3,Chelsee,Pasha,Cha-Cha-Cha,30
+9,3,Harry,Aliona,Jive,33
+9,4,Jason,Kristina,Paso Doble,27
+9,4,Alex,James,Rumba,25
+9,4,Rory,Erin,Cha-Cha-Cha,24
+9,4,Audley,Natalie,Foxtrot,25
+9,4,Nancy,Anton,Paso Doble,18
+9,4,Lulu,Brendan,Samba,25
+9,4,Holly,Artem,Viennese Waltz,30
+9,4,Chelsee,Pasha,Quickstep,36
+9,4,Harry,Aliona,Waltz,35
+9,4,Anita,Robin,American Smooth,32
+9,4,Robbie,Ola,Jive,27
+9,4,Russell,Flavia,Tango,24
+9,5,Russell,Flavia,Samba,22
+9,5,Chelsee,Pasha,Tango,32
+9,5,Audley,Natalie,Jive,20
+9,5,Alex,James,Paso Doble,31
+9,5,Holly,Artem,American Smooth,35
+9,5,Nancy,Anton,Rumba,14
+9,5,Harry,Aliona,Tango,34
+9,5,Robbie,Ola,Paso Doble,26
+9,5,Anita,Robin,Tango,31
+9,5,Lulu ,Brendan,Paso Doble,29
+9,5,Jason,Kristina,Quickstep,37
+9,6,Lulu,Brendan,Tango,27
+9,6,Audley,Natalie,Viennese Waltz,27
+9,6,Harry,Aliona,Samba,33
+9,6,Anita,Robin,Charleston,31
+9,6,Jason,Kristina,Rumba,28
+9,6,Alex,James,Quickstep,31
+9,6,Robbie,Ola,Waltz,29
+9,6,Russell,Flavia,Paso Doble,24
+9,6,Chelsee,Pasha,Charleston,36
+9,6,Holly,Artem,Jive,34
+9,7,Alex,James,Jive,31
+9,7,Robbie,Ola,American Smooth,31
+9,7,Audley,Natalie,Cha-Cha-Cha,20
+9,7,Harry,Aliona,Argentine Tango,37
+9,7,Jason,Kristina,Viennese Waltz,35
+9,7,Chelsee,Pasha,Foxtrot,36
+9,7,Anita,Robin,Argentine Tango,33
+9,7,Holly,Brendan*,Rumba,34
+9,7,Russell,Flavia,American Smooth,26
+9,8,Robbie,Ola,Salsa,26
+9,8,Alex,James,Tango,35
+9,8,Holly,Artem,Quickstep,31
+9,8,Anita,Robin,Samba,27
+9,8,Harry,Aliona,Salsa,34
+9,8,Russell,Flavia,Jive,24
+9,8,Chelsee,Pasha,Samba,35
+9,8,Jason,Kristina,Jive,34
+9,9,Anita,Brendan*,Cha-Cha-Cha,30
+9,9,Holly,Artem,Foxtrot,34
+9,9,Alex,James,Charleston,29
+9,9,Robbie,Ola,Samba,25
+9,9,Chelsee,Pasha,Argentine Tango,35
+9,9,Jason,Kristina,Charleston,36
+9,9,Harry,Aliona,Quickstep,39
+9,10,Robbie,Ola,Quickstep,30
+9,10,Harry,Aliona,Rumba,36
+9,10,Alex,James,American Smooth,34
+9,10,Holly,Artem,Paso Doble,38
+9,10,Jason,Kristina,American Smooth,37
+9,10,Chelsee,Pasha,Jive,39
+9,11,Harry,Aliona,Charleston,39
+9,11,Harry,Aliona,Viennese Waltz,39
+9,11,Alex,James,Waltz,34
+9,11,Alex,James,Salsa,31
+9,11,Chelsee,Pasha,American Smooth,36
+9,11,Chelsee,Pasha,Paso Doble,40
+9,11,Holly,Artem,Argentine Tango,36
+9,11,Holly,Artem,Charleston,34
+9,11,Jason,Kristina,Samba,34
+9,11,Jason,Kristina,Argentine Tango,40
+series,week,celebrity,professional,dance,score
+10,2,Nicky,Karen,Cha-Cha-Cha,18
+10,2,Colin,Kristina,Viennese Waltz,24
+10,2,Dani,Vincent,Salsa,27
+10,2,Fern,Artem,Viennese Waltz,24
+10,2,Richard,Erin,Cha-Cha-Cha,19
+10,2,Victoria,Brendan,Foxtrot,26
+10,2,Michael,Natalie,Jive,15
+10,2,Louis,Flavia,Viennese Waltz,30
+10,2,Denise,James,Jive,32
+10,2,Johnny,Iveta,Foxtrot,20
+10,2,Sid,Ola,Salsa,22
+10,2,Kimberley,Pasha,Foxtrot,26
+10,2,Jerry,Anton,Foxtrot,18
+10,2,Lisa,Robin,Viennese Waltz,25
+10,3,Fern,Artem,Charleston,23
+10,3,Victoria,Brendan,Rumba,22
+10,3,Michael,Natalie,Cha-Cha-Cha,19
+10,3,Jerry,Anton,Quickstep,18
+10,3,Sid,Ola,Tango,17
+10,3,Kimberley,Pasha,Quickstep,29
+10,3,Denise,James,Foxtrot,32
+10,3,Colin,Kristina,Argentine Tango,26
+10,3,Richard,Erin,Quickstep,25
+10,3,Dani,Vincent,Foxtrot,29
+10,3,Lisa,Robin,Jive,29
+10,3,Nicky,Karen,Quickstep,27
+10,3,Louis,Flavia,Salsa,30
+10,4,Dani,Vincent,Cha-Cha-Cha,27
+10,4,Richard,Erin,Paso Doble,22
+10,4,Lisa,Robin,Charleston,26
+10,4,Sid,Ola,Cha-Cha-Cha,17
+10,4,Nicky,Karen,Tango,26
+10,4,Fern,Artem,American Smooth,21
+10,4,Denise,James,Cha-Cha-Cha,28
+10,4,Michael,Natalie,Quickstep,31
+10,4,Victoria,Brendan,Tango,31
+10,4,Colin,Kristina,Salsa,24
+10,4,Louis,Flavia,Tango,35
+10,4,Kimberley,Pasha,Paso Doble,31
+10,5,Kimberley,Pasha,Salsa,33
+10,5,Lisa,Robin,Tango,27
+10,5,Richard,Erin,Foxtrot,17
+10,5,Denise,James,Viennese Waltz,35
+10,5,Victoria,Brendan,Samba,23
+10,5,Louis,Flavia,Samba,29
+10,5,Colin,Kristina,Foxtrot,27
+10,5,Nicky,Karen,Rumba,25
+10,5,Fern,Artem,Paso Doble,24
+10,5,Michael,Natalie,Foxtrot,31
+10,5,Dani,Vincent,Jive,33
+10,6,Denise,James,Paso Doble,36
+10,6,Richard,Erin,Charleston,29
+10,6,Louis,Flavia,Waltz,33
+10,6,Fern,Artem,Salsa,27
+10,6,Victoria,Brendan,Quickstep,30
+10,6,Dani,Vincent,Tango,34
+10,6,Nicky,Karen,Foxtrot,30
+10,6,Kimberley,Pasha,Viennese Waltz,34
+10,6,Michael,Natalie,Salsa,26
+10,6,Lisa,Robin,Foxtrot,32
+10,7,Lisa,Robin,Samba,32
+10,7,Nicky,Karen,Jive,30
+10,7,Denise,James,Charleston,39
+10,7,Louis,Flavia,American Smooth,30
+10,7,Richard,Erin,Salsa,24
+10,7,Victoria,Brendan,Paso Doble,24
+10,7,Dani,Vincent,Quickstep,36
+10,7,Kimberley,Pasha,Samba,34
+10,7,Michael,Natalie,American Smooth,35
+10,8,Dani,Vincent,Samba,36
+10,8,Kimberley,Pasha,Tango,34
+10,8,Victoria,Brendan,Salsa,21
+10,8,Louis,Flavia,Paso Doble,27
+10,8,Lisa,Robin,Rumba,27
+10,8,Michael,Natalie,Argentine Tango,26
+10,8,Nicky,Karen,Charleston,36
+10,8,Denise,James,American Smooth,37
+10,9,Kimberley,Pasha,Jive,34
+10,9,Dani,Vincent,Viennese Waltz,34
+10,9,Michael,Natalie,Samba,24
+10,9,Nicky,Karen,Argentine Tango,30
+10,9,Lisa,Robin,Quickstep,31
+10,9,Denise,James,Salsa,32
+10,9,Louis,Flavia,Charleston,37
+10,10,Denise,James,Jive,35
+10,10,Lisa,Robin,Cha-Cha-Cha,30
+10,10,Nicky,Karen,American Smooth,27
+10,10,Dani,Vincent,Charleston,38
+10,10,Louis,Flavia,Tango,37
+10,10,Kimberley,Pasha,Cha-Cha-Cha,40
+10,11,Dani,Vincent,American Smooth,34
+10,11,Dani,Vincent,Argentine Tango,38
+10,11,Louis,Flavia,Jive,31
+10,11,Louis,Flavia,Foxtrot,38
+10,11,Denise,James,Tango,39
+10,11,Denise,James,Rumba,38
+10,11,Kimberley,Pasha,American Smooth,38
+10,11,Kimberley,Pasha,Charleston,40
+10,11,Lisa,Robin,Salsa,31
+10,11,Lisa,Robin,American Smooth,32
+series,week,celebrity,professional,dance,score
+11,1,Ashley,Ola,Cha-Cha-Cha,25
+11,1,Tony,Aliona,Waltz,16
+11,1,Mark,Iveta,Tango,24
+11,1,Susanna,Kevin,Jive,28
+11,1,Sophie,Brendan,Waltz,28
+11,1,Natalie,Artem,Cha-Cha-Cha,31
+11,1,Ben,Kristina,Cha-Cha-Cha,19
+11,1,Fiona,Anton,Tango,24
+11,1,Dave,Karen,Cha-Cha-Cha,16
+11,1,Rachel,Pasha,Waltz,27
+11,1,Julien,Janette,Cha-Cha-Cha,20
+11,1,Deborah,Robin,Tango,24
+11,1,Patrick,Anya,Jive,28
+11,1,Vanessa,James,Cha-Cha-Cha,19
+11,1,Abbey,Aljaž,Waltz,32
+11,2,Susanna,Kevin,Tango,31
+11,2,Tony,Aliona,Charleston,13
+11,2,Natalie,Artem,Waltz,34
+11,2,Dave,Karen,American Smooth,17
+11,2,Patrick,Anya,Tango,27
+11,2,Deborah,Robin,Cha-Cha-Cha,24
+11,2,Rachel,Pasha,Salsa,20
+11,2,Vanessa,James,Waltz,23
+11,2,Julien,Janette,Tango,18
+11,2,Fiona,Anton,Cha-Cha-Cha,22
+11,2,Mark,Iveta,Salsa,22
+11,2,Sophie,Brendan,Charleston,36
+11,2,Ben,Kristina,Waltz,25
+11,2,Abbey,Aljaž,Cha-Cha-Cha,30
+11,2,Ashley,Ola,American Smooth,32
+11,3,Abbey,Aljaž,Jive,28
+11,3,Patrick,Anya,Foxtrot,27
+11,3,Dave,Karen,Paso Doble,16
+11,3,Fiona,Anton,Waltz,28
+11,3,Rachel,Pasha,Cha-Cha-Cha,27
+11,3,Mark,Iveta,American Smooth,26
+11,3,Ben,Kristina,Rumba,28
+11,3,Sophie,Brendan,Samba,31
+11,3,Julien,Janette,Jive,22
+11,3,Susanna,Kevin,Viennese Waltz,34
+11,3,Vanessa,James,Tango,20
+11,3,Ashley,Ola,Samba,31
+11,3,Natalie,Artem,Rumba,36
+11,3,Deborah,Robin,Quickstep,28
+11,4,Sophie,Brendan,Foxtrot,35
+11,4,Fiona,Anton,Rumba,22
+11,4,Mark,Iveta,Cha-Cha-Cha,26
+11,4,Ashley,Ola,Viennese Waltz,31
+11,4,Julien,Janette,Salsa,23
+11,4,Rachel,Pasha,Quickstep,26
+11,4,Ben,Kristina,Salsa,31
+11,4,Deborah,Robin,Jive,23
+11,4,Natalie,Artem,Quickstep,35
+11,4,Patrick,Anya,Cha-Cha-Cha,33
+11,4,Abbey,Aljaž,Tango,35
+11,4,Dave,Karen,Waltz,23
+11,4,Susanna,Kevin,Samba,29
+11,5,Natalie,Artem,Samba,35
+11,5,Abbey,Aljaž,Foxtrot,35
+11,5,Dave,Karen,Salsa,17
+11,5,Deborah,Robin,Viennese Waltz,27
+11,5,Patrick,Anya,Salsa,28
+11,5,Fiona,Anton,Quickstep,30
+11,5,Rachel,Pasha,Paso Doble,22
+11,5,Mark,Iveta,Waltz,28
+11,5,Ashley,Ola,Jive,31
+11,5,Susanna,Kevin,American Smooth,32
+11,5,Ben,Kristina,Quickstep,27
+11,5,Sophie,Brendan,Cha-Cha-Cha,30
+11,6,Patrick,Anya,Quickstep,34
+11,6,Fiona,Anton,Charleston,28
+11,6,Ben,Kristina,Paso Doble,32
+11,6,Sophie,Brendan,Jive,28
+11,6,Natalie,Artem,Viennese Waltz,38
+11,6,Mark,Iveta,Paso Doble,25
+11,6,Rachel,Pasha,American Smooth,30
+11,6,Ashley,Ola,Tango,33
+11,6,Abbey,Aljaž,Rumba,34
+11,6,Dave,Karen,Jive,19
+11,6,Susanna,Kevin,Charleston,34
+11,7,Ben,Kristina,Jive,26
+11,7,Fiona,Anton,Paso Doble,26
+11,7,Abbey,Aljaž,Charleston,36
+11,7,Mark,Iveta,Rumba,23
+11,7,Susanna,Kevin,Waltz,36
+11,7,Dave,Karen,Tango,20
+11,7,Ashley,Ola,Quickstep,35
+11,7,Sophie,Brendan,Argentine Tango,32
+11,7,Patrick,Anya,American Smooth,37
+11,8,Sophie,Brendan,Quickstep,34
+11,8,Patrick,Anya,Samba,35
+11,8,Ben,Kristina,American Smooth,32
+11,8,Ashley,Ola,Paso Doble,35
+11,8,Fiona,Anton,American Smooth,29
+11,8,Abbey,Aljaž,Quickstep,37
+11,8,Mark,Iveta,Jive,29
+11,8,Susanna,Kevin,Paso Doble,39
+11,8,Natalie,Artem,Charleston,39
+11,9,Susanna,Kevin,Cha-Cha-Cha,31
+11,9,Ashley,Ola,Waltz,35
+11,9,Natalie,Artem,Tango,37
+11,9,Mark,Iveta,Foxtrot,28
+11,9,Sophie,Brendan,Rumba,31
+11,9,Ben,Kristina,Charleston,27
+11,9,Abbey,Aljaž,Paso Doble,32
+11,9,Patrick,Anya,Viennese Waltz,32
+11,10,Patrick,Anya,Charleston,38
+11,10,Natalie,Artem,American Smooth,36
+11,10,Mark,Iveta,Samba,29
+11,10,Sophie,Brendan,Viennese Waltz,36
+11,10,Abbey,Aljaž,Salsa,40
+11,10,Ashley,Ola,Rumba,35
+11,10,Susanna,Kevin,Quickstep,33
+11,11,Ashley,Ola,Salsa,35
+11,11,Natalie,Artem,Paso Doble,35
+11,11,Patrick,Anya,Rumba,36
+11,11,Susanna,Kevin,Argentine Tango,32
+11,11,Abbey,Aljaž,Viennese Waltz,37
+11,11,Sophie,Brendan,Tango,34
+11,12,Natalie,Artem,Salsa,40
+11,12,Natalie,Artem,Argentine Tango,38
+11,12,Patrick,Anya,Waltz,36
+11,12,Patrick,Anya,Paso Doble,33
+11,12,Sophie,Brendan,Paso Doble,35
+11,12,Sophie,Brendan,American Smooth,36
+11,12,Susanna,Kevin,Foxtrot,38
+11,12,Susanna,Kevin,Salsa,32
+11,12,Abbey,Aljaž,Samba,39
+11,12,Abbey,Aljaž,American Smooth,39
+11,13,Susanna,Kevin,Quickstep,37
+11,13,Susanna,Kevin,Showdance,36
+11,13,Abbey,Aljaž,Waltz,40
+11,13,Abbey,Aljaž,Showdance,38
+11,13,Natalie,Artem,Cha-Cha-Cha,39
+11,13,Natalie,Artem,Showdance,40
+11,13,Sophie,Brendan,Viennese Waltz,39
+11,13,Sophie,Brendan,Showdance,35
+11,13,Susanna,Kevin,Paso Doble,39
+11,13,Abbey,Aljaž,Quickstep,38
+11,13,Natalie,Artem,American Smooth,40
+series,week,celebrity,professional,dance,score
+12,1,Caroline,Pasha,Cha-Cha-Cha,27
+12,1,Tim,Natalie,Cha-Cha-Cha,18
+12,1,Jake,Janette,Tango,28
+12,1,Judy,Anton,Waltz,18
+12,1,Scott,Joanne,Cha-Cha-Cha,16
+12,1,Pixie,Trent,Jive,27
+12,1,Mark,Karen,Cha-Cha-Cha,24
+12,1,Alison,Aljaž,Cha-Cha-Cha,26
+12,1,Steve,Ola,Tango,26
+12,1,Jennifer,Tristan,Jive,18
+12,1,Thom,Iveta,Waltz,23
+12,1,Sunetra,Brendan,Tango,24
+12,1,Gregg,Aliona,Cha-Cha-Cha,18
+12,1,Frankie,Kevin,Waltz,30
+12,1,Simon,Kristina,Jive,27
+12,2,Thom,Iveta,Salsa,25
+12,2,Jennifer,Tristan,Waltz,19
+12,2,Simon,Kristina,Tango,26
+12,2,Gregg,Aliona,Charleston,18
+12,2,Alison,Aljaž,Foxtrot,22
+12,2,Jake,Janette,Salsa,35
+12,2,Judy,Anton,Cha-Cha-Cha,17
+12,2,Caroline,Pasha,Tango,29
+12,2,Tim,Natalie,Waltz,23
+12,2,Sunetra,Brendan,Cha-Cha-Cha,26
+12,2,Mark,Karen,American Smooth,27
+12,2,Scott,Joanne,Tango,20
+12,2,Pixie,Trent,Waltz,35
+12,2,Steve,Ola,Cha-Cha-Cha,21
+12,2,Frankie,Kevin,Charleston,30
+12,3,Alison,Aljaž,Jive,28
+12,3,Steve,Ola,Quickstep,34
+12,3,Jennifer,Tristan,Foxtrot,23
+12,3,Simon,Kristina,Rumba,30
+12,3,Judy,Anton,Quickstep,23
+12,3,Tim,Natalie,Charleston,22
+12,3,Caroline,Pasha,Rumba,42
+12,3,Scott,Joanne,Samba,25
+12,3,Frankie,Kevin,Paso Doble,45
+12,3,Jake,Janette,Waltz,40
+12,3,Pixie,Trent,Quickstep,43
+12,3,Thom,Iveta,Charleston,38
+12,3,Sunetra,Brendan,American Smooth,40
+12,3,Mark,Karen,Paso Doble,35
+12,4,Frankie,Kevin,Cha-Cha-Cha,32
+12,4,Mark,Karen,Quickstep,29
+12,4,Judy,Anton,Tango,22
+12,4,Simon,Kristina,Charleston,31
+12,4,Alison,Aljaž,Samba,27
+12,4,Scott,Joanne,American Smooth,15
+12,4,Steve,Ola,Salsa,27
+12,4,Pixie,Trent,Rumba,32
+12,4,Tim,Natalie,Paso Doble,19
+12,4,Sunetra,Brendan,Salsa,27
+12,4,Thom,Iveta,Foxtrot,30
+12,4,Jake,Janette,Jive,33
+12,4,Caroline,Pasha,Quickstep,33
+12,5,Jake,Janette,Quickstep,31
+12,5,Sunetra,Brendan,Viennese Waltz,30
+12,5,Scott,Joanne,Charleston,19
+12,5,Thom,Iveta,Cha-Cha-Cha,27
+12,5,Frankie,Kevin,Foxtrot,32
+12,5,Alison,Aljaž,Tango,23
+12,5,Mark,Karen,Samba,33
+12,5,Simon,Kristina,Viennese Waltz,28
+12,5,Judy,Anton,Charleston,18
+12,5,Caroline,Pasha,Paso Doble,34
+12,5,Steve,Ola,Waltz,30
+12,5,Pixie,Trent,Samba,35
+12,6,Sunetra,Brendan,Jive,27
+12,6,Alison,Aljaž,American Smooth,26
+12,6,Simon,Kristina,Paso Doble,29
+12,6,Steve,Ola,Charleston,26
+12,6,Pixie,Trent,Tango,33
+12,6,Judy,Anton,American Smooth,20
+12,6,Jake,Janette,Paso Doble,29
+12,6,Caroline,Pasha,Samba,32
+12,6,Scott,Joanne,Foxtrot,21
+12,6,Mark,Karen,Jive,35
+12,6,Frankie,Kevin,Tango,37
+12,7,Simon,Kristina,Quickstep,33
+12,7,Caroline,Pasha,Waltz,31
+12,7,Jake,Janette,Rumba,27
+12,7,Judy,Anton,Paso Doble,18
+12,7,Sunetra,Brendan,Foxtrot,31
+12,7,Alison,Aljaž,Charleston,27
+12,7,Mark,Karen,Waltz,31
+12,7,Frankie,Kevin,Samba,32
+12,7,Pixie,Trent,Foxtrot,36
+12,7,Steve,Ola,Paso Doble,28
+12,8,Frankie,Kevin,Quickstep,37
+12,8,Jake,Janette,American Smooth,36
+12,8,Sunetra,Brendan,Samba,30
+12,8,Simon,Kristina,Argentine Tango,38
+12,8,Judy,Anton,Viennese Waltz,24
+12,8,Mark,Karen,Charleston,36
+12,8,Pixie,Trent,Paso Doble,38
+12,8,Steve,Ola,American Smooth,31
+12,8,Caroline,Pasha,Jive,37
+12,9,Steve,Ola,Jive,23
+12,9,Caroline,Pasha,American Smooth,33
+12,9,Pixie,Trent,Charleston,37
+12,9,Mark,Karen,Tango,32
+12,9,Frankie,Kevin,Viennese Waltz,38
+12,9,Jake,Janette,Samba,38
+12,9,Sunetra,Brendan,Waltz,30
+12,9,Simon,Kristina,Salsa,36
+12,10,Pixie,Trent,Viennese Waltz,38
+12,10,Mark,Karen,Salsa,32
+12,10,Sunetra,Brendan,Rumba,27
+12,10,Caroline,Pasha,Charleston,39
+12,10,Simon,Kristina,Waltz,38
+12,10,Frankie,Kevin,Jive,36
+12,10,Jake,Janette,Argentine Tango,29
+12,11,Simon,Kristina,American Smooth,35
+12,11,Caroline,Pasha,Argentine Tango,39
+12,11,Pixie,Trent,Cha-Cha-Cha,35
+12,11,Mark,Karen,Foxtrot,35
+12,11,Jake,Janette,Charleston,38
+12,11,Frankie,Kevin,Salsa,34
+12,12,Jake,Janette,Cha-Cha-Cha,30
+12,12,Jake,Janette,Viennese Waltz,31
+12,12,Frankie,Kevin,Rumba,34
+12,12,Frankie,Kevin,Argentine Tango,38
+12,12,Mark,Karen,Viennese Waltz,33
+12,12,Mark,Karen,Rumba,33
+12,12,Simon,Kristina,Samba,30
+12,12,Simon,Kristina,Foxtrot,38
+12,12,Caroline,Pasha,Foxtrot,35
+12,12,Caroline,Pasha,Salsa,40
+12,13,Frankie,Kevin,Samba,39
+12,13,Frankie,Kevin,Showdance,38
+12,13,Mark,Karen,Cha-Cha-Cha,35
+12,13,Mark,Karen,Showdance,35
+12,13,Caroline,Pasha,Cha-Cha-Cha,40
+12,13,Caroline,Pasha,Showdance,40
+12,13,Simon,Kristina,Charleston,39
+12,13,Simon,Kristina,Showdance,39
+12,13,Frankie,Kevin,Paso Doble,39
+12,13,Caroline,Pasha,Charleston,40
+12,13,Simon,Kristina,Argentine Tango,40
+series,week,celebrity,professional,dance,score
+13,1,Kellie,Kevin,Tango,27
+13,1,Anthony,Oti,Jive,21
+13,1,Helen,Aljaž,Waltz,29
+13,1,Carol,Pasha,Cha-Cha-Cha,16
+13,1,Daniel,Kristina,Waltz,24
+13,1,Anita,Gleb,Cha-Cha-Cha,27
+13,1,Jay,Aliona,Cha-Cha-Cha,27
+13,1,Kirsty,Brendan,Waltz,20
+13,1,Jeremy,Karen,Cha-Cha-Cha,19
+13,1,Georgia,Giovanni,Jive,27
+13,1,Ainsley,Natalie,Tango,20
+13,1,Katie,Anton,Jive,26
+13,1,Iwan,Ola,Tango,17
+13,1,Jamelia,Tristan,Waltz,21
+13,1,Peter,Janette,Cha-Cha-Cha,30
+13,2,Jamelia,Tristan,Cha-Cha-Cha,21
+13,2,Daniel,Kristina,Charleston,23
+13,2,Kirsty,Brendan,Salsa,20
+13,2,Jay,Aliona,Waltz,31
+13,2,Iwan,Ola,Cha-Cha-Cha,13
+13,2,Georgia,Giovanni,Waltz,25
+13,2,Ainsley,Natalie,Salsa,26
+13,2,Carol,Pasha,Foxtrot,20
+13,2,Kellie,Kevin,Cha-Cha-Cha,27
+13,2,Anthony,Oti,Waltz,19
+13,2,Anita,Gleb,Charleston,27
+13,2,Jeremy,Karen,American Smooth,17
+13,2,Katie,Anton,Tango,28
+13,2,Peter,Janette,Quickstep,30
+13,2,Helen,Aljaž,Cha-Cha-Cha,29
+13,3,Carol,Pasha,Quickstep,17
+13,3,Anthony,Oti,Paso Doble,19
+13,3,Katie,Anton,Cha-Cha-Cha,20
+13,3,Kellie,Kevin,Charleston,32
+13,3,Ainsley,Natalie,Cha-Cha-Cha,20
+13,3,Georgia,Giovanni,Rumba,27
+13,3,Helen,Aljaž,Foxtrot,32
+13,3,Daniel,Kristina,Cha-Cha-Cha,21
+13,3,Kirsty,Brendan,American Smooth,23
+13,3,Peter,Janette,Paso Doble,28
+13,3,Jamelia,Tristan,Salsa,25
+13,3,Jeremy,Karen,Charleston,24
+13,3,Anita,Gleb,American Smooth,29
+13,3,Jay,Aliona,Jive,37
+13,4,Anita,Gleb,Samba,27
+13,4,Daniel,Kristina,American Smooth,23
+13,4,Kirsty,Brendan,Paso Doble,21
+13,4,Georgia,Giovanni,Quickstep,31
+13,4,Jeremy,Karen,Jive,20
+13,4,Kellie,Kevin,Foxtrot,32
+13,4,Jamelia,Tristan,Charleston,32
+13,4,Jay,Aliona,Quickstep,25
+13,4,Carol,Pasha,Paso Doble,22
+13,4,Ainsley,Natalie,Waltz,26
+13,4,Helen,Aljaž,Salsa,32
+13,4,Peter,Janette,Tango,32
+13,4,Katie,Anton,Viennese Waltz,33
+13,5,Georgia,Giovanni,Salsa,31
+13,5,Carol,Pasha,Viennese Waltz,21
+13,5,Anita,Gleb,Tango,32
+13,5,Peter,Janette,Rumba,29
+13,5,Kirsty,Brendan,Viennese Waltz,29
+13,5,Ainsley,Natalie,Jive,21
+13,5,Jamelia,Tristan,Foxtrot,26
+13,5,Katie,Anton,Salsa,21
+13,5,Jeremy,Karen,Waltz,18
+13,5,Helen,Aljaž,Quickstep,35
+13,5,Jay,Aliona,Paso Doble,33
+13,5,Kellie,Kevin,Jive,35
+13,6,Katie,Anton,Paso Doble,21
+13,6,Kirsty,Brendan,Charleston,17
+13,6,Jeremy,Karen,Salsa,22
+13,6,Anita,Gleb,Waltz,29
+13,6,Jamelia,Tristan,Jive,26
+13,6,Jay,Aliona,American Smooth,34
+13,6,Kellie,Kevin,Paso Doble,28
+13,6,Carol,Pasha,Rumba,13
+13,6,Georgia,Giovanni,Tango,35
+13,6,Peter,Janette,Foxtrot,28
+13,6,Helen,Aljaž,Samba,34
+13,7,Peter,Janette,Charleston,38
+13,7,Jamelia,Tristan,Viennese Waltz,28
+13,7,Carol,Pasha,American Smooth,17
+13,7,Helen,Aljaž,Rumba,31
+13,7,Jay,Aliona,Argentine Tango,34
+13,7,Katie,Anton,Quickstep,26
+13,7,Anita,Gleb,Jive,34
+13,7,Kellie,Kevin,Waltz,32
+13,7,Jeremy,Karen,Tango,21
+13,7,Georgia,Giovanni,Samba,35
+13,8,Anita,Gleb,Quickstep,32
+13,8,Jay,Aliona,Foxtrot,30
+13,8,Jamelia,Tristan,Samba,26
+13,8,Helen,Aljaž,Tango,34
+13,8,Katie,Anton,Rumba,31
+13,8,Kellie,Kevin,Samba,33
+13,8,Peter,Janette,Viennese Waltz,34
+13,8,Georgia,Giovanni,Charleston,39
+13,8,Jeremy,Karen,Quickstep,21
+13,9,Jay,Aliona,Salsa,36
+13,9,Jamelia,Tristan,Quickstep,31
+13,9,Anita,Gleb,Paso Doble,37
+13,9,Katie,Anton,American Smooth,35
+13,9,Peter,Janette,Jive,29
+13,9,Georgia,Giovanni,American Smooth,38
+13,9,Helen,Aljaž,Charleston,34
+13,9,Kellie,Kevin,Quickstep,37
+13,10,Kellie,Kevin,Salsa,34
+13,10,Katie,Anton,Argentine Tango,32
+13,10,Helen,Aljaž,Viennese Waltz,39
+13,10,Jay,Aliona,Tango,38
+13,10,Peter,Janette,American Smooth,31
+13,10,Anita,Gleb,Rumba,31
+13,10,Georgia,Giovanni,Paso Doble,33
+13,11,Georgia,Giovanni,Foxtrot,36
+13,11,Anita,Gleb,Argentine Tango,31
+13,11,Kellie,Kevin,Viennese Waltz,36
+13,11,Jay,Aliona,Rumba,39
+13,11,Katie,Anton,Foxtrot,35
+13,11,Helen,Aljaž,Paso Doble,34
+13,12,Katie,Anton,Charleston,25
+13,12,Katie,Anton,Waltz,31
+13,12,Jay,Aliona,Viennese Waltz,34
+13,12,Jay,Aliona,Charleston,37
+13,12,Georgia,Giovanni,Cha-Cha-Cha,33
+13,12,Georgia,Giovanni,Viennese Waltz,38
+13,12,Anita,Gleb,Foxtrot,32
+13,12,Anita,Gleb,Salsa,32
+13,12,Kellie,Kevin,Rumba,34
+13,12,Kellie,Kevin,American Smooth,39
+13,13,Jay,Aliona,Quickstep,36
+13,13,Jay,Aliona,Showdance,35
+13,13,Georgia,Giovanni,Rumba,36
+13,13,Georgia,Giovanni,Showdance,36
+13,13,Kellie,Kevin,Tango,40
+13,13,Kellie,Kevin,Showdance,40
+13,13,Katie,Anton,Quickstep,31
+13,13,Katie,Anton,Showdance,31
+13,13,Jay,Aliona,Paso Doble,39
+13,13,Georgia,Giovanni,Charleston,40
+13,13,Kellie,Kevin,Charleston,39
+series,week,celebrity,professional,dance,score
+14,1,Laura,Giovanni,Cha-Cha-Cha,25
+14,1,Naga,Pasha,Waltz,23
+14,1,Judge Rinder,Oksana,Cha-Cha-Cha,25
+14,1,Lesley,Anton,Waltz,23
+14,1,Ore,Joanne,Tango,27
+14,1,Greg,Natalie,Jive,27
+14,1,Louise,Kevin,Jive,31
+14,1,Melvin,Janette,Cha-Cha-Cha,22
+14,1,Daisy,Aljaž,Waltz,32
+14,1,Danny,Oti,Cha-Cha-Cha,31
+14,1,Tameka,Gorka,Paso Doble,26
+14,1,Anastacia,Brendan,Cha-Cha-Cha,28
+14,1,Ed,Katya,Waltz,21
+14,1,Claudia,AJ,Cha-Cha-Cha,26
+14,1,Will,Karen,Tango,30
+14,2,Ore,Joanne,Cha-Cha-Cha,27
+14,2,Claudia,AJ,Waltz,30
+14,2,Will,Karen,Jive,27
+14,2,Lesley,Anton,Cha-Cha-Cha,26
+14,2,Greg,Natalie,Tango,26
+14,2,Tameka,Gorka,Charleston,29
+14,2,Laura,Giovanni,Waltz,32
+14,2,Melvin,Janette,Tango,23
+14,2,Louise,Kevin,Viennese Waltz,32
+14,2,Anastacia,Brendan,Salsa,22
+14,2,Ed,Katya,Charleston,23
+14,2,Naga,Pasha,Cha-Cha-Cha,23
+14,2,Judge Rinder,Oksana,American Smooth,27
+14,2,Daisy,Aljaž,Cha-Cha-Cha,30
+14,2,Danny,Oti,Viennese Waltz,32
+14,3,Daisy,Aljaž,Quickstep,31
+14,3,Anastacia,Brendan,Viennese Waltz,27
+14,3,Danny,Oti,Paso Doble,36
+14,3,Lesley,Anton,Quickstep,27
+14,3,Will,Karen,Salsa,31
+14,3,Naga,Pasha,Tango,25
+14,3,Judge Rinder,Oksana,Charleston,27
+14,3,Ore,Joanne,American Smooth,35
+14,3,Laura,Giovanni,Salsa,30
+14,3,Greg,Natalie,American Smooth,32
+14,3,Claudia,AJ,Charleston,36
+14,3,Tameka,Gorka,Tango,28
+14,3,Ed,Katya,Samba,24
+14,3,Louise,Kevin,Cha-Cha-Cha,31
+14,4,Greg,Natalie,Salsa,28
+14,4,Laura,Giovanni,Quickstep,33
+14,4,Anastacia,Brendan,Rumba,27
+14,4,Claudia,AJ,Foxtrot,30
+14,4,Ed,Katya,Paso Doble,16
+14,4,Naga,Pasha,Charleston,24
+14,4,Louise,Kevin,Foxtrot,33
+14,4,Danny,Oti,Quickstep,36
+14,4,Daisy,Aljaž,Rumba,31
+14,4,Judge Rinder,Oksana,Viennese Waltz,27
+14,4,Lesley,Anton,Charleston,31
+14,4,Ore,Joanne,Jive,39
+14,5,Judge Rinder,Oksana,Jive,29
+14,5,Lesley,Anton,Tango,24
+14,5,Greg,Natalie,Cha-Cha-Cha,24
+14,5,Anastacia,Gorka,,1
+14,5,Louise,Kevin,Rumba,33
+14,5,Ed,Katya,American Smooth,18
+14,5,Ore,Joanne,Waltz,36
+14,5,Daisy,Aljaž,Charleston,32
+14,5,Danny,Oti,Rumba,35
+14,5,Claudia,AJ,Samba,32
+14,6,Louise,Kevin,Charleston,35
+14,6,Judge Rinder,Oksana,Paso Doble,32
+14,6,Claudia,AJ,American Smooth,36
+14,6,Anastacia,Brendan,Jive,25
+14,6,Danny,Oti,Foxtrot,30
+14,6,Laura,Giovanni,Tango,36
+14,6,Ore,Joanne,Charleston,32
+14,6,Greg,Natalie,Rumba,26
+14,6,Daisy,Aljaž,Paso Doble,33
+14,6,Ed,Katya,Cha-Cha-Cha,26
+14,7,Danny,Oti,Jive,38
+14,7,Daisy,Aljaž,Viennese Waltz,34
+14,7,Ore,Joanne,Salsa,34
+14,7,Ed,Katya,Quickstep,27
+14,7,Laura,Giovanni,Samba,32
+14,7,Judge Rinder,Oksana,Quickstep,33
+14,7,Louise,Kevin,Argentine Tango,39
+14,7,Greg,Natalie,Viennese Waltz,32
+14,7,Claudia,AJ,Paso Doble,33
+14,8,Daisy,Aljaž,Salsa,31
+14,8,Greg,Natalie,Paso Doble,31
+14,8,Judge Rinder,Oksana,Foxtrot,33
+14,8,Ore,Joanne,Rumba,35
+14,8,Ed,Katya,Salsa,25
+14,8,Claudia,AJ,Viennese Waltz,36
+14,8,Danny,Oti,Argentine Tango,38
+14,8,Louise,Kevin,American Smooth,37
+14,9,Claudia,AJ,Jive,36
+14,9,Ore,Joanne,Viennese Waltz,38
+14,9,Louise,Kevin,Paso Doble,38
+14,9,Danny,Oti,Charleston,40
+14,9,Ed,Katya,Jive,23
+14,9,Greg,Natalie,Quickstep,32
+14,9,Judge Rinder,Oksana,Salsa,33
+14,10,Danny,Oti,Samba,40
+14,10,Ore,Joanne,Paso Doble,36
+14,10,Louise,Kevin,Waltz,39
+14,10,Judge Rinder,Oksana,Rumba,29
+14,10,Ed,Katya,Tango,23
+14,10,Claudia,AJ,Argentine Tango,36
+14,11,Ore,Joanne,Foxtrot,36
+14,11,Judge Rinder,Oksana,Samba,31
+14,11,Louise,Kevin,Quickstep,37
+14,11,Claudia,AJ,Salsa,37
+14,11,Danny,Oti,Tango,38
+14,12,Louise,Kevin,Tango,37
+14,12,Louise,Kevin,Samba,36
+14,12,Danny,Oti,Salsa,37
+14,12,Danny,Oti,American Smooth,39
+14,12,Claudia,AJ,Rumba,35
+14,12,Claudia,AJ,Quickstep,38
+14,12,Ore,Joanne,Quickstep,38
+14,12,Ore,Joanne,Argentine Tango,39
+14,13,Ore,Joanne,American Smooth,39
+14,13,Ore,Joanne,Showdance,40
+14,13,Ore,Joanne,Jive,40
+14,13,Louise,Kevin,Cha-Cha-Cha,38
+14,13,Louise,Kevin,Showdance,38
+14,13,Louise,Kevin,Argentine Tango,40
+14,13,Danny,Oti,Quickstep,36
+14,13,Danny,Oti,Showdance,40
+14,13,Danny,Oti,Samba,40
+series,week,celebrity,professional,dance,score
+15,1,Gemma,Aljaž,Cha-Cha-Cha,20
+15,1,Brian,Amy,Tango,16
+15,1,Alexandra,Gorka,Waltz,24
+15,1,Simon,Karen,Paso Doble,17
+15,1,Charlotte,Brendan,Foxtrot,22
+15,1,Chizzy,Pasha,Cha-Cha-Cha,21
+15,1,Jonnie,Oti,Waltz,20
+15,1,Joe,Katya,Jive,29
+15,1,Susan,Kevin,Viennese Waltz,20
+15,1,Debbie,Giovanni,Paso Doble,30
+15,1,Davood,Nadiya,Cha-Cha-Cha,27
+15,1,Ruth,Anton,Waltz,16
+15,1,Rev. Richard,Dianne,Cha-Cha-Cha,17
+15,1,Mollie,AJ,Jive,23
+15,1,Aston,Janette,Foxtrot,31
+15,2,Chizzy,Pasha,Foxtrot,16
+15,2,Aston,Janette,Salsa,32
+15,2,Susan,Kevin,Charleston,22
+15,2,Charlotte,Brendan,Cha-Cha-Cha,12
+15,2,Joe,Katya,Tango,22
+15,2,Brian,Amy,Cha-Cha-Cha,19
+15,2,Gemma,Aljaž,Waltz,26
+15,2,Rev. Richard,Dianne,American Smooth,17
+15,2,Ruth,Anton,Charleston,20
+15,2,Simon,Karen,Waltz,19
+15,2,Mollie,AJ,Tango,25
+15,2,Jonnie,Oti,Jive,29
+15,2,Debbie,Giovanni,Viennese Waltz,34
+15,2,Davood,Nadiya,Quickstep,27
+15,2,Alexandra,Gorka,Paso Doble,36
+15,3,Simon,Karen,Quickstep,19
+15,3,Ruth,Anton,Rumba,15
+15,3,Mollie,AJ,American Smooth,30
+15,3,Rev. Richard,Dianne,Paso Doble,14
+15,3,Debbie,Giovanni,Quickstep,29
+15,3,Brian,Amy,American Smooth,22
+15,3,Gemma,Aljaž,Charleston,31
+15,3,Charlotte,Brendan,Tango,17
+15,3,Jonnie,Oti,Paso Doble,26
+15,3,Susan,Kevin,Samba,20
+15,3,Joe,Katya,Viennese Waltz,32
+15,3,Aston,Janette,Cha-Cha-Cha,35
+15,3,Alexandra,Gorka,American Smooth,33
+15,3,Davood,Nadiya,Samba,25
+15,4,Debbie,Giovanni,Cha-Cha-Cha,27
+15,4,Brian,Amy,Paso Doble,21
+15,4,Mollie,AJ,Salsa,27
+15,4,Davood,Nadiya,Viennese Waltz,29
+15,4,Charlotte,Brendan,Jive,19
+15,4,Joe,Katya,Cha-Cha-Cha,24
+15,4,Ruth,Anton,Tango,24
+15,4,Aston,Janette,Quickstep,32
+15,4,Simon,Karen,Samba,19
+15,4,Gemma,Aljaž,Paso Doble,35
+15,4,Alexandra,Gorka,Jive,39
+15,4,Jonnie,Oti,American Smooth,31
+15,4,Susan,Kevin,Quickstep,30
+15,5,Davood,Nadiya,Jive,22
+15,5,Mollie,AJ,Viennese Waltz,24
+15,5,Simon,Karen,Charleston,16
+15,5,Debbie,Giovanni,Rumba,27
+15,5,Brian,Amy,Jive,16
+15,5,Susan,Kevin,Cha-Cha-Cha,16
+15,5,Aston,Janette,Waltz,24
+15,5,Ruth,Anton,Samba,16
+15,5,Gemma,Aljaž,Foxtrot,24
+15,5,Joe,Katya,Paso Doble,26
+15,5,Alexandra,Gorka,Samba,23
+15,5,Jonnie,Oti,Quickstep,24
+15,6,Jonnie,Oti,Cha-Cha-Cha,20
+15,6,Ruth,Anton,Quickstep,22
+15,6,Simon,Karen,American Smooth,16
+15,6,Gemma,Aljaž,Jive,30
+15,6,Joe,Katya,Foxtrot,32
+15,6,Mollie,AJ,Cha-Cha-Cha,27
+15,6,Alexandra,Gorka,Tango,35
+15,6,Davood,Nadiya,Rumba,25
+15,6,Susan,Kevin,Foxtrot,18
+15,6,Debbie,Giovanni,Charleston,39
+15,6,Aston,Janette,Paso Doble,38
+15,7,Alexandra,Gorka,Cha-Cha-Cha,39
+15,7,Mollie,AJ,Foxtrot,27
+15,7,Joe,Katya,Charleston,36
+15,7,Gemma,Aljaž,Salsa,26
+15,7,Aston,Janette,Viennese Waltz,25
+15,7,Ruth,Anton,Paso Doble,22
+15,7,Debbie,Giovanni,Tango,40
+15,7,Jonnie,Oti,Salsa,27
+15,7,Susan,Kevin,Jive,29
+15,7,Davood,Nadiya,American Smooth,35
+15,8,Susan,Kevin,Tango,27
+15,8,Joe,Katya,Rumba,33
+15,8,Ruth,Anton,Foxtrot,18
+15,8,Davood,Nadiya,Charleston,38
+15,8,Gemma,Aljaž,Viennese Waltz,28
+15,8,Alexandra,Gorka,Argentine Tango,38
+15,8,Mollie,AJ,Paso Doble,22
+15,8,Jonnie,Oti,Foxtrot,21
+15,8,Debbie,Giovanni,Salsa,35
+15,9,Mollie,AJ,Charleston,29
+15,9,Susan,Kevin,Paso Doble,25
+15,9,Debbie,Giovanni,Samba,33
+15,9,Jonnie,Oti,Tango,26
+15,9,Gemma,Aljaž,American Smooth,38
+15,9,Davood,Nadiya,Paso Doble,35
+15,9,Alexandra,Gorka,Quickstep,39
+15,9,Joe,Katya,Salsa,34
+15,10,Joe,Katya,Quickstep,38
+15,10,Alexandra,Gorka,Rumba,32
+15,10,Gemma,Aljaž,Samba,25
+15,10,Mollie,AJ,Quickstep,31
+15,10,Davood,Nadiya,Waltz,35
+15,10,Debbie,Giovanni,Argentine Tango,38
+15,10,Susan,Kevin,American Smooth,21
+15,11,Gemma,Aljaž,Quickstep,29
+15,11,Mollie,AJ,Rumba,31
+15,11,Joe,Katya,Samba,37
+15,11,Debbie,Giovanni,American Smooth,39
+15,11,Davood,Nadiya,Argentine Tango,29
+15,11,Alexandra,Gorka,Charleston,39
+15,12,Joe,Katya,American Smooth,35
+15,12,Joe,Katya,Argentine Tango,35
+15,12,Alexandra,Gorka,Viennese Waltz,39
+15,12,Alexandra,Gorka,Salsa,40
+15,12,Mollie,AJ,Samba,24
+15,12,Mollie,AJ,Waltz,32
+15,12,Gemma,Aljaž,Rumba,30
+15,12,Gemma,Aljaž,Tango,32
+15,12,Debbie,Giovanni,Jive,34
+15,12,Debbie,Giovanni,Foxtrot,36
+15,13,Alexandra,Gorka,American Smooth,40
+15,13,Alexandra,Gorka,Showdance,39
+15,13,Alexandra,Gorka,Jive,40
+15,13,Debbie,Giovanni,Salsa,39
+15,13,Debbie,Giovanni,Showdance,38
+15,13,Debbie,Giovanni,Argentine Tango,40
+15,13,Gemma,Aljaž,Paso Doble,38
+15,13,Gemma,Aljaž,Showdance,37
+15,13,Gemma,Aljaž,American Smooth,39
+15,13,Joe,Katya,Viennese Waltz,39
+15,13,Joe,Katya,Showdance,39
+15,13,Joe,Katya,Charleston,40
+series,week,celebrity,professional,dance,score
+16,1,Danny,Amy,Foxtrot,27
+16,1,Kate,Aljaž,Cha-Cha-Cha,20
+16,1,Lauren,AJ,Waltz,25
+16,1,Seann,Katya,Tango,18
+16,1,Vick,Graziano,Jive,18
+16,1,Susannah,Anton,Samba,12
+16,1,Charles,Karen,Cha-Cha-Cha,25
+16,1,Ashley,Pasha,Viennese Waltz,29
+16,1,Dr. Ranj,Janette,Cha-Cha-Cha,27
+16,1,Katie,Gorka,Waltz,17
+16,1,Graeme,Oti,Samba,22
+16,1,Stacey,Kevin,Quickstep,24
+16,1,Lee,Nadiya,Waltz,22
+16,1,Joe,Dianne,Jive,27
+16,1,Faye,Giovanni,Cha-Cha-Cha,29
+16,2,Stacey,Kevin,Cha-Cha-Cha,20
+16,2,Charles,Karen,Quickstep,25
+16,2,Katie,Gorka,Paso Doble,13
+16,2,Graeme,Oti,American Smooth,15
+16,2,Kate,Aljaž,Tango,27
+16,2,Joe,Dianne,Charleston,31
+16,2,Susannah,Anton,Foxtrot,12
+16,2,Lee,Nadiya,Jive,26
+16,2,Danny,Amy,Cha-Cha-Cha,28
+16,2,Vick,Graziano,Waltz,27
+16,2,Dr. Ranj,Janette,Salsa,24
+16,2,Faye,Giovanni,Viennese Waltz,31
+16,2,Lauren,AJ,Charleston,22
+16,2,Seann,Katya,Jive,15
+16,2,Ashley,Pasha,Cha-Cha-Cha,32
+16,3,Vick,Graziano,Salsa,27
+16,3,Dr. Ranj,Janette,Quickstep,20
+16,3,Lee,Nadiya,Cha-Cha-Cha,19
+16,3,Kate,Aljaž,Foxtrot,29
+16,3,Stacey,Kevin,Jive,32
+16,3,Joe,Dianne,American Smooth,26
+16,3,Graeme,Oti,Charleston,31
+16,3,Ashley,Pasha,Salsa,35
+16,3,Katie,Gorka,Foxtrot,22
+16,3,Seann,Katya,Paso Doble,30
+16,3,Lauren,AJ,Cha-Cha-Cha,20
+16,3,Charles,Karen,American Smooth,25
+16,3,Faye,Giovanni,Quickstep,36
+16,3,Danny,Amy,Paso Doble,28
+16,4,Joe,Dianne,Cha-Cha-Cha,26
+16,4,Vick,Graziano,Quickstep,29
+16,4,Danny,Amy,Viennese Waltz,27
+16,4,Faye,Giovanni,Rumba,29
+16,4,Katie,Gorka,Jive,18
+16,4,Charles,Karen,Salsa,25
+16,4,Lauren,AJ,Quickstep,25
+16,4,Dr. Ranj,Janette,Paso Doble,27
+16,4,Kate,Aljaž,Samba,20
+16,4,Graeme,Oti,Jive,26
+16,4,Ashley,Pasha,Tango,32
+16,4,Seann,Katya,Charleston,28
+16,4,Stacey,Kevin,Foxtrot,33
+16,5,Dr. Ranj,Janette,American Smooth,25
+16,5,Lauren,AJ,Contemporary,24
+16,5,Graeme,Oti,Tango,29
+16,5,Ashley,Pasha,Rumba,36
+16,5,Seann,Katya,Quickstep,24
+16,5,Stacey,Kevin,Samba,33
+16,5,Joe,Dianne,Waltz,29
+16,5,Vick,Graziano,Cha-Cha-Cha,20
+16,5,Kate,Aljaž,Viennese Waltz,26
+16,5,Danny,Amy,Jive,37
+16,5,Faye,Giovanni,Foxtrot,33
+16,5,Charles,Karen,Street,36
+16,6,Graeme,Oti,Cha-Cha-Cha,21
+16,6,Stacey,Kevin,Tango,35
+16,6,Dr. Ranj,Janette,Jive,20
+16,6,Kate,Aljaž,Rumba,20
+16,6,Danny,Amy,American Smooth,30
+16,6,Ashley,Pasha,Charleston,39
+16,6,Seann,Katya,Viennese Waltz,20
+16,6,Charles,Karen,Jive,25
+16,6,Faye,Giovanni,Jazz,39
+16,6,Joe,Dianne,Foxtrot,35
+16,6,Lauren,AJ,Paso Doble,29
+16,7,Lauren,AJ,Jive,31
+16,7,Graeme,Oti,Waltz,29
+16,7,Kate,Aljaž,Argentine Tango,23
+16,7,Dr. Ranj,Janette,Samba,27
+16,7,Stacey,Kevin,Street,36
+16,7,Danny,Amy,Quickstep,22
+16,7,Ashley,Pasha,Foxtrot,39
+16,7,Faye,Giovanni,Tango,38
+16,7,Charles,Karen,Viennese Waltz,28
+16,7,Joe,Dianne,Paso Doble,34
+16,8,Kate,Aljaž,Quickstep,30
+16,8,Danny,Amy,Samba,27
+16,8,Ashley,Pasha,Contemporary,39
+16,8,Graeme,Oti,Salsa,31
+16,8,Faye,Giovanni,Jive,36
+16,8,Stacey,Kevin,Waltz,32
+16,8,Joe,Dianne,Samba,32
+16,8,Lauren,AJ,Viennese Waltz,34
+16,8,Charles,Karen,Charleston,35
+16,9,Stacey,Kevin,Salsa,33
+16,9,Lauren,AJ,Argentine Tango,25
+16,9,Graeme,Oti,Jazz,32
+16,9,Faye,Giovanni,Paso Doble,38
+16,9,Kate,Aljaž,American Smooth,30
+16,9,Charles,Karen,Samba,38
+16,9,Joe,Dianne,Quickstep,38
+16,9,Ashley,Pasha,Jive,40
+16,10,Graeme,Oti,Quickstep,24
+16,10,Ashley,Pasha,Samba,36
+16,10,Faye,Giovanni,Waltz,39
+16,10,Joe,Dianne,Street,35
+16,10,Charles,Karen,Tango,30
+16,10,Lauren,AJ,Salsa,23
+16,10,Stacey,Kevin,Paso Doble,39
+16,11,Lauren,AJ,American Smooth,35
+16,11,Faye,Giovanni,Charleston,40
+16,11,Charles,Karen,Rumba,35
+16,11,Ashley,Pasha,Quickstep,38
+16,11,Stacey,Kevin,American Smooth,38
+16,11,Joe,Dianne,Salsa,36
+16,12,Stacey,Kevin,Charleston,39
+16,12,Stacey,Kevin,Viennese Waltz,36
+16,12,Joe,Dianne,Viennese Waltz,29
+16,12,Joe,Dianne,Argentine Tango,30
+16,12,Ashley,Pasha,Paso Doble,36
+16,12,Ashley,Pasha,American Smooth,40
+16,12,Lauren,AJ,Tango,31
+16,12,Lauren,AJ,Samba,23
+16,12,Faye,Giovanni,Samba,37
+16,12,Faye,Giovanni,Argentine Tango,39
+16,13,Ashley,Pasha,Salsa,40
+16,13,Ashley,Pasha,Showdance,40
+16,13,Ashley,Pasha,Charleston,40
+16,13,Stacey,Kevin,Foxtrot,39
+16,13,Stacey,Kevin,Showdance,36
+16,13,Stacey,Kevin,Paso Doble,39
+16,13,Faye,Giovanni,Viennese Waltz,40
+16,13,Faye,Giovanni,Showdance,40
+16,13,Faye,Giovanni,Jazz,40
+16,13,Joe,Dianne,Paso Doble,39
+16,13,Joe,Dianne,Showdance,39
+16,13,Joe,Dianne,Charleston,38
+series,week,celebrity,professional,dance,score
+17,1,Alex,Neil,Quickstep,21
+17,1,Chris,Karen,Cha-Cha-Cha,13
+17,1,Catherine,Johannes,Viennese Waltz,20
+17,1,Saffron,AJ,Tango,27
+17,1,Mike,Katya,Jive,22
+17,1,Emma W.,Aljaž,Cha-Cha-Cha,19
+17,1,James,Luba,Tango,11
+17,1,Kelvin,Oti,Samba,32
+17,1,David,Nadiya,Foxtrot,17
+17,1,Michelle,Giovanni,Cha-Cha-Cha,30
+17,1,Dev,Dianne,Foxtrot,30
+17,1,Anneka,Kevin,Cha-Cha-Cha,14
+17,1,Will,Janette,Quickstep,26
+17,1,Karim,Amy,Cha-Cha-Cha,31
+17,1,Emma B.,Anton,Jive,23
+17,2,Saffron,AJ,Cha-Cha-Cha,23
+17,2,Anneka,Kevin,Waltz,19
+17,2,Dev,Dianne,Jive,27
+17,2,Emma W.,Aljaž,Tango,22
+17,2,Chris,Karen,Charleston,26
+17,2,Emma B.,Anton,Foxtrot,24
+17,2,James,Luba,Jive,13
+17,2,Catherine,Johannes,Samba,19
+17,2,Michelle,Giovanni,Viennese Waltz,32
+17,2,David,Nadiya,Paso Doble,10
+17,2,Karim,Amy,Foxtrot,32
+17,2,Mike,Katya,American Smooth,14
+17,2,Alex,Neil,Cha-Cha-Cha,22
+17,2,Kelvin,Oti,Waltz,28
+17,2,Will,Janette,Salsa,24
+17,3,Michelle,Giovanni,Quickstep,35
+17,3,Alex,Neil,Rumba,23
+17,3,Chris,Karen,American Smooth,22
+17,3,Karim,Amy,Samba,26
+17,3,Catherine,Johannes,Rumba,32
+17,3,Will,Janette,Paso Doble,23
+17,3,Kelvin,Oti,Charleston,38
+17,3,Emma W.,Aljaž,Foxtrot,28
+17,3,Anneka,Kevin,Charleston,11
+17,3,Saffron,AJ,Paso Doble,28
+17,3,Mike,Katya,Cha-Cha-Cha,18
+17,3,David,Nadiya,American Smooth,16
+17,3,Emma B.,Anton,Salsa,27
+17,3,Dev,Dianne,Street,36
+17,4,Chris,Karen,Jive,26
+17,4,Emma B.,Anton,Viennese Waltz,35
+17,4,Dev,Dianne,Cha-Cha-Cha,27
+17,4,Catherine,Johannes,Charleston,30
+17,4,Alex,Neil,Tango,23
+17,4,David,Nadiya,Quickstep,28
+17,4,Kelvin,Oti,Rumba,36
+17,4,Emma W.,Aljaž,Jive,28
+17,4,Michelle,Giovanni,Salsa,31
+17,4,Will,Janette,Foxtrot,24
+17,4,Mike,Katya,Quickstep,32
+17,4,Saffron,AJ,Contemporary,33
+17,4,Karim,Amy,Tango,38
+17,5,Kelvin,Oti,Cha-Cha-Cha,33
+17,5,David,Nadiya,Jive,16
+17,5,Catherine,Johannes,Tango,28
+17,5,Karim,Amy,Salsa,36
+17,5,Michelle,Giovanni,Rumba,29
+17,5,Emma B.,Anton,Paso Doble,26
+17,5,Alex,Neil,Charleston,33
+17,5,Emma W.,Aljaž,Viennese Waltz,36
+17,5,Mike,Katya,Samba,21
+17,5,Will,Janette,Contemporary,32
+17,5,Chris,Karen,Quickstep,25
+17,5,Saffron,AJ,Foxtrot,38
+17,6,Emma B.,Anton,Tango,28
+17,6,Emma W.,Aljaž,Charleston,30
+17,6,Chris,Karen,Samba,23
+17,6,Saffron,AJ,Jive,33
+17,6,Mike,Katya,Tango,26
+17,6,Karim,Amy,Paso Doble,29
+17,6,Catherine,Johannes,Cha-Cha-Cha,24
+17,6,Michelle,Giovanni,Foxtrot,39
+17,6,Kelvin,Oti,Tango,36
+17,6,Alex,Kevin,,2
+17,7,Karim,Amy,Quickstep,39
+17,7,Michelle,Giovanni,Paso Doble,34
+17,7,Emma W.,Aljaž,Samba,26
+17,7,Kelvin,Oti,Viennese Waltz,34
+17,7,Saffron,AJ,Salsa,27
+17,7,Alex,Kevin,,1
+17,7,Chris,Karen,Street,34
+17,7,Emma B.,Anton,Rumba,22
+17,7,Mike,Katya,Charleston,30
+17,8,Alex,Neil,Jive,31
+17,8,Mike,Katya,Paso Doble,25
+17,8,Karim,Amy,Viennese Waltz,30
+17,8,Chris,Karen,Tango,26
+17,8,Michelle,Giovanni,American Smooth,36
+17,8,Emma B.,Anton,Jazz,33
+17,8,Saffron,AJ,Waltz,39
+17,8,Kelvin,Oti,Salsa,35
+17,9,Chris,Karen,Salsa,33
+17,9,Emma B.,Anton,American Smooth,37
+17,9,Alex,Neil,Paso Doble,34
+17,9,Kelvin,Oti,Jive,39
+17,9,Saffron,AJ,Quickstep,35
+17,9,Michelle,Giovanni,Street,32
+17,9,Karim,Amy,Charleston,39
+17,10,Saffron,AJ,Samba,26
+17,10,Karim,Amy,Contemporary,38
+17,10,Alex,Neil,Argentine Tango,26
+17,10,Kelvin,Oti,Street,38
+17,10,Emma B.,Anton,Quickstep,29
+17,10,Chris,Karen,Paso Doble,31
+17,11,Chris,Karen,Foxtrot,28
+17,11,Alex,Neil,Samba,27
+17,11,Kelvin,Oti,American Smooth,39
+17,11,Karim,Amy,Jive,40
+17,11,Emma B.,Anton,Charleston,39
+17,12,Emma B.,Anton,Cha-Cha-Cha,31
+17,12,Emma B.,Anton,Waltz,36
+17,12,Kelvin,Oti,Quickstep,40
+17,12,Kelvin,Oti,Paso Doble,37
+17,12,Chris,Karen,Viennese Waltz,26
+17,12,Chris,Karen,Rumba,28
+17,12,Karim,Amy,Argentine Tango,36
+17,12,Karim,Amy,American Smooth,38
+17,13,Karim,Amy,Quickstep,40
+17,13,Karim,Amy,Showdance,39
+17,13,Karim,Amy,Jive,40
+17,13,Emma B.,Anton,Charleston,39
+17,13,Emma B.,Anton,Showdance,38
+17,13,Emma B.,Anton,Viennese Waltz,39
+17,13,Kelvin,Oti,Rumba,39
+17,13,Kelvin,Oti,Showdance,40
+17,13,Kelvin,Oti,Samba,39
+series,week,celebrity,professional,dance,score
+18,1,Jamie,Karen,Cha-Cha-Cha,14
+18,1,Caroline,Johannes,American Smooth,21
+18,1,Max,Dianne,Tango,17
+18,1,Clara,Aljaž,Cha-Cha-Cha,18
+18,1,Jacqui,Anton,Foxtrot,13
+18,1,JJ,Amy,Waltz,19
+18,1,Maisie,Gorka,Samba,24
+18,1,Jason,Luba,American Smooth,16
+18,1,Ranvir,Giovanni,Paso Doble,21
+18,1,Nicola,Katya,Quickstep,21
+18,1,Bill,Oti,Cha-Cha-Cha,15
+18,1,HRVY,Janette,Jive,25
+18,2,Max,Dianne,Jive,20
+18,2,Clara,Aljaž,Viennese Waltz,17
+18,2,Bill,Oti,Quickstep,24
+18,2,JJ,Amy,Paso Doble,17
+18,2,Jamie,Karen,American Smooth,17
+18,2,Maisie,Gorka,Tango,25
+18,2,Jacqui,Anton,Samba,12
+18,2,HRVY,Janette,Viennese Waltz,24
+18,2,Ranvir,Giovanni,Quickstep,21
+18,2,Nicola,Katya,Street,24
+18,2,Caroline,Johannes,Paso Doble,21
+18,2,Jason,Luba,Salsa,18
+18,3,Nicola,Katya,Jive,19
+18,3,Maisie,Gorka,American Smooth,24
+18,3,Caroline,Johannes,Jazz,21
+18,3,Jason,Luba,Paso Doble,12
+18,3,JJ,Amy,Foxtrot,24
+18,3,HRVY,Janette,Cha-Cha-Cha,21
+18,3,Ranvir,Giovanni,Foxtrot,27
+18,3,Jamie,Karen,Charleston,23
+18,3,Clara,Aljaž,Tango,20
+18,3,Max,Dianne,Street,24
+18,3,Bill,Oti,Paso Doble,26
+18,4,HRVY,Janette,Salsa,27
+18,4,Ranvir,Giovanni,Cha-Cha-Cha,20
+18,4,Max,Dianne,American Smooth,20
+18,4,JJ,Amy,Jive,17
+18,4,Maisie,Gorka,Cha-Cha-Cha,24
+18,4,Bill,Oti,Street,27
+18,4,Caroline,Johannes,Waltz,22
+18,4,Jamie,Karen,Samba,25
+18,4,Clara,Aljaž,Charleston,29
+18,5,Bill,Oti,American Smooth,25
+18,5,Maisie,Gorka,Salsa,27
+18,5,JJ,Amy,Quickstep,25
+18,5,Clara,Aljaž,Samba,18
+18,5,Jamie,Karen,Street,29
+18,5,HRVY,Janette,Tango,26
+18,5,Caroline,Johannes,Cha-Cha-Cha,24
+18,5,Ranvir,Giovanni,Argentine Tango,27
+18,6,Clara,Aljaž,Jive,19
+18,6,Jamie,Karen,Tango,24
+18,6,HRVY,Janette,Street,30
+18,6,Ranvir,Giovanni,American Smooth,24
+18,6,Bill,Oti,Jive,24
+18,6,JJ,Amy,Viennese Waltz,25
+18,6,Maisie,Gorka,Quickstep,29
+18,7,JJ,Amy,Charleston,20
+18,7,Ranvir,Giovanni,Viennese Waltz,27
+18,7,Maisie,Gorka,Jive,28
+18,7,Bill,Oti,Argentine Tango,24
+18,7,HRVY,Janette,American Smooth,29
+18,7,Jamie,Karen,Jive,24
+18,8,Jamie,Karen,Salsa,24
+18,8,Jamie,Karen,Quickstep,24
+18,8,Ranvir,Giovanni,Waltz,26
+18,8,Ranvir,Giovanni,Jive,18
+18,8,Bill,Oti,Charleston,25
+18,8,Bill,Oti,Tango,23
+18,8,Maisie,Gorka,Street,30
+18,8,Maisie,Gorka,Viennese Waltz,29
+18,8,HRVY,Janette,Rumba,23
+18,8,HRVY,Janette,Charleston,30
+18,9,HRVY,Janette,Jive,29
+18,9,HRVY,Janette,Showdance,29
+18,9,HRVY,Janette,American Smooth,30
+18,9,Jamie,Karen,Charleston,26
+18,9,Jamie,Karen,Showdance,29
+18,9,Jamie,Karen,Street,29
+18,9,Bill,Oti,Quickstep,29
+18,9,Bill,Oti,Showdance,30
+18,9,Bill,Oti,Street,29
+18,9,Maisie,Gorka,Samba,29
+18,9,Maisie,Gorka,Showdance,30
+18,9,Maisie,Gorka,Quickstep,29
