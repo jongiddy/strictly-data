@@ -1,0 +1,95 @@
+#,Celebrity,Professional,Dance,Song,Date,Series,Year,Order,Craig,Arlene,Len,Darcey,Motsi,Shirley,Alesha,Bruno,Total,Type
+1,Martin,Erin,Jive,All I Want For Christmas Is You,"Series 2, Xmas",Christmas,2004,1,6,6,7,-,,-,-,7,26,Latin
+2,Aled,Lilia,Samba,Walking In The Air,"Series 2, Xmas",Christmas,2004,2,7,7,8,-,,-,-,8,30,Latin
+3,Lesley,Anton,Waltz,Silent Night,"Series 2, Xmas",Christmas,2004,3,7,8,8,-,,-,-,8,31,Ballroom
+4,Denise,Ian,Quickstep,Sleigh Ride,"Series 2, Xmas",Christmas,2004,4,9,9,9,-,,-,-,10,37,Ballroom
+5,Natasha,Brendan,Foxtrot,Have Yourself A Merry Little Christmas,"Series 2, Xmas",Christmas,2004,5,7,8,9,-,,-,-,9,33,Ballroom
+6,Jill,Darren,Jive,Rockin' Around The Christmas Tree,"Series 2, Xmas",Christmas,2004,6,9,9,9,-,,-,-,9,36,Latin
+7,Colin,Erin,Cha cha cha,"Let It Snow, Let It Snow, Let It Snow","Series 3, Xmas",Christmas,2005,1,9,8,9,-,,-,-,9,35,Latin
+8,Rachel,Brendan,Rumba,The Christmas Song,"Series 3, Xmas",Christmas,2005,2,9,9,9,-,,-,-,9,36,Latin
+9,James,Camilla,Foxtrot,Santa Baby,"Series 3, Xmas",Christmas,2005,3,8,10,10,-,,-,-,9,37,Ballroom
+10,Zoe,Ian,Foxtrot,Winter Wonderland,"Series 3, Xmas",Christmas,2005,4,9,9,10,-,,-,-,10,38,Ballroom
+11,Evander,Karen,Jive,Merry Christmas Everyone,"Series 3, Xmas",Christmas,2005,5,3,5,7,-,,-,-,7,22,Latin
+12,Darren,Lilia,Quickstep,Jingle Bells,"Series 3, Xmas",Christmas,2005,6,10,10,10,-,,-,-,10,40,Ballroom
+13,Louisa,Vincent,Jive,Rockin' Robin,"Series 4, Xmas",Christmas,2006,1,9,9,9,-,,-,-,9,36,Latin
+14,Emma,Darren,Samba,I'm In The Mood For Dancing,"Series 4, Xmas",Christmas,2006,2,9,9,9,-,,-,-,9,36,Latin
+15,Zoe,Ian,Rumba,The Perfect Year,"Series 4, Xmas",Christmas,2006,3,9,10,9,-,,-,-,10,38,Latin
+16,Mark,Karen,Salsa,La Bamba,"Series 4, Xmas",Christmas,2006,4,9,9,9,-,,-,-,9,36,Speciality
+17,Colin,Erin,Quickstep,I Get A Kick Out Of You,"Series 4, Xmas",Christmas,2006,5,10,10,10,-,,-,-,10,40,Ballroom
+18,Matt,Lilia,Waltz,Silent Night,"Series 4, Xmas",Christmas,2006,6,9,9,10,-,,-,-,9,37,Ballroom
+19,Mark,Karen,Jive,I Wish It Could Be Christmas Every Day,"Series 5, Xmas",Christmas,2007,1,9,9,10,-,,-,-,10,38,Latin
+20,Alesha,Matthew,Cha cha cha,Celebration,"Series 5, Xmas",Christmas,2007,2,9,9,9,-,,-,-,9,36,Latin
+21,Gethin,Camilla,Waltz,Amazing Grace,"Series 5, Xmas",Christmas,2007,3,10,10,10,-,,-,-,10,40,Ballroom
+22,Letitia,Darren,Foxtrot,Silver Bells,"Series 5, Xmas",Christmas,2007,4,9,9,9,-,,-,-,9,36,Ballroom
+23,Matt,Flavia,Rumba,Last Christmas,"Series 5, Xmas",Christmas,2007,5,9,10,10,-,,-,-,10,39,Latin
+24,Darren,Lilia,American Smooth,Santa Claus Is Coming To Town,"Series 5, Xmas",Christmas,2007,6,10,10,10,-,,-,-,10,40,Speciality
+25,Alesha,Matthew,Viennese Waltz,White Christmas,"Series 6, Xmas",Christmas,2008,1,9,10,10,-,,-,-,10,39,Ballroom
+26,Lisa,Brendan,Quickstep,Sleigh Ride,"Series 6, Xmas",Christmas,2008,2,8,9,9,-,,-,-,10,36,Ballroom
+27,Jill,Darren,American Smooth,Favourite Things,"Series 6, Xmas",Christmas,2008,3,9,10,10,-,,-,-,10,39,Speciality
+28,Rachel,Vincent,Rumba,2 Become 1,"Series 6, Xmas",Christmas,2008,4,9,10,10,-,,-,-,10,39,Latin
+29,Kelly,Brian,Jive,Rockin' Around The Christmas Tree,"Series 6, Xmas",Christmas,2008,5,10,9,10,-,,-,-,10,39,Latin
+30,Tom,Camilla,Foxtrot,Rudolph The Red-Nosed Reindeer,"Series 6, Xmas",Christmas,2008,6,9,10,9,-,,-,-,9,37,Ballroom
+31,Ricky,Natalie,Quickstep,Jingle Bells,"Series 7, Xmas",Christmas,2009,1,8,-,9,-,,-,10,9,36,Ballroom
+32,Austin,Erin,Paso doble,Bohemian Rhapsody,"Series 7, Xmas",Christmas,2009,2,9,-,9,-,,-,9,9,36,Latin
+33,Ali,Brian,Viennese Waltz,Please Come Home For Christmas,"Series 7, Xmas",Christmas,2009,3,10,-,10,-,,-,10,10,40,Ballroom
+34,Gethin,Flavia,American Smooth,Baby It's Cold Outside,"Series 7, Xmas",Christmas,2009,4,9,-,10,-,,-,9,10,38,Speciality
+35,Rachel,Vincent,Rumba,Miss You Most (At Christmas Time),"Series 7, Xmas",Christmas,2009,5,10,-,10,-,,-,9,10,39,Latin
+36,Chris,Ola,Foxtrot,Santa Baby,"Series 7, Xmas",Christmas,2009,6,8,-,8,-,,-,9,8,33,Ballroom
+37,John,Kristina,Quickstep,Sleigh Ride,"Series 8, Xmas",Christmas,2010,1,9,-,9,-,,-,9,10,37,Ballroom
+38,Ronni,Anton,Viennese Waltz,It's The Most Wonderful Time Of The Year,"Series 8, Xmas",Christmas,2010,2,6,-,8,-,,-,7,7,28,Ballroom
+39,Vince,Erin,Foxtrot,Winter Wonderland,"Series 8, Xmas",Christmas,2010,3,9,-,10,-,,-,8,9,36,Ballroom
+40,Fern,Matthew,Jive,Step Into Christmas,"Series 8, Xmas",Christmas,2010,4,7,-,8,-,,-,7,8,30,Latin
+41,June,Vincent,Tango,Never Do A Tango With An Eskimo,"Series 8, Xmas",Christmas,2010,5,6,-,7,-,,-,8,7,28,Ballroom
+42,Simon,Katya,Cha cha cha,Merry Christmas Everybody,"Series 9, Xmas",Christmas,2011,1,9,-,9,-,,-,9,9,36,Latin
+43,Debra,Ian,American Smooth,"Baby, It's Cold Outside","Series 9, Xmas",Christmas,2011,2,8,-,9,-,,-,10,10,37,Speciality
+44,Barry,Erin,Quickstep,Jingle Bells,"Series 9, Xmas",Christmas,2011,3,8,-,9,-,,-,10,9,36,Ballroom
+45,Su,Anton,Foxtrot,White Christmas,"Series 9, Xmas",Christmas,2011,4,6,-,9,-,,-,7,8,30,Ballroom
+46,Charlie,Vincent,Jive,Santa Claus Is Coming To Town,"Series 9, Xmas",Christmas,2011,5,9,-,9,-,,-,9,10,37,Latin
+47,JB,Ola,Jive,Rockin' Robin,"Series 10, Xmas",Christmas,2012,1,9,-,10,10,,-,-,10,39,Latin
+48,Bobby,Katya,American Smooth,White Christmas,"Series 10, Xmas",Christmas,2012,2,6,-,8,7,,-,-,8,29,Speciality
+49,Sheila,Ian,Foxtrot,Have Yourself A Merry Little Christmas,"Series 10, Xmas",Christmas,2012,3,8,-,10,8,,-,-,10,36,Ballroom
+50,Fabrice,Aliona,Salsa,Christmas Wrapping,"Series 10, Xmas",Christmas,2012,4,8,-,9,9,,-,-,9,35,Speciality
+51,Katy,Anton,Viennese Waltz,It's The Most Wonderful Time Of The Year,"Series 10, Xmas",Christmas,2012,5,7,-,9,8,,-,-,9,33,Ballroom
+52,Helen,Artem,Jive,All I Want For Christmas Is You,"Series 10, Xmas",Christmas,2012,6,8,-,10,9,,-,-,10,37,Latin
+53,Ricky,Janette,Quickstep,Merry Christmas Everyone,"Series 11, Xmas",Christmas,2013,1,8,-,8,8,,-,-,9,33,Ballroom
+54,Elaine,Pasha,Cha cha cha,Jingle Bells,"Series 11, Xmas",Christmas,2013,2,10,-,9,10,,-,-,10,39,Latin
+55,Sara,Robin,Waltz,Silent Night,"Series 11, Xmas",Christmas,2013,3,7,-,9,8,,-,-,9,33,Ballroom
+56,Rochelle,Ian,Salsa,Santa Claus Is Coming To Town,"Series 11, Xmas",Christmas,2013,4,7,-,8,8,,-,-,8,31,Speciality
+57,Matt,Aliona,American Smooth,Winter Wonderalnd,"Series 11, Xmas",Christmas,2013,5,8,-,9,9,,-,-,9,35,Speciality
+58,Rufus,Flavia,Tango,Never Do A Tango With An Eskimo,"Series 11, Xmas",Christmas,2013,6,9,-,9,10,,-,-,10,38,Ballroom
+59,Chris,Iveta,Charleston,Sleigh Ride,"Series 12, Xmas",Christmas,2014,1,7,-,8,8,,-,-,8,31,Speciality
+60,Rachel,Tristan,Viennese Waltz,Please Come Home For Christmas,"Series 12, Xmas",Christmas,2014,2,9,-,10,9,,-,-,10,38,Ballroom
+61,Russell,Joanne,Cha cha cha,Could It Be Magic,"Series 12, Xmas",Christmas,2014,3,7,-,7,8,,-,-,7,29,Latin
+62,Sophie,Aljaž,American Smooth,White Christmas,"Series 12, Xmas",Christmas,2014,4,9,-,10,10,,-,-,10,39,Speciality
+63,Lisa,Robin,Jive,Step Into Christmas,"Series 12, Xmas",Christmas,2014,5,8,-,8,8,,-,-,8,32,Latin
+64,Louis,Aliona,Quickstep,Jingle Bells,"Series 12, Xmas",Christmas,2014,6,10,-,10,10,,-,-,10,40,Ballroom
+65,Lisa,Pasha,Quickstep,Let It Snow! Let It Snow! Let It Snow!,"Series 13, Xmas",Christmas,2015,1,9,-,9,10,,-,-,9,37,Ballroom
+66,Alison,Robin,Cha cha cha,Celebration,"Series 13, Xmas",Christmas,2015,2,7,-,8,8,,-,-,8,31,Latin
+67,Cassidy,Natalie,Jive,Cool Yule,"Series 13, Xmas",Christmas,2015,3,8,-,9,9,,-,-,9,35,Latin
+68,Abby,Brendan,Waltz,When I Fall In Love,"Series 13, Xmas",Christmas,2015,4,9,-,10,10,,-,-,10,39,Ballroom
+69,Harry,Joanne,American Smooth,Baby It's Cold Outside,"Series 13, Xmas",Christmas,2015,5,10,-,10,10,,-,-,10,40,Speciality
+70,Tom,Oti,Charleston,Santa Claus Is Coming To Town,"Series 13, Xmas",Christmas,2015,6,10,-,10,10,,-,-,10,40,Speciality
+71,Ainsley,Karen,Jive,Rockin' Around The Christmas Tree,"Series 14, Xmas",Christmas,2016,1,7,-,10,9,,-,-,9,26,Latin
+72,Gethin,Chloe,Quickstep,The Polar Express,"Series 14, Xmas",Christmas,2016,2,9,-,10,9,,-,-,10,28,Ballroom
+73,Pamela,Pasha,Cha cha cha,Jump,"Series 14, Xmas",Christmas,2016,3,9,-,10,10,,-,-,10,29,Latin
+74,Denise,Anton,Viennese Waltz,Meet Me In St Louis,"Series 14, Xmas",Christmas,2016,4,9,-,10,9,,-,-,10,28,Ballroom
+75,Melvin,Janette,Charleston,Sparklejollytwinklejingley,"Series 14, Xmas",Christmas,2016,5,10,-,10,10,,-,-,10,30,Speciality
+76,Frankie,Gorka,American Smooth,Let It Go,"Series 14, Xmas",Christmas,2016,6,10,-,10,10,,-,-,10,30,Speciality
+77,Robbie,Dianne,American Smooth,Christmas (Baby Please Come Home),"Series 15, Xmas",Christmas,2017,1,7,-,-,8,,8,-,8,31,Speciality
+78,Judy,Neil,Charleston,Let's Misbehave,"Series 15, Xmas",Christmas,2017,2,7,-,-,8,,8,-,8,31,Speciality
+79,Colin,Amy,Rumba,Run,"Series 15, Xmas",Christmas,2017,3,9,-,-,9,,9,-,9,36,Latin
+80,Jeremy,Karen,Quickstep,All I Want For Christmas Is You,"Series 15, Xmas",Christmas,2017,4,7,-,-,8,,8,-,8,31,Ballroom
+81,Katie,Brendan,Viennese Waltz,White Christmas,"Series 15, Xmas",Christmas,2017,5,9,-,-,9,,10,-,9,37,Ballroom
+82,Kimberley,Pasha,Jive,Run Rudolph Run,"Series 15, Xmas",Christmas,2017,6,9,-,-,10,,10,-,10,39,Latin
+83,Anita,Neil,Foxtrot,Winter Wonderland,"Series 16, Xmas",Christmas,2018,1,8,-,-,9,,9,-,9,35,Ballroom
+84,Aston,Janette,Jive,That's What Christmas Means To Me,"Series 16, Xmas",Christmas,2018,2,10,-,-,10,,10,-,10,40,Latin
+85,Ann,Anton,American Smooth,Sisters,"Series 16, Xmas",Christmas,2018,3,2,-,-,6,,7,-,7,22,Speciality
+86,Michael,Nadiya,Viennese Waltz,Please Come Home For Christmas,"Series 16, Xmas",Christmas,2018,4,6,-,-,8,,8,-,8,30,Ballroom
+87,Jake,Luba,Cha cha cha,Could It Be Magic,"Series 16, Xmas",Christmas,2018,5,9,-,-,10,,10,-,10,39,Latin
+88,Caroline,Gorka,Charleston,Santa Claus Is Coming To Town,"Series 16, Xmas",Christmas,2018,6,10,-,-,10,,10,-,10,40,Speciality
+89,Gemma,Gorka,Jive,I Saw Mommy Kissing Santa Claus,"Series 17, Xmas",Christmas,2019,1,8,-,-,-,9,9,-,9,35,Latin
+90,Mark,Janette,Salsa,Christmas Wrapping,"Series 17, Xmas",Christmas,2019,2,8,-,-,-,9,9,-,9,35,Speciality
+91,Chizzy,Graziano,Cha cha cha,Get The Party Started,"Series 17, Xmas",Christmas,2019,3,9,-,-,-,9,9,-,9,36,Latin
+92,Richard,Luba,Foxtrot,"You’re A Mean One, Mr Grinch","Series 17, Xmas",Christmas,2019,4,8,-,-,-,8,8,-,8,32,Ballroom
+93,Joe,Dianne,Street/Commercial,Sleigh Ride,"Series 17, Xmas",Christmas,2019,5,10,-,-,-,10,10,-,10,40,Speciality
+94,Debbie,Kevin,Quickstep,Jingle Bells,"Series 17, Xmas",Christmas,2019,6,10,-,-,-,10,10,-,10,40,Ballroom
