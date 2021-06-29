@@ -1,4 +1,5 @@
-use lol_html::{element, errors::RewritingError, text, HtmlRewriter, Settings};
+use lol_html::errors::RewritingError;
+use lol_html::{element, text, HtmlRewriter, Settings};
 use serde::Serialize;
 use std::cell::Cell;
 
@@ -175,5 +176,85 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
         rewriter.write(page.as_ref())?;
         rewriter.end()?;
         Ok(output)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use std::error::Error;
+    use std::format;
+
+    use super::extract_rows;
+
+    #[derive(Debug)]
+    struct TestError {}
+
+    impl std::fmt::Display for TestError {
+        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+            write!(f, "TestError")
+        }
+    }
+
+    impl Error for TestError {}
+
+    #[test]
+    fn test_extract_single_dance_per_couple() -> Result<(), Box<dyn Error>> {
+        let top = env!("CARGO_MANIFEST_DIR");
+        let page = std::fs::read_to_string(format!("{}/test-data/test1.html", top))?;
+        let expected_output = std::fs::read_to_string(format!("{}/test-data/test1.out", top))?;
+
+        let mut wtr = csv::Writer::from_writer(vec![]);
+        for row in extract_rows(1, page)? {
+            wtr.serialize(row)?;
+        }
+        let actual_output = String::from_utf8(wtr.into_inner()?)?;
+        if expected_output == actual_output {
+            Ok(())
+        } else {
+            dbg!(expected_output);
+            dbg!(actual_output);
+            Err(Box::new(TestError {}))
+        }
+    }
+
+    #[test]
+    fn test_extract_multiple_dances_per_couple() -> Result<(), Box<dyn Error>> {
+        let top = env!("CARGO_MANIFEST_DIR");
+        let page = std::fs::read_to_string(format!("{}/test-data/test2.html", top))?;
+        let expected_output = std::fs::read_to_string(format!("{}/test-data/test2.out", top))?;
+
+        let mut wtr = csv::Writer::from_writer(vec![]);
+        for row in extract_rows(1, page)? {
+            wtr.serialize(row)?;
+        }
+        let actual_output = String::from_utf8(wtr.into_inner()?)?;
+        if expected_output == actual_output {
+            Ok(())
+        } else {
+            dbg!(expected_output);
+            dbg!(actual_output);
+            Err(Box::new(TestError {}))
+        }
+    }
+
+    #[test]
+    #[ignore] // https://github.com/jongiddy/strictly-data/issues/2
+    fn test_extract_footnote() -> Result<(), Box<dyn Error>> {
+        let top = env!("CARGO_MANIFEST_DIR");
+        let page = std::fs::read_to_string(format!("{}/test-data/test3.html", top))?;
+        let expected_output = std::fs::read_to_string(format!("{}/test-data/test3.out", top))?;
+
+        let mut wtr = csv::Writer::from_writer(vec![]);
+        for row in extract_rows(1, page)? {
+            wtr.serialize(row)?;
+        }
+        let actual_output = String::from_utf8(wtr.into_inner()?)?;
+        if expected_output == actual_output {
+            Ok(())
+        } else {
+            dbg!(expected_output);
+            dbg!(actual_output);
+            Err(Box::new(TestError {}))
+        }
     }
 }
