@@ -53,7 +53,6 @@ series,week,celebrity,professional,dance,score
 1,8,Christopher,Hanna,Waltz,24
 1,8,Christopher,Hanna,Jive,17
 1,8,Christopher,Hanna,Showdance,22
-series,week,celebrity,professional,dance,score
 2,1,Julian,Erin,Cha Cha Cha,19
 2,1,Carol,Paul,Waltz,22
 2,1,Diarmuid,Nicole,Cha Cha Cha,12
@@ -118,7 +117,6 @@ series,week,celebrity,professional,dance,score
 2,8,Denise,Ian,Samba,33
 2,8,Jill,Darren,Jive,40
 2,8,Julian,Erin,Samba,23
-series,week,celebrity,professional,dance,score
 3,1,Darren,Lilia,Cha-Cha-Cha,19
 3,1,Patsy,Anton,Waltz,19
 3,1,Colin,Erin,Cha-Cha-Cha,32
@@ -206,7 +204,6 @@ series,week,celebrity,professional,dance,score
 3,10,Darren,Lilia,Paso Doble,36
 3,10,Zoe,Ian,Tango,38
 3,10,Zoe,Ian,Samba,38
-series,week,celebrity,professional,dance,score
 4,1,Matt,Lilia,Cha-Cha-Cha,19
 4,1,Nicholas,Nicole,Waltz,14
 4,1,Ray,Camilla,Cha-Cha-Cha,27
@@ -302,7 +299,6 @@ series,week,celebrity,professional,dance,score
 4,12,Mark,Karen,Tango,34
 4,12,Mark,Karen,Salsa,40
 4,12,Mark,Karen,Samba,36
-series,week,celebrity,professional,dance,score
 5,1,Matt,Flavia,Cha-Cha-Cha,23
 5,1,Brian,Karen,Waltz,18
 5,1,Dominic,Lilia,Cha-Cha-Cha,25
@@ -404,7 +400,6 @@ series,week,celebrity,professional,dance,score
 5,12,Alesha,Matthew,Waltz,39
 5,12,Alesha,Matthew,Cha-Cha-Cha,38
 5,12,Alesha,Matthew,Jive,35
-series,week,celebrity,professional,dance,score
 6,1,Tom,Camilla,Cha-Cha-Cha,28
 6,1,Phil,Flavia,Waltz,20
 6,1,Don,Lilia,Cha-Cha-Cha,19
@@ -521,7 +516,6 @@ series,week,celebrity,professional,dance,score
 6,14,Tom,Camilla,Salsa,38
 6,14,Lisa,Brendan,Foxtrot,40
 6,14,Lisa,Brendan,Cha-Cha-Cha,40
-series,week,celebrity,professional,dance,score
 7,3,Ali,Brian,Quickstep,32
 7,3,Lynda,Darren,Paso Doble,25
 7,3,Chris,Ola,Quickstep,23
@@ -629,7 +623,6 @@ series,week,celebrity,professional,dance,score
 7,14,Ricky W.,Natalie,Chris & Ola,43
 7,14,Ricky W.,Natalie,Cha-Cha-Cha,48
 7,14,Ricky W.,Natalie,Showdance,49
-series,week,celebrity,professional,dance,score
 8,2,Matt,Aliona,Foxtrot,31
 8,2,Peter,Erin,Salsa,17
 8,2,Tina,Jared,Foxtrot,26
@@ -729,7 +722,6 @@ series,week,celebrity,professional,dance,score
 8,11,Matt,Aliona,Tango,38
 8,11,Gavin,Katya,Viennese Waltz,31
 8,11,Pamela,James,Quickstep,40
-series,week,celebrity,professional,dance,score
 9,2,Chelsee,Pasha,Salsa,29
 9,2,Edwina,Vincent,Foxtrot,19
 9,2,Audley,Natalie,Salsa,23
@@ -830,7 +822,6 @@ series,week,celebrity,professional,dance,score
 9,11,Holly,Artem,Charleston,34
 9,11,Jason,Kristina,Samba,34
 9,11,Jason,Kristina,Argentine Tango,40
-series,week,celebrity,professional,dance,score
 10,2,Nicky,Karen,Cha-Cha-Cha,18
 10,2,Colin,Kristina,Viennese Waltz,24
 10,2,Dani,Vincent,Salsa,27
@@ -931,7 +922,6 @@ series,week,celebrity,professional,dance,score
 10,11,Kimberley,Pasha,Charleston,40
 10,11,Lisa,Robin,Salsa,31
 10,11,Lisa,Robin,American Smooth,32
-series,week,celebrity,professional,dance,score
 11,1,Ashley,Ola,Cha-Cha-Cha,25
 11,1,Tony,Aliona,Waltz,16
 11,1,Mark,Iveta,Tango,24
@@ -1072,7 +1062,6 @@ series,week,celebrity,professional,dance,score
 11,13,Susanna,Kevin,Paso Doble,39
 11,13,Abbey,Aljaž,Quickstep,38
 11,13,Natalie,Artem,American Smooth,40
-series,week,celebrity,professional,dance,score
 12,1,Caroline,Pasha,Cha-Cha-Cha,27
 12,1,Tim,Natalie,Cha-Cha-Cha,18
 12,1,Jake,Janette,Tango,28
@@ -1214,7 +1203,6 @@ series,week,celebrity,professional,dance,score
 12,13,Frankie,Kevin,Paso Doble,39
 12,13,Caroline,Pasha,Charleston,40
 12,13,Simon,Kristina,Argentine Tango,40
-series,week,celebrity,professional,dance,score
 13,1,Kellie,Kevin,Tango,27
 13,1,Anthony,Oti,Jive,21
 13,1,Helen,Aljaž,Waltz,29
@@ -1356,7 +1344,6 @@ series,week,celebrity,professional,dance,score
 13,13,Jay,Aliona,Paso Doble,39
 13,13,Georgia,Giovanni,Charleston,40
 13,13,Kellie,Kevin,Charleston,39
-series,week,celebrity,professional,dance,score
 14,1,Laura,Giovanni,Cha-Cha-Cha,25
 14,1,Naga,Pasha,Waltz,23
 14,1,Judge Rinder,Oksana,Cha-Cha-Cha,25
@@ -1485,7 +1472,6 @@ series,week,celebrity,professional,dance,score
 14,13,Danny,Oti,Quickstep,36
 14,13,Danny,Oti,Showdance,40
 14,13,Danny,Oti,Samba,40
-series,week,celebrity,professional,dance,score
 15,1,Gemma,Aljaž,Cha-Cha-Cha,20
 15,1,Brian,Amy,Tango,16
 15,1,Alexandra,Gorka,Waltz,24
@@ -1628,7 +1614,6 @@ series,week,celebrity,professional,dance,score
 15,13,Joe,Katya,Viennese Waltz,39
 15,13,Joe,Katya,Showdance,39
 15,13,Joe,Katya,Charleston,40
-series,week,celebrity,professional,dance,score
 16,1,Danny,Amy,Foxtrot,27
 16,1,Kate,Aljaž,Cha-Cha-Cha,20
 16,1,Lauren,AJ,Waltz,25
@@ -1771,7 +1756,6 @@ series,week,celebrity,professional,dance,score
 16,13,Joe,Dianne,Paso Doble,39
 16,13,Joe,Dianne,Showdance,39
 16,13,Joe,Dianne,Charleston,38
-series,week,celebrity,professional,dance,score
 17,1,Alex,Neil,Quickstep,21
 17,1,Chris,Karen,Cha-Cha-Cha,13
 17,1,Catherine,Johannes,Viennese Waltz,20
@@ -1903,7 +1887,6 @@ series,week,celebrity,professional,dance,score
 17,13,Kelvin,Oti,Rumba,39
 17,13,Kelvin,Oti,Showdance,40
 17,13,Kelvin,Oti,Samba,39
-series,week,celebrity,professional,dance,score
 18,1,Jamie,Karen,Cha-Cha-Cha,14
 18,1,Caroline,Johannes,American Smooth,21
 18,1,Max,Dianne,Tango,17
