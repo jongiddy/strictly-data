@@ -17,223 +17,219 @@ pub(crate) struct Row {
 pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, RewritingError> {
     let output: RefCell<Vec<Row>> = RefCell::new(vec![]);
 
-    {
-        #[derive(PartialEq)]
-        enum State {
-            ExpectNone,
-            ExpectRow,
-            ExpectCouple(i32),
-            SkipCouple(i32, String),
-            ExpectScore(i32, String),
-            ExpectDance(i32, String, u8),
-            ExpectEnd(i32, String),
-        }
-        struct Shared {
-            state: State,
-            week: u16,
-        }
-        impl Default for Shared {
-            fn default() -> Self {
-                Shared {
-                    state: State::ExpectNone,
-                    week: 0,
-                }
+    #[derive(PartialEq)]
+    enum State {
+        ExpectNone,
+        ExpectRow,
+        ExpectCouple(i32),
+        SkipCouple(i32, String),
+        ExpectScore(i32, String),
+        ExpectDance(i32, String, u8),
+        ExpectEnd(i32, String),
+    }
+    struct Shared {
+        state: State,
+        week: u16,
+    }
+    impl Default for Shared {
+        fn default() -> Self {
+            Shared {
+                state: State::ExpectNone,
+                week: 0,
             }
         }
-        // Cell mutability for shared and mutable access from multiple closures.
-        let buffer = RefCell::new(String::new());
-        let shared = Cell::new(Shared::default());
-        let mut rewriter = HtmlRewriter::new(
-            Settings {
-                element_content_handlers: vec![
-                    // Find week number
-                    element!("span.mw-headline", |el| {
-                        shared.set(Shared::default());
-                        if let Some(id) = el.get_attribute("id") {
-                            // "Week_1", "Week_6:_Quarter-final"
-                            let mut parts = id.split(&['_', ':'][..]);
-                            if let Some("Week") = parts.next() {
-                                let week = parts
-                                    .next()
-                                    .ok_or_else(|| format!("Bad parse {}", id))?
-                                    .parse()?;
-                                if series == 10 && week == 10 {
-                                    // Tricky table - handle specially
-                                    let mut vector = output.borrow_mut();
-                                    vector.push(Row {
-                                        series,
-                                        week,
-                                        celebrity: "Denise".to_owned(),
-                                        professional: "James".to_owned(),
-                                        dance: "Jive/Quickstep".to_owned(),
-                                        score: 35,
-                                    });
-                                    vector.push(Row {
-                                        series,
-                                        week,
-                                        celebrity: "Lisa".to_owned(),
-                                        professional: "Robin".to_owned(),
-                                        dance: "Cha-Cha-Cha/Tango".to_owned(),
-                                        score: 30,
-                                    });
-                                    vector.push(Row {
-                                        series,
-                                        week,
-                                        celebrity: "Nicky".to_owned(),
-                                        professional: "Karen".to_owned(),
-                                        dance: "American Smooth/Samba".to_owned(),
-                                        score: 27,
-                                    });
-                                    vector.push(Row {
-                                        series,
-                                        week,
-                                        celebrity: "Dani".to_owned(),
-                                        professional: "Vincent".to_owned(),
-                                        dance: "Charleston/Quickstep".to_owned(),
-                                        score: 38,
-                                    });
-                                    vector.push(Row {
-                                        series,
-                                        week,
-                                        celebrity: "Louis".to_owned(),
-                                        professional: "Flavia".to_owned(),
-                                        dance: "Tango/Rumba".to_owned(),
-                                        score: 37,
-                                    });
-                                    vector.push(Row {
-                                        series,
-                                        week,
-                                        celebrity: "Kimberley".to_owned(),
-                                        professional: "Pasha".to_owned(),
-                                        dance: "Cha-Cha-Cha/Tango".to_owned(),
-                                        score: 40,
-                                    });
-                                    return Ok(());
-                                }
-                                shared.set(Shared {
-                                    state: State::ExpectRow,
-                                    week,
-                                });
-                            }
-                        }
-                        Ok(())
-                    }),
-                    element!("td", |el| {
-                        let text = buffer.replace(String::new());
-                        let mut s = shared.take();
-                        if s.week == 0 {
-                            return Ok(());
-                        }
-                        s.state = match s.state {
-                            State::ExpectRow => {
-                                // When couples dance multiple dances in a show, the Couples column will
-                                // have a rowspan > 1. Pass the rowspan through the states and reuse the
-                                // couple for the next row.
-                                let rows = match el.get_attribute("rowspan") {
-                                    Some(rowspan) => rowspan.parse()?,
-                                    None => 1,
-                                };
-                                State::ExpectCouple(rows)
-                            }
-                            State::ExpectCouple(rows) => {
-                                let couple =
-                                    html_escape::decode_html_entities(&text).trim().to_owned();
-                                State::ExpectScore(rows, couple)
-                            }
-                            State::SkipCouple(rows, couple) => State::ExpectScore(rows, couple),
-                            State::ExpectScore(rows, couple) => {
-                                // "27 (7,7,8,5)\n"
-                                match html_escape::decode_html_entities(&text)
-                                    .trim()
-                                    .split_whitespace()
-                                    .next()
-                                    .unwrap_or("N/A")
-                                    .parse()
-                                {
-                                    Ok(score) => State::ExpectDance(rows, couple, score),
-                                    Err(_error) => {
-                                        // e.g. "N/A\n" for unscored show dance
-                                        // ignore this row
-                                        State::ExpectEnd(rows - 1, couple)
-                                    }
-                                }
-                            }
-                            State::ExpectDance(rows, couple, score) => {
-                                let dance =
-                                    html_escape::decode_html_entities(&text).trim().to_owned();
-                                let mut i = couple.split(" & ");
-                                let celebrity = i.next().unwrap().to_owned();
-                                let professional = i.next().unwrap().to_owned();
-                                assert!(i.next().is_none());
-                                let row = Row {
-                                    series,
-                                    week: s.week,
-                                    celebrity,
-                                    professional,
-                                    dance,
-                                    score,
-                                };
-                                output.borrow_mut().push(row);
-                                State::ExpectEnd(rows - 1, couple)
-                            }
-                            State::ExpectEnd(rows, couple) => {
-                                // ignore columns until we see the end of row
-                                State::ExpectEnd(rows, couple)
-                            }
-                            _ => {
-                                panic!("Unexpected state");
-                            }
-                        };
-                        shared.set(s);
-                        Ok(())
-                    }),
-                    text!("td *", |t| {
-                        // "<td>Anastacia &amp; Gorka<sup>1</sup>\n</td>"
-                        // Set the user data for the text to a boolean to skip the sub-element
-                        // in the extracted text.
-                        t.set_user_data(true);
-                        Ok(())
-                    }),
-                    text!("td", |t| {
-                        if t.user_data().is::<bool>() {
-                            // ignore text in sub-elements of td
-                            return Ok(());
-                        }
-                        let s = shared.take();
-                        match s.state {
-                            State::ExpectCouple(..)
-                            | State::ExpectScore(..)
-                            | State::ExpectDance(..) => {
-                                buffer.borrow_mut().push_str(t.as_str());
-                            }
-                            _ => {}
-                        }
-                        shared.set(s);
-                        Ok(())
-                    }),
-                    // New table row - reset search for td elements
-                    element!("tr", |_el| {
-                        let mut s = shared.take();
-                        if let State::ExpectEnd(rows, couple) = s.state {
-                            s.state = if rows == 0 {
-                                State::ExpectRow
-                            } else {
-                                State::SkipCouple(rows, couple)
-                            }
-                        }
-                        shared.set(s);
-                        Ok(())
-                    }),
-                ],
-                ..Settings::default()
-            },
-            |_: &[u8]| (),
-        );
-
-        rewriter.write(page.as_ref())?;
-        rewriter.end()?;
-        Ok(output.into_inner())
     }
+    // Cell mutability for shared and mutable access from multiple closures.
+    let buffer = RefCell::new(String::new());
+    let shared = Cell::new(Shared::default());
+    let mut rewriter = HtmlRewriter::new(
+        Settings {
+            element_content_handlers: vec![
+                // Find week number
+                element!("span.mw-headline", |el| {
+                    shared.set(Shared::default());
+                    if let Some(id) = el.get_attribute("id") {
+                        // "Week_1", "Week_6:_Quarter-final"
+                        let mut parts = id.split(&['_', ':'][..]);
+                        if let Some("Week") = parts.next() {
+                            let week = parts
+                                .next()
+                                .ok_or_else(|| format!("Bad parse {}", id))?
+                                .parse()?;
+                            if series == 10 && week == 10 {
+                                // Tricky table - handle specially
+                                let mut vector = output.borrow_mut();
+                                vector.push(Row {
+                                    series,
+                                    week,
+                                    celebrity: "Denise".to_owned(),
+                                    professional: "James".to_owned(),
+                                    dance: "Jive/Quickstep".to_owned(),
+                                    score: 35,
+                                });
+                                vector.push(Row {
+                                    series,
+                                    week,
+                                    celebrity: "Lisa".to_owned(),
+                                    professional: "Robin".to_owned(),
+                                    dance: "Cha-Cha-Cha/Tango".to_owned(),
+                                    score: 30,
+                                });
+                                vector.push(Row {
+                                    series,
+                                    week,
+                                    celebrity: "Nicky".to_owned(),
+                                    professional: "Karen".to_owned(),
+                                    dance: "American Smooth/Samba".to_owned(),
+                                    score: 27,
+                                });
+                                vector.push(Row {
+                                    series,
+                                    week,
+                                    celebrity: "Dani".to_owned(),
+                                    professional: "Vincent".to_owned(),
+                                    dance: "Charleston/Quickstep".to_owned(),
+                                    score: 38,
+                                });
+                                vector.push(Row {
+                                    series,
+                                    week,
+                                    celebrity: "Louis".to_owned(),
+                                    professional: "Flavia".to_owned(),
+                                    dance: "Tango/Rumba".to_owned(),
+                                    score: 37,
+                                });
+                                vector.push(Row {
+                                    series,
+                                    week,
+                                    celebrity: "Kimberley".to_owned(),
+                                    professional: "Pasha".to_owned(),
+                                    dance: "Cha-Cha-Cha/Tango".to_owned(),
+                                    score: 40,
+                                });
+                                return Ok(());
+                            }
+                            shared.set(Shared {
+                                state: State::ExpectRow,
+                                week,
+                            });
+                        }
+                    }
+                    Ok(())
+                }),
+                element!("td", |el| {
+                    let text = buffer.replace(String::new());
+                    let mut s = shared.take();
+                    if s.week == 0 {
+                        return Ok(());
+                    }
+                    s.state = match s.state {
+                        State::ExpectRow => {
+                            // When couples dance multiple dances in a show, the Couples column will
+                            // have a rowspan > 1. Pass the rowspan through the states and reuse the
+                            // couple for the next row.
+                            let rows = match el.get_attribute("rowspan") {
+                                Some(rowspan) => rowspan.parse()?,
+                                None => 1,
+                            };
+                            State::ExpectCouple(rows)
+                        }
+                        State::ExpectCouple(rows) => {
+                            let couple = html_escape::decode_html_entities(&text).trim().to_owned();
+                            State::ExpectScore(rows, couple)
+                        }
+                        State::SkipCouple(rows, couple) => State::ExpectScore(rows, couple),
+                        State::ExpectScore(rows, couple) => {
+                            // "27 (7,7,8,5)\n"
+                            match html_escape::decode_html_entities(&text)
+                                .trim()
+                                .split_whitespace()
+                                .next()
+                                .unwrap_or("N/A")
+                                .parse()
+                            {
+                                Ok(score) => State::ExpectDance(rows, couple, score),
+                                Err(_error) => {
+                                    // e.g. "N/A\n" for unscored show dance
+                                    // ignore this row
+                                    State::ExpectEnd(rows - 1, couple)
+                                }
+                            }
+                        }
+                        State::ExpectDance(rows, couple, score) => {
+                            let dance = html_escape::decode_html_entities(&text).trim().to_owned();
+                            let mut i = couple.split(" & ");
+                            let celebrity = i.next().unwrap().to_owned();
+                            let professional = i.next().unwrap().to_owned();
+                            assert!(i.next().is_none());
+                            let row = Row {
+                                series,
+                                week: s.week,
+                                celebrity,
+                                professional,
+                                dance,
+                                score,
+                            };
+                            output.borrow_mut().push(row);
+                            State::ExpectEnd(rows - 1, couple)
+                        }
+                        State::ExpectEnd(rows, couple) => {
+                            // ignore columns until we see the end of row
+                            State::ExpectEnd(rows, couple)
+                        }
+                        _ => {
+                            panic!("Unexpected state");
+                        }
+                    };
+                    shared.set(s);
+                    Ok(())
+                }),
+                text!("td *", |t| {
+                    // "<td>Anastacia &amp; Gorka<sup>1</sup>\n</td>"
+                    // Set the user data for the text to a boolean to skip the sub-element
+                    // in the extracted text.
+                    t.set_user_data(true);
+                    Ok(())
+                }),
+                text!("td", |t| {
+                    if t.user_data().is::<bool>() {
+                        // ignore text in sub-elements of td
+                        return Ok(());
+                    }
+                    let s = shared.take();
+                    match s.state {
+                        State::ExpectCouple(..)
+                        | State::ExpectScore(..)
+                        | State::ExpectDance(..) => {
+                            buffer.borrow_mut().push_str(t.as_str());
+                        }
+                        _ => {}
+                    }
+                    shared.set(s);
+                    Ok(())
+                }),
+                // New table row - reset search for td elements
+                element!("tr", |_el| {
+                    let mut s = shared.take();
+                    if let State::ExpectEnd(rows, couple) = s.state {
+                        s.state = if rows == 0 {
+                            State::ExpectRow
+                        } else {
+                            State::SkipCouple(rows, couple)
+                        }
+                    }
+                    shared.set(s);
+                    Ok(())
+                }),
+            ],
+            ..Settings::default()
+        },
+        |_: &[u8]| (),
+    );
+
+    rewriter.write(page.as_ref())?;
+    rewriter.end()?;
+    Ok(output.into_inner())
 }
 
 #[cfg(test)]
