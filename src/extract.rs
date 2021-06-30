@@ -15,7 +15,7 @@ pub(crate) struct Row {
 }
 
 pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, RewritingError> {
-    let mut output: Vec<Row> = vec![];
+    let output: RefCell<Vec<Row>> = RefCell::new(vec![]);
 
     {
         #[derive(PartialEq)]
@@ -58,7 +58,56 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                                     .ok_or_else(|| format!("Bad parse {}", id))?
                                     .parse()?;
                                 if series == 10 && week == 10 {
-                                    // Tricky table - leave this week out
+                                    // Tricky table - handle specially
+                                    let mut vector = output.borrow_mut();
+                                    vector.push(Row {
+                                        series,
+                                        week,
+                                        celebrity: "Denise".to_owned(),
+                                        professional: "James".to_owned(),
+                                        dance: "Jive/Quickstep".to_owned(),
+                                        score: 35,
+                                    });
+                                    vector.push(Row {
+                                        series,
+                                        week,
+                                        celebrity: "Lisa".to_owned(),
+                                        professional: "Robin".to_owned(),
+                                        dance: "Cha-Cha-Cha/Tango".to_owned(),
+                                        score: 30,
+                                    });
+                                    vector.push(Row {
+                                        series,
+                                        week,
+                                        celebrity: "Nicky".to_owned(),
+                                        professional: "Karen".to_owned(),
+                                        dance: "American Smooth/Samba".to_owned(),
+                                        score: 27,
+                                    });
+                                    vector.push(Row {
+                                        series,
+                                        week,
+                                        celebrity: "Dani".to_owned(),
+                                        professional: "Vincent".to_owned(),
+                                        dance: "Charleston/Quickstep".to_owned(),
+                                        score: 38,
+                                    });
+                                    vector.push(Row {
+                                        series,
+                                        week,
+                                        celebrity: "Louis".to_owned(),
+                                        professional: "Flavia".to_owned(),
+                                        dance: "Tango/Rumba".to_owned(),
+                                        score: 37,
+                                    });
+                                    vector.push(Row {
+                                        series,
+                                        week,
+                                        celebrity: "Kimberley".to_owned(),
+                                        professional: "Pasha".to_owned(),
+                                        dance: "Cha-Cha-Cha/Tango".to_owned(),
+                                        score: 40,
+                                    });
                                     return Ok(());
                                 }
                                 shared.set(Shared {
@@ -124,7 +173,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                                     dance,
                                     score,
                                 };
-                                output.push(row);
+                                output.borrow_mut().push(row);
                                 State::ExpectEnd(rows - 1, couple)
                             }
                             State::ExpectEnd(rows, couple) => {
@@ -183,7 +232,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
 
         rewriter.write(page.as_ref())?;
         rewriter.end()?;
-        Ok(output)
+        Ok(output.into_inner())
     }
 }
 
