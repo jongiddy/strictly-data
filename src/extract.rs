@@ -1,7 +1,8 @@
 use lol_html::errors::RewritingError;
+use lol_html::html_content::UserData;
 use lol_html::{element, text, HtmlRewriter, Settings};
 use serde::Serialize;
-use std::cell::Cell;
+use std::cell::{Cell, RefCell};
 
 #[derive(Debug, Serialize)]
 pub(crate) struct Row {
@@ -21,9 +22,10 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
         enum State {
             ExpectNone,
             ExpectRow,
-            ExpectCouple(i32, String),
-            ExpectScore(i32, String, String),
-            ExpectDance(i32, String, u8, String),
+            ExpectCouple(i32),
+            SkipCouple(i32, String),
+            ExpectScore(i32, String),
+            ExpectDance(i32, String, u8),
             ExpectEnd(i32, String),
         }
         struct Shared {
@@ -39,6 +41,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
             }
         }
         // Cell mutability for shared and mutable access from multiple closures.
+        let buffer = RefCell::new(String::new());
         let shared = Cell::new(Shared::default());
         let mut rewriter = HtmlRewriter::new(
             Settings {
@@ -54,6 +57,10 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                                     .next()
                                     .ok_or_else(|| format!("Bad parse {}", id))?
                                     .parse()?;
+                                if series == 10 && week == 10 {
+                                    // Tricky table - leave this week out
+                                    return Ok(());
+                                }
                                 shared.set(Shared {
                                     state: State::ExpectRow,
                                     week,
@@ -62,86 +69,63 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                         }
                         Ok(())
                     }),
-                    // When couples dance multiple dances in a show, the Couples column will
-                    // have a rowspan > 1. Pass the rowspan through the states and reuse the
-                    // couple for the next row.
                     element!("td", |el| {
-                        let mut s = shared.take();
-                        if let State::ExpectRow = s.state {
-                            let rowspan = match el.get_attribute("rowspan") {
-                                Some(rowspan) => rowspan.parse()?,
-                                None => 1,
-                            };
-                            s.state = State::ExpectCouple(rowspan, String::new());
-                        }
-                        shared.set(s);
-                        Ok(())
-                    }),
-                    text!("td", |t| {
+                        let text = buffer.replace(String::new());
                         let mut s = shared.take();
                         if s.week == 0 {
-                            assert!(s.state == State::ExpectNone);
                             return Ok(());
                         }
                         s.state = match s.state {
-                            State::ExpectCouple(rows, mut buffer) => {
-                                buffer.push_str(t.as_str());
-                                if t.last_in_text_node() {
-                                    let couple = html_escape::decode_html_entities(&buffer)
-                                        .trim()
-                                        .to_owned();
-                                    State::ExpectScore(rows, couple, String::new())
-                                } else {
-                                    State::ExpectCouple(rows, buffer)
-                                }
+                            State::ExpectRow => {
+                                // When couples dance multiple dances in a show, the Couples column will
+                                // have a rowspan > 1. Pass the rowspan through the states and reuse the
+                                // couple for the next row.
+                                let rows = match el.get_attribute("rowspan") {
+                                    Some(rowspan) => rowspan.parse()?,
+                                    None => 1,
+                                };
+                                State::ExpectCouple(rows)
                             }
-                            State::ExpectScore(rows, couple, mut buffer) => {
-                                buffer.push_str(t.as_str());
-                                if t.last_in_text_node() {
-                                    // "27 (7,7,8,5)\n"
-                                    match html_escape::decode_html_entities(&buffer)
-                                        .trim()
-                                        .split_whitespace()
-                                        .next()
-                                        .unwrap()
-                                        .parse()
-                                    {
-                                        Ok(score) => {
-                                            State::ExpectDance(rows, couple, score, String::new())
-                                        }
-                                        Err(_error) => {
-                                            // e.g. "N/A\n" for unscored show dance
-                                            // ignore this row
-                                            State::ExpectEnd(rows - 1, couple)
-                                        }
+                            State::ExpectCouple(rows) => {
+                                let couple =
+                                    html_escape::decode_html_entities(&text).trim().to_owned();
+                                State::ExpectScore(rows, couple)
+                            }
+                            State::SkipCouple(rows, couple) => State::ExpectScore(rows, couple),
+                            State::ExpectScore(rows, couple) => {
+                                // "27 (7,7,8,5)\n"
+                                match html_escape::decode_html_entities(&text)
+                                    .trim()
+                                    .split_whitespace()
+                                    .next()
+                                    .unwrap_or("N/A")
+                                    .parse()
+                                {
+                                    Ok(score) => State::ExpectDance(rows, couple, score),
+                                    Err(_error) => {
+                                        // e.g. "N/A\n" for unscored show dance
+                                        // ignore this row
+                                        State::ExpectEnd(rows - 1, couple)
                                     }
-                                } else {
-                                    State::ExpectScore(rows, couple, buffer)
                                 }
                             }
-                            State::ExpectDance(rows, couple, score, mut buffer) => {
-                                buffer.push_str(t.as_str());
-                                if t.last_in_text_node() {
-                                    let dance = html_escape::decode_html_entities(&buffer)
-                                        .trim()
-                                        .to_owned();
-                                    let mut i = couple.split(" & ");
-                                    let celebrity = i.next().unwrap().to_owned();
-                                    let professional = i.next().unwrap().to_owned();
-                                    assert!(i.next().is_none());
-                                    let row = Row {
-                                        series,
-                                        week: s.week,
-                                        celebrity,
-                                        professional,
-                                        dance,
-                                        score,
-                                    };
-                                    output.push(row);
-                                    State::ExpectEnd(rows - 1, couple)
-                                } else {
-                                    State::ExpectDance(rows, couple, score, buffer)
-                                }
+                            State::ExpectDance(rows, couple, score) => {
+                                let dance =
+                                    html_escape::decode_html_entities(&text).trim().to_owned();
+                                let mut i = couple.split(" & ");
+                                let celebrity = i.next().unwrap().to_owned();
+                                let professional = i.next().unwrap().to_owned();
+                                assert!(i.next().is_none());
+                                let row = Row {
+                                    series,
+                                    week: s.week,
+                                    celebrity,
+                                    professional,
+                                    dance,
+                                    score,
+                                };
+                                output.push(row);
+                                State::ExpectEnd(rows - 1, couple)
                             }
                             State::ExpectEnd(rows, couple) => {
                                 // ignore columns until we see the end of row
@@ -154,6 +138,30 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                         shared.set(s);
                         Ok(())
                     }),
+                    text!("td *", |t| {
+                        // "<td>Anastacia &amp; Gorka<sup>1</sup>\n</td>"
+                        // Set the user data for the text to a boolean to skip the sub-element
+                        // in the extracted text.
+                        t.set_user_data(true);
+                        Ok(())
+                    }),
+                    text!("td", |t| {
+                        if t.user_data().is::<bool>() {
+                            // ignore text in sub-elements of td
+                            return Ok(());
+                        }
+                        let s = shared.take();
+                        match s.state {
+                            State::ExpectCouple(..)
+                            | State::ExpectScore(..)
+                            | State::ExpectDance(..) => {
+                                buffer.borrow_mut().push_str(t.as_str());
+                            }
+                            _ => {}
+                        }
+                        shared.set(s);
+                        Ok(())
+                    }),
                     // New table row - reset search for td elements
                     element!("tr", |_el| {
                         let mut s = shared.take();
@@ -161,7 +169,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                             s.state = if rows == 0 {
                                 State::ExpectRow
                             } else {
-                                State::ExpectScore(rows, couple, String::new())
+                                State::SkipCouple(rows, couple)
                             }
                         }
                         shared.set(s);
@@ -238,7 +246,6 @@ mod tests {
     }
 
     #[test]
-    #[ignore] // https://github.com/jongiddy/strictly-data/issues/2
     fn test_extract_footnote() -> Result<(), Box<dyn Error>> {
         let top = env!("CARGO_MANIFEST_DIR");
         let page = std::fs::read_to_string(format!("{}/test-data/test3.html", top))?;

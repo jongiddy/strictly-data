@@ -906,12 +906,6 @@ series,week,celebrity,professional,dance,score
 10,9,Lisa,Robin,Quickstep,31
 10,9,Denise,James,Salsa,32
 10,9,Louis,Flavia,Charleston,37
-10,10,Denise,James,Jive,35
-10,10,Lisa,Robin,Cha-Cha-Cha,30
-10,10,Nicky,Karen,American Smooth,27
-10,10,Dani,Vincent,Charleston,38
-10,10,Louis,Flavia,Tango,37
-10,10,Kimberley,Pasha,Cha-Cha-Cha,40
 10,11,Dani,Vincent,American Smooth,34
 10,11,Dani,Vincent,Argentine Tango,38
 10,11,Louis,Flavia,Jive,31
@@ -1403,7 +1397,7 @@ series,week,celebrity,professional,dance,score
 14,5,Judge Rinder,Oksana,Jive,29
 14,5,Lesley,Anton,Tango,24
 14,5,Greg,Natalie,Cha-Cha-Cha,24
-14,5,Anastacia,Gorka,,1
+14,5,Anastacia,Gorka,Quickstep,30
 14,5,Louise,Kevin,Rumba,33
 14,5,Ed,Katya,American Smooth,18
 14,5,Ore,Joanne,Waltz,36
@@ -1834,13 +1828,13 @@ series,week,celebrity,professional,dance,score
 17,6,Catherine,Johannes,Cha-Cha-Cha,24
 17,6,Michelle,Giovanni,Foxtrot,39
 17,6,Kelvin,Oti,Tango,36
-17,6,Alex,Kevin,,2
+17,6,Alex,Kevin,Street,34
 17,7,Karim,Amy,Quickstep,39
 17,7,Michelle,Giovanni,Paso Doble,34
 17,7,Emma W.,Aljaž,Samba,26
 17,7,Kelvin,Oti,Viennese Waltz,34
 17,7,Saffron,AJ,Salsa,27
-17,7,Alex,Kevin,,1
+17,7,Alex,Kevin,American Smooth,31
 17,7,Chris,Karen,Street,34
 17,7,Emma B.,Anton,Rumba,22
 17,7,Mike,Katya,Charleston,30
