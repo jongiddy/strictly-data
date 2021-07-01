@@ -12,6 +12,7 @@ pub(crate) struct Row {
     professional: String,
     dance: String,
     score: u8,
+    note: String,
 }
 
 pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, RewritingError> {
@@ -57,56 +58,43 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                                 .ok_or_else(|| format!("Bad parse {}", id))?
                                 .parse()?;
                             if series == 10 && week == 10 {
-                                // Tricky table - handle specially
+                                // Unsupported table format - handle specially. In this week,
+                                // couples combined two styles in one dance.  For analysis
+                                // treat them as separate dances with the same score.
+                                let table = [
+                                    ("Denise", "James", "Jive", "Quickstep", 35),
+                                    ("Lisa", "Robin", "Cha-Cha-Cha", "Tango", 30),
+                                    ("Nicky", "Karen", "American Smooth", "Samba", 27),
+                                    ("Dani", "Vincent", "Charleston", "Quickstep", 38),
+                                    ("Louis", "Flavia", "Tango", "Rumba", 37),
+                                    ("Kimberley", "Pasha", "Cha-Cha-Cha", "Tango", 40),
+                                ];
                                 let mut vector = output.borrow_mut();
-                                vector.push(Row {
-                                    series,
-                                    week,
-                                    celebrity: "Denise".to_owned(),
-                                    professional: "James".to_owned(),
-                                    dance: "Jive/Quickstep".to_owned(),
-                                    score: 35,
-                                });
-                                vector.push(Row {
-                                    series,
-                                    week,
-                                    celebrity: "Lisa".to_owned(),
-                                    professional: "Robin".to_owned(),
-                                    dance: "Cha-Cha-Cha/Tango".to_owned(),
-                                    score: 30,
-                                });
-                                vector.push(Row {
-                                    series,
-                                    week,
-                                    celebrity: "Nicky".to_owned(),
-                                    professional: "Karen".to_owned(),
-                                    dance: "American Smooth/Samba".to_owned(),
-                                    score: 27,
-                                });
-                                vector.push(Row {
-                                    series,
-                                    week,
-                                    celebrity: "Dani".to_owned(),
-                                    professional: "Vincent".to_owned(),
-                                    dance: "Charleston/Quickstep".to_owned(),
-                                    score: 38,
-                                });
-                                vector.push(Row {
-                                    series,
-                                    week,
-                                    celebrity: "Louis".to_owned(),
-                                    professional: "Flavia".to_owned(),
-                                    dance: "Tango/Rumba".to_owned(),
-                                    score: 37,
-                                });
-                                vector.push(Row {
-                                    series,
-                                    week,
-                                    celebrity: "Kimberley".to_owned(),
-                                    professional: "Pasha".to_owned(),
-                                    dance: "Cha-Cha-Cha/Tango".to_owned(),
-                                    score: 40,
-                                });
+                                for row in table {
+                                    let (celebrity, professional, dance1, dance2, score) = row;
+                                    let note = format!(
+                                        "Series 10 combined dance: {} & {}",
+                                        dance1, dance2
+                                    );
+                                    vector.push(Row {
+                                        series,
+                                        week,
+                                        celebrity: celebrity.to_owned(),
+                                        professional: professional.to_owned(),
+                                        dance: dance1.to_owned(),
+                                        score,
+                                        note: note.clone(),
+                                    });
+                                    vector.push(Row {
+                                        series,
+                                        week,
+                                        celebrity: celebrity.to_owned(),
+                                        professional: professional.to_owned(),
+                                        dance: dance2.to_owned(),
+                                        score,
+                                        note,
+                                    });
+                                }
                                 return Ok(());
                             }
                             shared.set(Shared {
@@ -169,6 +157,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                                 professional,
                                 dance,
                                 score,
+                                note: String::new(),
                             };
                             output.borrow_mut().push(row);
                             State::ExpectEnd(rows - 1, couple)
