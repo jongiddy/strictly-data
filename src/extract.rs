@@ -76,7 +76,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                     Ok(())
                 }),
                 element!("tr", |tr| {
-                    let mut s = (*shared).borrow_mut();
+                    let mut s = shared.borrow_mut();
                     if s.week == 0 {
                         return Ok(());
                     }
@@ -99,7 +99,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                     let output = output.clone();
                     let shared = shared.clone();
                     tr.on_end_tag(move |_| {
-                        let mut s = (*shared).borrow_mut();
+                        let mut s = shared.borrow_mut();
                         if s.state != State::ExpectEnd {
                             // This should only occur for the header row that contains no
                             // td elements and where there is no couple set.
@@ -137,7 +137,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                                     .parse()
                                 {
                                     Ok(score) => {
-                                        (*output).borrow_mut().push(Row {
+                                        output.borrow_mut().push(Row {
                                             series,
                                             week: s.week,
                                             celebrity,
@@ -163,7 +163,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                     Ok(())
                 }),
                 element!("td", |td| {
-                    let mut s = (*shared).borrow_mut();
+                    let mut s = shared.borrow_mut();
                     if s.week == 0 {
                         return Ok(());
                     }
@@ -179,7 +179,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                             s.couple_uses = rows;
                             let shared = shared.clone();
                             td.on_end_tag(move |_| {
-                                let mut s = (*shared).borrow_mut();
+                                let mut s = shared.borrow_mut();
                                 s.state = if s.score_uses == 0 {
                                     State::ExpectScore
                                 } else if s.dance_uses == 0 {
@@ -203,7 +203,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                             }
                             let shared = shared.clone();
                             td.on_end_tag(move |_| {
-                                let mut s = (*shared).borrow_mut();
+                                let mut s = shared.borrow_mut();
                                 s.state = if s.dance_uses == 0 {
                                     State::ExpectDance
                                 } else {
@@ -217,7 +217,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                             s.dance_uses = rows;
                             let shared = shared.clone();
                             td.on_end_tag(move |_| {
-                                let mut s = (*shared).borrow_mut();
+                                let mut s = shared.borrow_mut();
                                 s.state = State::ExpectEnd;
                                 Ok(())
                             })?;
@@ -240,7 +240,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                         // ignore text in sub-elements of td
                         return Ok(());
                     }
-                    let mut s = (*shared).borrow_mut();
+                    let mut s = shared.borrow_mut();
                     match s.state {
                         State::ExpectCouple => {
                             s.couple.push_str(t.as_str());
