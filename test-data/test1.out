@@ -1,3 +1,3 @@
-series,week,celebrity,professional,dance,score,note
-1,1,Natasha,Brendan,Cha-Cha-Cha,27,
-1,1,Lesley,Anton,Waltz,29,
+series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
+1,1,Natasha,Brendan,Cha-Cha-Cha,27,4,6.75,
+1,1,Lesley,Anton,Waltz,29,4,7.25,

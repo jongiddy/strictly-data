@@ -1,6 +1,6 @@
-series,week,celebrity,professional,dance,score,note
-1,5,Judge Rinder,Oksana,Jive,29,
-1,5,Lesley,Anton,Tango,24,
-1,5,Greg,Natalie,Cha-Cha-Cha,24,
-1,5,Anastacia,Gorka,Quickstep,30,
-1,5,Louise,Kevin,Rumba,33,
+series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
+1,5,Judge Rinder,Oksana,Jive,29,4,7.25,
+1,5,Lesley,Anton,Tango,24,4,6.0,
+1,5,Greg,Natalie,Cha-Cha-Cha,24,4,6.0,
+1,5,Anastacia,Gorka,Quickstep,30,4,7.5,
+1,5,Louise,Kevin,Rumba,33,4,8.25,

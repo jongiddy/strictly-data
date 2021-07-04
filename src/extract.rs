@@ -12,7 +12,9 @@ pub(crate) struct Row {
     celebrity: String,
     professional: String,
     dance: String,
-    score: u8,
+    total_score: u8,
+    score_count: u8,
+    avg_score: f32,
     note: String,
 }
 
@@ -129,21 +131,28 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                                 // ignore
                             }
                             None => {
-                                match html_escape::decode_html_entities(&s.score)
-                                    .trim()
-                                    .split_whitespace()
-                                    .next()
-                                    .unwrap_or("N/A")
-                                    .parse()
-                                {
-                                    Ok(score) => {
+                                let scores = html_escape::decode_html_entities(&s.score);
+                                let mut i = scores.trim().split_whitespace();
+
+                                match i.next().unwrap_or("N/A").parse() {
+                                    Ok(total_score) => {
+                                        // The second word is the individual judges' scores.
+                                        // Count the separating commas and add one to get the
+                                        // maximum score.
+                                        let score_count =
+                                            i.next().unwrap().matches(",").count() as u8 + 1;
+                                        let avg_score = total_score as f32 / score_count as f32;
+                                        assert!(avg_score >= 1.0);
+                                        assert!(avg_score <= 10.0);
                                         output.borrow_mut().push(Row {
                                             series,
                                             week: s.week,
                                             celebrity,
                                             professional,
                                             dance,
-                                            score,
+                                            total_score,
+                                            score_count,
+                                            avg_score,
                                             note: s.note.clone(),
                                         });
                                     }
