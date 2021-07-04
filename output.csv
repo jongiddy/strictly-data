@@ -620,7 +620,9 @@ series,week,celebrity,professional,dance,score,note
 7,14,Ricky W.,Natalie,Quickstep,50,
 7,14,Chris,Ola,Foxtrot,46,
 7,14,Chris,Ola,Lindy Hop,44,
-7,14,Ricky W.,Natalie,Chris & Ola,43,
+7,14,Ricky W.,Natalie,Lindy Hop,43,
+7,14,Chris,Ola,Charleston,50,
+7,14,Chris,Ola,Showdance,46,
 7,14,Ricky W.,Natalie,Cha-Cha-Cha,48,
 7,14,Ricky W.,Natalie,Showdance,49,
 8,2,Matt,Aliona,Foxtrot,31,
@@ -906,18 +908,18 @@ series,week,celebrity,professional,dance,score,note
 10,9,Lisa,Robin,Quickstep,31,
 10,9,Denise,James,Salsa,32,
 10,9,Louis,Flavia,Charleston,37,
-10,10,Denise,James,Jive,35,Series 10 combined dance: Jive & Quickstep
-10,10,Denise,James,Quickstep,35,Series 10 combined dance: Jive & Quickstep
-10,10,Lisa,Robin,Cha-Cha-Cha,30,Series 10 combined dance: Cha-Cha-Cha & Tango
-10,10,Lisa,Robin,Tango,30,Series 10 combined dance: Cha-Cha-Cha & Tango
-10,10,Nicky,Karen,American Smooth,27,Series 10 combined dance: American Smooth & Samba
-10,10,Nicky,Karen,Samba,27,Series 10 combined dance: American Smooth & Samba
-10,10,Dani,Vincent,Charleston,38,Series 10 combined dance: Charleston & Quickstep
-10,10,Dani,Vincent,Quickstep,38,Series 10 combined dance: Charleston & Quickstep
-10,10,Louis,Flavia,Tango,37,Series 10 combined dance: Tango & Rumba
-10,10,Louis,Flavia,Rumba,37,Series 10 combined dance: Tango & Rumba
-10,10,Kimberley,Pasha,Cha-Cha-Cha,40,Series 10 combined dance: Cha-Cha-Cha & Tango
-10,10,Kimberley,Pasha,Tango,40,Series 10 combined dance: Cha-Cha-Cha & Tango
+10,10,Denise,James,Jive,35,combined dance
+10,10,Denise,James,Quickstep,35,combined dance
+10,10,Lisa,Robin,Cha-Cha-Cha,30,combined dance
+10,10,Lisa,Robin,Tango,30,combined dance
+10,10,Nicky,Karen,American Smooth,27,combined dance
+10,10,Nicky,Karen,Samba,27,combined dance
+10,10,Dani,Vincent,Charleston,38,combined dance
+10,10,Dani,Vincent,Quickstep,38,combined dance
+10,10,Louis,Flavia,Tango,37,combined dance
+10,10,Louis,Flavia,Rumba,37,combined dance
+10,10,Kimberley,Pasha,Cha-Cha-Cha,40,combined dance
+10,10,Kimberley,Pasha,Tango,40,combined dance
 10,11,Dani,Vincent,American Smooth,34,
 10,11,Dani,Vincent,Argentine Tango,38,
 10,11,Louis,Flavia,Jive,31,
