@@ -93,19 +93,27 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
     let element_content_handlers = vec![
         // Find week number
         element!("span.mw-headline", |el| {
-            state.set(State::Unrecognized);
             if let Some(id) = el.get_attribute("id") {
                 if id == "Couples" {
                     state.set(State::CouplesTable(CoupleState::default()));
                 } else {
                     let mut parts = id.split(&['_', ':'][..]);
-                    if let Some("Week") = parts.next() {
-                        // "Week_1", "Week_6:_Quarter-final"
-                        let week = parts
-                            .next()
-                            .ok_or_else(|| format!("Bad parse {}", id))?
-                            .parse()?;
-                        state.set(State::WeekTable(WeekState::new_for_week(week)));
+                    match parts.next() {
+                        Some("Week") => {
+                            // "Week_1", "Week_6:_Quarter-final"
+                            let week = parts
+                                .next()
+                                .ok_or_else(|| format!("Bad parse {}", id))?
+                                .parse()?;
+                            state.set(State::WeekTable(WeekState::new_for_week(week)));
+                        }
+                        Some("Night") => {
+                            // "Night_2_–_Latin" - multiple nights within a week, ignore so
+                            // state stays as Week.
+                        }
+                        _ => {
+                            state.set(State::Unrecognized);
+                        }
                     }
                 }
             }
