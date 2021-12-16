@@ -234,7 +234,8 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                                 if couple.len() > 0 {
                                     let mut i = couple.split(" & ");
                                     let celeb_moniker = i.next().unwrap();
-                                    let professional = i.next().unwrap().to_owned();
+                                    // Some couples have an asterisk at the end to refer to a footnote.
+                                    let professional = i.next().unwrap().trim_end_matches('*').to_owned();
                                     match i.next() {
                                         Some(_) => {
                                             // Dance with multiple couples (e.g. Series 7 week 11)
