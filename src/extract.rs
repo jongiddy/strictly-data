@@ -107,9 +107,9 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                                 .parse()?;
                             state.set(State::WeekTable(WeekState::new_for_week(week)));
                         }
-                        Some("Night") => {
-                            // "Night_2_–_Latin" - multiple nights within a week, ignore so
-                            // state stays as Week.
+                        Some("Night"|"Show") => {
+                            // "Night_2_–_Latin", "Show_1" - multiple nights within a week,
+                            // ignore so we keep the state in the Week.
                         }
                         _ => {
                             state.set(State::Unrecognized);
