@@ -13,7 +13,7 @@ fn fetch_page(series: u16) -> Result<String, reqwest::Error> {
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
-    const LATEST_SERIES: u16 = 18;
+    const LATEST_SERIES: u16 = 19;
     let mut wtr = csv::Writer::from_writer(std::io::stdout());
     for series in 1..=LATEST_SERIES {
         let page = fetch_page(series)?;
