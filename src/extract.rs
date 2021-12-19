@@ -140,6 +140,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
     #[derive(Debug)]
     struct WeekState {
         state: WeekExpect,
+        series: u16,
         week: u16,
         couple: String,
         couple_uses: u8,
@@ -148,11 +149,21 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
         dance: String,
         dance_uses: u8,
         note: String,
+        output: Rc<RefCell<Vec<Row>>>,
+        celeb_moniker_to_name: Rc<RefCell<HashMap<String, String>>>,
     }
     impl WeekState {
-        fn new_for_week(week: u16) -> Self {
+        fn new_for_week(
+            output: Rc<RefCell<Vec<Row>>>,
+            celeb_moniker_to_name: Rc<RefCell<HashMap<String, String>>>,
+            series: u16,
+            week: u16,
+        ) -> Self {
             WeekState {
+                output,
+                celeb_moniker_to_name,
                 state: WeekExpect::NewRow,
+                series,
                 week,
                 couple: String::new(),
                 couple_uses: 0,
@@ -163,7 +174,194 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                 note: String::new(),
             }
         }
+        fn tr_begin(&mut self, _tr: &Element) -> Result<(), Box<dyn Error + Send + Sync>> {
+            self.state = match self.state {
+                WeekExpect::NewRow => {
+                    if self.couple_uses == 0 {
+                        WeekExpect::Couple
+                    } else if self.score_uses == 0 {
+                        WeekExpect::Score
+                    } else if self.dance_uses == 0 {
+                        WeekExpect::Dance
+                    } else {
+                        WeekExpect::EndRow
+                    }
+                }
+                _ => {
+                    panic!("Unexpected state {:?}", self.state);
+                }
+            };
+            Ok(())
+        }
+        fn tr_end(&mut self, _tr: &EndTag) -> Result<(), Box<dyn Error + Send + Sync>> {
+            if self.state != WeekExpect::EndRow {
+                // This should only occur for the header row that contains no
+                // td elements and where there is no couple set.
+                assert!(self.state == WeekExpect::Couple, "{:?}", self.state);
+                self.state = WeekExpect::NewRow;
+                return Ok(());
+            }
+            assert!(
+                self.state == WeekExpect::EndRow,
+                "series={} {:?}",
+                self.series,
+                self.state
+            );
+            assert!(self.couple.len() > 0);
+            assert!(self.couple_uses > 0);
+            assert!(self.score.len() > 0);
+            assert!(self.score_uses > 0);
+            assert!(self.dance.len() > 0);
+            assert!(self.dance_uses > 0);
+            let dance = html_escape::decode_html_entities(&self.dance)
+                .trim()
+                .to_owned();
+            let couple = html_escape::decode_html_entities(&self.couple)
+                .trim()
+                .to_owned();
+            if couple.len() > 0 {
+                let mut i = couple.split(" & ");
+                let celeb_moniker = i.next().unwrap();
+                // Some couples have an asterisk at the end to refer to a footnote.
+                let professional = i.next().unwrap().trim_end_matches('*').to_owned();
+                match i.next() {
+                    Some(_) => {
+                        // Dance with multiple couples (e.g. Series 7 week 11)
+                        // ignore
+                    }
+                    None => {
+                        // Convert the short celeb name to a full name.
+                        let celebrity = match self.celeb_moniker_to_name.borrow().get(celeb_moniker)
+                        {
+                            Some(full_name) if !full_name.is_empty() => full_name.clone(),
+                            _ => celeb_moniker.to_owned(),
+                        };
+                        let scores = html_escape::decode_html_entities(&self.score);
+                        let mut i = scores.trim().split_whitespace();
+
+                        match i.next().unwrap_or("N/A").parse() {
+                            Ok(total_score) => {
+                                // The second word is the individual judges' scores.
+                                // Count the separating commas and add one to get the
+                                // number of scores.
+                                let score_count = i.next().unwrap().matches(",").count() as u8 + 1;
+                                let avg_score = total_score as f32 / score_count as f32;
+                                assert!(avg_score >= 1.0);
+                                assert!(avg_score <= 10.0);
+                                self.output.borrow_mut().push(Row {
+                                    series: self.series,
+                                    week: self.week,
+                                    celebrity,
+                                    professional,
+                                    dance,
+                                    total_score,
+                                    score_count,
+                                    avg_score,
+                                    note: self.note.clone(),
+                                });
+                            }
+                            Err(_error) => {
+                                // e.g. "N/A\n" for unscored show dance
+                                // ignore this row
+                            }
+                        }
+                    }
+                }
+            }
+            self.couple_uses -= 1;
+            self.score_uses -= 1;
+            self.dance_uses -= 1;
+            self.state = WeekExpect::NewRow;
+            Ok(())
+        }
+        fn td_begin(&mut self, td: &Element) -> Result<(), Box<dyn Error + Send + Sync>> {
+            let rows = match td.get_attribute("rowspan") {
+                Some(rowspan) => rowspan.parse()?,
+                None => 1,
+            };
+            match self.state {
+                WeekExpect::Couple => {
+                    self.couple.clear();
+                    // When couples dance multiple dances in a show, the Couples column will
+                    // have a rowspan > 1. Keep the rowspan as the repeat count.
+                    self.couple_uses = rows;
+                }
+                WeekExpect::Score => {
+                    self.score.clear();
+                    self.score_uses = rows;
+                    if rows > 1 {
+                        // In Series 10, Week 10 couples danced two styles in one dance. For
+                        // this week, the scores have rowspan > 1.
+                        let len = self.note.len();
+                        self.note.replace_range(..len, "combined dance");
+                    } else {
+                        self.note.clear();
+                    }
+                }
+                WeekExpect::Dance => {
+                    self.dance.clear();
+                    self.dance_uses = rows;
+                }
+                WeekExpect::EndRow => {
+                    // skip remaining columns
+                }
+                ref other => {
+                    panic!("Unexpected state {:?}", other);
+                }
+            }
+            Ok(())
+        }
+        fn td_end(&mut self, _td: &EndTag) -> Result<(), Box<dyn Error + Send + Sync>> {
+            match self.state {
+                WeekExpect::Couple => {
+                    self.state = if self.score_uses == 0 {
+                        WeekExpect::Score
+                    } else if self.dance_uses == 0 {
+                        WeekExpect::Dance
+                    } else {
+                        WeekExpect::EndRow
+                    };
+                }
+                WeekExpect::Score => {
+                    self.state = if self.dance_uses == 0 {
+                        WeekExpect::Dance
+                    } else {
+                        WeekExpect::EndRow
+                    };
+                }
+                WeekExpect::Dance => {
+                    self.state = WeekExpect::EndRow;
+                }
+                WeekExpect::EndRow => {
+                    // skip remaining columns
+                }
+                ref other => {
+                    panic!("Unexpected state {:?}", other);
+                }
+            }
+            Ok(())
+        }
+        fn td_text(&mut self, t: &TextChunk) -> Result<(), Box<dyn Error + Send + Sync>> {
+            if t.user_data().is::<bool>() {
+                // ignore text in sub-elements of td
+                return Ok(());
+            }
+            match self.state {
+                WeekExpect::Couple => {
+                    self.couple.push_str(t.as_str());
+                }
+                WeekExpect::Score => {
+                    self.score.push_str(t.as_str());
+                }
+                WeekExpect::Dance => {
+                    self.dance.push_str(t.as_str());
+                }
+                _ => {}
+            }
+            Ok(())
+        }
     }
+
     #[derive(Debug)]
     enum State {
         Unrecognized,
@@ -193,7 +391,12 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                                 .next()
                                 .ok_or_else(|| format!("Bad parse {}", id))?
                                 .parse()?;
-                            *state.borrow_mut() = State::WeekTable(WeekState::new_for_week(week));
+                            *state.borrow_mut() = State::WeekTable(WeekState::new_for_week(
+                                output.clone(),
+                                celeb_moniker_to_name.clone(),
+                                series,
+                                week,
+                            ));
                         }
                         Some("Night" | "Show") => {
                             // "Night_2_–_Latin", "Show_1" - multiple nights within a week,
@@ -210,243 +413,53 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
         element!("tr", |tr| {
             match *state.borrow_mut() {
                 State::Unrecognized => {}
-                State::CouplesTable(ref mut row) => {
+                State::CouplesTable(ref mut table) => {
                     let state = state.clone();
-                    tr.on_end_tag(move |tr| {
-                        match *state.borrow_mut() {
-                            State::CouplesTable(ref mut row) => {
-                                row.tr_end(tr)
-                            }
-                            ref other => {
-                                panic!("Unexpected state {:?}", other);
-                            }
+                    tr.on_end_tag(move |tr| match *state.borrow_mut() {
+                        State::CouplesTable(ref mut table) => table.tr_end(tr),
+                        ref other => {
+                            panic!("Unexpected state {:?}", other);
                         }
                     })?;
-                    return row.tr_begin(tr);
+                    return table.tr_begin(tr);
                 }
-                State::WeekTable(ref mut row) => {
-                    row.state = match row.state {
-                        WeekExpect::NewRow => {
-                            if row.couple_uses == 0 {
-                                WeekExpect::Couple
-                            } else if row.score_uses == 0 {
-                                WeekExpect::Score
-                            } else if row.dance_uses == 0 {
-                                WeekExpect::Dance
-                            } else {
-                                WeekExpect::EndRow
-                            }
-                        }
-                        _ => {
-                            panic!("Unexpected state {:?}", row.state);
-                        }
-                    };
-                    let output = output.clone();
+                State::WeekTable(ref mut table) => {
                     let state = state.clone();
-                    let celeb_moniker_to_name = celeb_moniker_to_name.clone();
-                    tr.on_end_tag(move |_| {
-                        match *state.borrow_mut() {
-                            State::WeekTable(ref mut row) => {
-                                if row.state != WeekExpect::EndRow {
-                                    // This should only occur for the header row that contains no
-                                    // td elements and where there is no couple set.
-                                    assert!(row.state == WeekExpect::Couple, "{:?}", row.state);
-                                    row.state = WeekExpect::NewRow;
-                                    return Ok(());
-                                }
-                                assert!(
-                                    row.state == WeekExpect::EndRow,
-                                    "series={} {:?}",
-                                    series,
-                                    row.state
-                                );
-                                assert!(row.couple.len() > 0);
-                                assert!(row.couple_uses > 0);
-                                assert!(row.score.len() > 0);
-                                assert!(row.score_uses > 0);
-                                assert!(row.dance.len() > 0);
-                                assert!(row.dance_uses > 0);
-                                let dance = html_escape::decode_html_entities(&row.dance)
-                                    .trim()
-                                    .to_owned();
-                                let couple = html_escape::decode_html_entities(&row.couple)
-                                    .trim()
-                                    .to_owned();
-                                if couple.len() > 0 {
-                                    let mut i = couple.split(" & ");
-                                    let celeb_moniker = i.next().unwrap();
-                                    // Some couples have an asterisk at the end to refer to a footnote.
-                                    let professional =
-                                        i.next().unwrap().trim_end_matches('*').to_owned();
-                                    match i.next() {
-                                        Some(_) => {
-                                            // Dance with multiple couples (e.g. Series 7 week 11)
-                                            // ignore
-                                        }
-                                        None => {
-                                            // Convert the short celeb name to a full name.
-                                            let celebrity = match celeb_moniker_to_name
-                                                .borrow()
-                                                .get(celeb_moniker)
-                                            {
-                                                Some(full_name) if !full_name.is_empty() => {
-                                                    full_name.clone()
-                                                }
-                                                _ => celeb_moniker.to_owned(),
-                                            };
-                                            let scores =
-                                                html_escape::decode_html_entities(&row.score);
-                                            let mut i = scores.trim().split_whitespace();
-
-                                            match i.next().unwrap_or("N/A").parse() {
-                                                Ok(total_score) => {
-                                                    // The second word is the individual judges' scores.
-                                                    // Count the separating commas and add one to get the
-                                                    // number of scores.
-                                                    let score_count =
-                                                        i.next().unwrap().matches(",").count()
-                                                            as u8
-                                                            + 1;
-                                                    let avg_score =
-                                                        total_score as f32 / score_count as f32;
-                                                    assert!(avg_score >= 1.0);
-                                                    assert!(avg_score <= 10.0);
-                                                    output.borrow_mut().push(Row {
-                                                        series,
-                                                        week: row.week,
-                                                        celebrity,
-                                                        professional,
-                                                        dance,
-                                                        total_score,
-                                                        score_count,
-                                                        avg_score,
-                                                        note: row.note.clone(),
-                                                    });
-                                                }
-                                                Err(_error) => {
-                                                    // e.g. "N/A\n" for unscored show dance
-                                                    // ignore this row
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                row.couple_uses -= 1;
-                                row.score_uses -= 1;
-                                row.dance_uses -= 1;
-                                row.state = WeekExpect::NewRow;
-                            }
-                            ref other => {
-                                panic!("Unexpected state {:?}", other);
-                            }
+                    tr.on_end_tag(move |tr| match *state.borrow_mut() {
+                        State::WeekTable(ref mut table) => table.tr_end(tr),
+                        ref other => {
+                            panic!("Unexpected state {:?}", other);
                         }
-                        Ok(())
                     })?;
+                    return table.tr_begin(tr);
                 }
             }
             Ok(())
         }),
         element!("td", |td| {
             match *state.borrow_mut() {
-                State::Unrecognized => {}
-                State::CouplesTable(ref mut row) => {
+                State::Unrecognized => Ok(()),
+                State::CouplesTable(ref mut table) => {
                     let state = state.clone();
-                    td.on_end_tag(move |td| {
-                        match *state.borrow_mut() {
-                            State::CouplesTable(ref mut row) => {
-                                row.td_end(td)
-                            }
-                            ref other => {
-                                panic!("Unexpected state {:?}", other);
-                            }
-                        }
-                    })?;
-                    return row.td_begin(td);
-                }
-                State::WeekTable(ref mut row) => {
-                    let rows = match td.get_attribute("rowspan") {
-                        Some(rowspan) => rowspan.parse()?,
-                        None => 1,
-                    };
-                    match row.state {
-                        WeekExpect::Couple => {
-                            row.couple.clear();
-                            // When couples dance multiple dances in a show, the Couples column will
-                            // have a rowspan > 1. Keep the rowspan as the repeat count.
-                            row.couple_uses = rows;
-                            let state = state.clone();
-                            td.on_end_tag(move |_| {
-                                match *state.borrow_mut() {
-                                    State::WeekTable(ref mut row) => {
-                                        row.state = if row.score_uses == 0 {
-                                            WeekExpect::Score
-                                        } else if row.dance_uses == 0 {
-                                            WeekExpect::Dance
-                                        } else {
-                                            WeekExpect::EndRow
-                                        };
-                                    }
-                                    ref other => {
-                                        panic!("Unexpected state {:?}", other);
-                                    }
-                                }
-                                Ok(())
-                            })?;
-                        }
-                        WeekExpect::Score => {
-                            row.score.clear();
-                            row.score_uses = rows;
-                            if rows > 1 {
-                                // In Series 10, Week 10 couples danced two styles in one dance. For
-                                // this week, the scores have rowspan > 1.
-                                let len = row.note.len();
-                                row.note.replace_range(..len, "combined dance");
-                            } else {
-                                row.note.clear();
-                            }
-                            let state = state.clone();
-                            td.on_end_tag(move |_| {
-                                match *state.borrow_mut() {
-                                    State::WeekTable(ref mut row) => {
-                                        row.state = if row.dance_uses == 0 {
-                                            WeekExpect::Dance
-                                        } else {
-                                            WeekExpect::EndRow
-                                        };
-                                    }
-                                    ref other => {
-                                        panic!("Unexpected state {:?}", other);
-                                    }
-                                }
-                                Ok(())
-                            })?;
-                        }
-                        WeekExpect::Dance => {
-                            row.dance.clear();
-                            row.dance_uses = rows;
-                            let state = state.clone();
-                            td.on_end_tag(move |_| {
-                                match *state.borrow_mut() {
-                                    State::WeekTable(ref mut row) => {
-                                        row.state = WeekExpect::EndRow;
-                                    }
-                                    ref other => {
-                                        panic!("Unexpected state {:?}", other);
-                                    }
-                                }
-                                Ok(())
-                            })?;
-                        }
-                        WeekExpect::EndRow => {
-                            // skip remaining columns
-                        }
+                    td.on_end_tag(move |td| match *state.borrow_mut() {
+                        State::CouplesTable(ref mut table) => table.td_end(td),
                         ref other => {
                             panic!("Unexpected state {:?}", other);
                         }
-                    };
+                    })?;
+                    return table.td_begin(td);
+                }
+                State::WeekTable(ref mut table) => {
+                    let state = state.clone();
+                    td.on_end_tag(move |td| match *state.borrow_mut() {
+                        State::WeekTable(ref mut table) => table.td_end(td),
+                        ref other => {
+                            panic!("Unexpected state {:?}", other);
+                        }
+                    })?;
+                    return table.td_begin(td);
                 }
             }
-            Ok(())
         }),
         text!("td *", |t| {
             // "<td>Anastacia &amp; Gorka<sup>1</sup>\n</td>"
@@ -459,30 +472,10 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
         }),
         text!("td", |t| {
             match *state.borrow_mut() {
-                State::Unrecognized => {}
-                State::CouplesTable(ref mut row) => {
-                    return row.td_text(t);
-                }
-                State::WeekTable(ref mut row) => {
-                    if t.user_data().is::<bool>() {
-                        // ignore text in sub-elements of td
-                        return Ok(());
-                    }
-                    match row.state {
-                        WeekExpect::Couple => {
-                            row.couple.push_str(t.as_str());
-                        }
-                        WeekExpect::Score => {
-                            row.score.push_str(t.as_str());
-                        }
-                        WeekExpect::Dance => {
-                            row.dance.push_str(t.as_str());
-                        }
-                        _ => {}
-                    }
-                }
+                State::Unrecognized => Ok(()),
+                State::CouplesTable(ref mut table) => table.td_text(t),
+                State::WeekTable(ref mut table) => table.td_text(t),
             }
-            Ok(())
         }),
     ];
 
