@@ -2,7 +2,7 @@ use lol_html::errors::RewritingError;
 use lol_html::html_content::UserData;
 use lol_html::{element, text, HtmlRewriter, Settings};
 use serde::Serialize;
-use std::cell::{Cell, RefCell};
+use std::cell::RefCell;
 use std::collections::HashMap;
 use std::rc::Rc;
 
@@ -89,13 +89,13 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
         }
     }
     // Cell mutability for shared and mutable access from multiple closures.
-    let state = Rc::new(Cell::new(State::Unrecognized));
+    let state = Rc::new(RefCell::new(State::Unrecognized));
     let element_content_handlers = vec![
         // Find week number
         element!("span.mw-headline", |el| {
             if let Some(id) = el.get_attribute("id") {
                 if id == "Couples" {
-                    state.set(State::CouplesTable(CoupleState::default()));
+                    *state.borrow_mut() = State::CouplesTable(CoupleState::default());
                 } else {
                     let mut parts = id.split(&['_', ':'][..]);
                     match parts.next() {
@@ -105,14 +105,14 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                                 .next()
                                 .ok_or_else(|| format!("Bad parse {}", id))?
                                 .parse()?;
-                            state.set(State::WeekTable(WeekState::new_for_week(week)));
+                            *state.borrow_mut() = State::WeekTable(WeekState::new_for_week(week));
                         }
-                        Some("Night"|"Show") => {
+                        Some("Night" | "Show") => {
                             // "Night_2_–_Latin", "Show_1" - multiple nights within a week,
                             // ignore so we keep the state in the Week.
                         }
                         _ => {
-                            state.set(State::Unrecognized);
+                            *state.borrow_mut() = State::Unrecognized;
                         }
                     }
                 }
@@ -120,21 +120,20 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
             Ok(())
         }),
         element!("tr", |tr| {
-            match state.take() {
-                State::Unrecognized => state.set(State::Unrecognized),
-                State::CouplesTable(mut row) => {
+            match *state.borrow_mut() {
+                State::Unrecognized => {}
+                State::CouplesTable(ref mut row) => {
                     row.state = match row.state {
                         CoupleExpect::NewRow => CoupleExpect::Celebrity,
                         _ => {
                             panic!("Unexpected state {:?}", row.state);
                         }
                     };
-                    state.set(State::CouplesTable(row));
                     let celeb_moniker_to_name = celeb_moniker_to_name.clone();
                     let state = state.clone();
                     tr.on_end_tag(move |_| {
-                        match state.take() {
-                            State::CouplesTable(row) => {
+                        match *state.borrow_mut() {
+                            State::CouplesTable(ref mut row) => {
                                 // Create a mapping of celeb monikers (their short name on the show
                                 // and in the Week tables) to their full names. Rather than work out
                                 // their monikers we just create the common transformations and plug
@@ -146,9 +145,10 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                                     .to_owned();
                                 if full_name == "DJ Spoony" {
                                     // the exception to the rules
-                                    celeb_moniker_to_name.borrow_mut().insert("Spoony".to_owned(), full_name);
-                                }
-                                else {
+                                    celeb_moniker_to_name
+                                        .borrow_mut()
+                                        .insert("Spoony".to_owned(), full_name);
+                                } else {
                                     let add = |moniker: String| {
                                         let mut c = celeb_moniker_to_name.borrow_mut();
                                         match c.get(&moniker) {
@@ -180,16 +180,16 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                                     // Most are represented by their first (or only) name in the Week tables.
                                     add(first_name);
                                 }
+                                *row = CoupleState::default();
                             }
-                            other => {
+                            ref other => {
                                 panic!("Unexpected state {:?}", other);
                             }
                         }
-                        state.set(State::CouplesTable(CoupleState::default()));
                         Ok(())
                     })?;
                 }
-                State::WeekTable(mut row) => {
+                State::WeekTable(ref mut row) => {
                     row.state = match row.state {
                         WeekExpect::NewRow => {
                             if row.couple_uses == 0 {
@@ -206,19 +206,17 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                             panic!("Unexpected state {:?}", row.state);
                         }
                     };
-                    state.set(State::WeekTable(row));
                     let output = output.clone();
                     let state = state.clone();
                     let celeb_moniker_to_name = celeb_moniker_to_name.clone();
                     tr.on_end_tag(move |_| {
-                        match state.take() {
-                            State::WeekTable(mut row) => {
+                        match *state.borrow_mut() {
+                            State::WeekTable(ref mut row) => {
                                 if row.state != WeekExpect::EndRow {
                                     // This should only occur for the header row that contains no
                                     // td elements and where there is no couple set.
                                     assert!(row.state == WeekExpect::Couple, "{:?}", row.state);
                                     row.state = WeekExpect::NewRow;
-                                    state.set(State::WeekTable(row));
                                     return Ok(());
                                 }
                                 assert!(
@@ -243,7 +241,8 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                                     let mut i = couple.split(" & ");
                                     let celeb_moniker = i.next().unwrap();
                                     // Some couples have an asterisk at the end to refer to a footnote.
-                                    let professional = i.next().unwrap().trim_end_matches('*').to_owned();
+                                    let professional =
+                                        i.next().unwrap().trim_end_matches('*').to_owned();
                                     match i.next() {
                                         Some(_) => {
                                             // Dance with multiple couples (e.g. Series 7 week 11)
@@ -301,9 +300,8 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                                 row.score_uses -= 1;
                                 row.dance_uses -= 1;
                                 row.state = WeekExpect::NewRow;
-                                state.set(State::WeekTable(row));
                             }
-                            other => {
+                            ref other => {
                                 panic!("Unexpected state {:?}", other);
                             }
                         }
@@ -314,36 +312,32 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
             Ok(())
         }),
         element!("td", |td| {
-            match state.take() {
-                State::Unrecognized => state.set(State::Unrecognized),
-                State::CouplesTable(row) => {
-                    match row.state {
-                        CoupleExpect::Celebrity => {
-                            let state = state.clone();
-                            td.on_end_tag(move |_| {
-                                match state.take() {
-                                    State::CouplesTable(mut row) => {
-                                        row.state = match row.state {
-                                            CoupleExpect::Celebrity => CoupleExpect::EndRow,
-                                            CoupleExpect::EndRow => CoupleExpect::EndRow,
-                                            other => {
-                                                panic!("Unexpected state {:?}", other);
-                                            }
-                                        };
-                                        state.set(State::CouplesTable(row));
-                                    }
-                                    other => {
-                                        panic!("Unexpected state {:?}", other);
-                                    }
+            match *state.borrow_mut() {
+                State::Unrecognized => {}
+                State::CouplesTable(ref mut row) => match row.state {
+                    CoupleExpect::Celebrity => {
+                        let state = state.clone();
+                        td.on_end_tag(move |_| {
+                            match *state.borrow_mut() {
+                                State::CouplesTable(ref mut row) => {
+                                    row.state = match row.state {
+                                        CoupleExpect::Celebrity => CoupleExpect::EndRow,
+                                        CoupleExpect::EndRow => CoupleExpect::EndRow,
+                                        ref other => {
+                                            panic!("Unexpected state {:?}", other);
+                                        }
+                                    };
                                 }
-                                Ok(())
-                            })?;
-                        }
-                        _ => {}
+                                ref other => {
+                                    panic!("Unexpected state {:?}", other);
+                                }
+                            }
+                            Ok(())
+                        })?;
                     }
-                    state.set(State::CouplesTable(row));
-                }
-                State::WeekTable(mut row) => {
+                    _ => {}
+                },
+                State::WeekTable(ref mut row) => {
                     let rows = match td.get_attribute("rowspan") {
                         Some(rowspan) => rowspan.parse()?,
                         None => 1,
@@ -356,8 +350,8 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                             row.couple_uses = rows;
                             let state = state.clone();
                             td.on_end_tag(move |_| {
-                                match state.take() {
-                                    State::WeekTable(mut row) => {
+                                match *state.borrow_mut() {
+                                    State::WeekTable(ref mut row) => {
                                         row.state = if row.score_uses == 0 {
                                             WeekExpect::Score
                                         } else if row.dance_uses == 0 {
@@ -365,9 +359,8 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                                         } else {
                                             WeekExpect::EndRow
                                         };
-                                        state.set(State::WeekTable(row));
                                     }
-                                    other => {
+                                    ref other => {
                                         panic!("Unexpected state {:?}", other);
                                     }
                                 }
@@ -387,16 +380,15 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                             }
                             let state = state.clone();
                             td.on_end_tag(move |_| {
-                                match state.take() {
-                                    State::WeekTable(mut row) => {
+                                match *state.borrow_mut() {
+                                    State::WeekTable(ref mut row) => {
                                         row.state = if row.dance_uses == 0 {
                                             WeekExpect::Dance
                                         } else {
                                             WeekExpect::EndRow
                                         };
-                                        state.set(State::WeekTable(row));
                                     }
-                                    other => {
+                                    ref other => {
                                         panic!("Unexpected state {:?}", other);
                                     }
                                 }
@@ -408,12 +400,11 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                             row.dance_uses = rows;
                             let state = state.clone();
                             td.on_end_tag(move |_| {
-                                match state.take() {
-                                    State::WeekTable(mut row) => {
+                                match *state.borrow_mut() {
+                                    State::WeekTable(ref mut row) => {
                                         row.state = WeekExpect::EndRow;
-                                        state.set(State::WeekTable(row));
                                     }
-                                    other => {
+                                    ref other => {
                                         panic!("Unexpected state {:?}", other);
                                     }
                                 }
@@ -423,11 +414,10 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                         WeekExpect::EndRow => {
                             // skip remaining columns
                         }
-                        other => {
+                        ref other => {
                             panic!("Unexpected state {:?}", other);
                         }
                     };
-                    state.set(State::WeekTable(row));
                 }
             }
             Ok(())
@@ -442,24 +432,17 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
             Ok(())
         }),
         text!("td", |t| {
-            let s = state.take();
-            match s {
-                State::Unrecognized => {
-                    state.set(State::Unrecognized);
-                }
-                State::CouplesTable(mut row) => {
-                    match row.state {
-                        CoupleExpect::Celebrity => {
-                            row.celebrity.push_str(t.as_str());
-                        }
-                        _ => {}
+            match *state.borrow_mut() {
+                State::Unrecognized => {}
+                State::CouplesTable(ref mut row) => match row.state {
+                    CoupleExpect::Celebrity => {
+                        row.celebrity.push_str(t.as_str());
                     }
-                    state.set(State::CouplesTable(row));
-                }
-                State::WeekTable(mut row) => {
+                    _ => {}
+                },
+                State::WeekTable(ref mut row) => {
                     if t.user_data().is::<bool>() {
                         // ignore text in sub-elements of td
-                        state.set(State::WeekTable(row));
                         return Ok(());
                     }
                     match row.state {
@@ -474,7 +457,6 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                         }
                         _ => {}
                     }
-                    state.set(State::WeekTable(row));
                 }
             }
             Ok(())
