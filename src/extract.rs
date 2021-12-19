@@ -1,9 +1,10 @@
 use lol_html::errors::RewritingError;
-use lol_html::html_content::UserData;
+use lol_html::html_content::{Element, EndTag, TextChunk, UserData};
 use lol_html::{element, text, HtmlRewriter, Settings};
 use serde::Serialize;
 use std::cell::RefCell;
 use std::collections::HashMap;
+use std::error::Error;
 use std::rc::Rc;
 
 #[derive(Debug, Serialize)]
@@ -33,15 +34,101 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
     struct CoupleState {
         state: CoupleExpect,
         celebrity: String,
+        celeb_moniker_to_name: Rc<RefCell<HashMap<String, String>>>,
     }
-    impl Default for CoupleState {
-        fn default() -> Self {
+    impl CoupleState {
+        fn new(celeb_moniker_to_name: Rc<RefCell<HashMap<String, String>>>) -> CoupleState {
             CoupleState {
                 state: CoupleExpect::NewRow,
                 celebrity: String::new(),
+                celeb_moniker_to_name,
             }
         }
+        fn tr_begin(&mut self, _tr: &Element) -> Result<(), Box<dyn Error + Send + Sync>> {
+            self.state = match self.state {
+                CoupleExpect::NewRow => CoupleExpect::Celebrity,
+                _ => {
+                    panic!("Unexpected state {:?}", self.state);
+                }
+            };
+            Ok(())
+        }
+        fn tr_end(&mut self, _tr: &EndTag) -> Result<(), Box<dyn Error + Send + Sync>> {
+            // Create a mapping of celeb monikers (their short name on the show
+            // and in the Week tables) to their full names. Rather than work out
+            // their monikers we just create the common transformations and plug
+            // them in.  If doing this creates duplicates, where the same moniker
+            // could be two celebs (e.g. same first name), map the moniker to an
+            // empty string.
+            let full_name = html_escape::decode_html_entities(&self.celebrity)
+                .trim()
+                .to_owned();
+            if full_name == "DJ Spoony" {
+                // the exception to the rules
+                self.celeb_moniker_to_name
+                    .borrow_mut()
+                    .insert("Spoony".to_owned(), full_name);
+            } else {
+                let add = |moniker: String| {
+                    let mut c = self.celeb_moniker_to_name.borrow_mut();
+                    match c.get(&moniker) {
+                        Some(_) => {
+                            // Two celebs have the same moniker!
+                            // Replace with empty string
+                            c.insert(moniker, "".to_string());
+                        }
+                        None => {
+                            c.insert(moniker, full_name.clone());
+                        }
+                    }
+                };
+                let mut names = full_name.split(" ");
+                let first_name = names.next().unwrap().to_owned();
+                if let Some(second_name) = names.next() {
+                    // Some celebs are represented by first name and initial of their surname.
+                    // e.g two Ricky's in series 7, two Emma's in series 17
+                    let initial = second_name.chars().next().unwrap();
+                    let name_initial = format!("{} {}.", first_name, initial);
+                    add(name_initial);
+                    // A few are represented by their 2 first "names":
+                    // Dr. Ranj Singh -> Dr. Ranj
+                    // Judge Rinder -> Judge Rinder
+                    // Rev. Richard Coles -> Rev. Richard
+                    let two_names = format!("{} {}", first_name, second_name);
+                    add(two_names);
+                }
+                // Most are represented by their first (or only) name in the Week tables.
+                add(first_name);
+            }
+            self.state = CoupleExpect::NewRow;
+            self.celebrity.clear();
+            Ok(())
+        }
+
+        fn td_begin(&mut self, _td: &Element) -> Result<(), Box<dyn Error + Send + Sync>> {
+            Ok(())
+        }
+        fn td_end(&mut self, _td: &EndTag) -> Result<(), Box<dyn Error + Send + Sync>> {
+            self.state = match self.state {
+                CoupleExpect::Celebrity => CoupleExpect::EndRow,
+                CoupleExpect::EndRow => CoupleExpect::EndRow,
+                ref other => {
+                    panic!("Unexpected state {:?}", other);
+                }
+            };
+            Ok(())
+        }
+        fn td_text(&mut self, t: &TextChunk) -> Result<(), Box<dyn Error + Send + Sync>> {
+            match self.state {
+                CoupleExpect::Celebrity => {
+                    self.celebrity.push_str(t.as_str());
+                }
+                _ => {}
+            }
+            Ok(())
+        }
     }
+
     #[derive(Debug, PartialEq)]
     enum WeekExpect {
         NewRow,
@@ -95,7 +182,8 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
         element!("span.mw-headline", |el| {
             if let Some(id) = el.get_attribute("id") {
                 if id == "Couples" {
-                    *state.borrow_mut() = State::CouplesTable(CoupleState::default());
+                    *state.borrow_mut() =
+                        State::CouplesTable(CoupleState::new(celeb_moniker_to_name.clone()));
                 } else {
                     let mut parts = id.split(&['_', ':'][..]);
                     match parts.next() {
@@ -123,71 +211,18 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
             match *state.borrow_mut() {
                 State::Unrecognized => {}
                 State::CouplesTable(ref mut row) => {
-                    row.state = match row.state {
-                        CoupleExpect::NewRow => CoupleExpect::Celebrity,
-                        _ => {
-                            panic!("Unexpected state {:?}", row.state);
-                        }
-                    };
-                    let celeb_moniker_to_name = celeb_moniker_to_name.clone();
                     let state = state.clone();
-                    tr.on_end_tag(move |_| {
+                    tr.on_end_tag(move |tr| {
                         match *state.borrow_mut() {
                             State::CouplesTable(ref mut row) => {
-                                // Create a mapping of celeb monikers (their short name on the show
-                                // and in the Week tables) to their full names. Rather than work out
-                                // their monikers we just create the common transformations and plug
-                                // them in.  If doing this creates duplicates, where the same moniker
-                                // could be two celebs (e.g. same first name), map the moniker to an
-                                // empty string.
-                                let full_name = html_escape::decode_html_entities(&row.celebrity)
-                                    .trim()
-                                    .to_owned();
-                                if full_name == "DJ Spoony" {
-                                    // the exception to the rules
-                                    celeb_moniker_to_name
-                                        .borrow_mut()
-                                        .insert("Spoony".to_owned(), full_name);
-                                } else {
-                                    let add = |moniker: String| {
-                                        let mut c = celeb_moniker_to_name.borrow_mut();
-                                        match c.get(&moniker) {
-                                            Some(_) => {
-                                                // Two celebs have the same moniker!
-                                                // Replace with empty string
-                                                c.insert(moniker, "".to_string());
-                                            }
-                                            None => {
-                                                c.insert(moniker, full_name.clone());
-                                            }
-                                        }
-                                    };
-                                    let mut names = full_name.split(" ");
-                                    let first_name = names.next().unwrap().to_owned();
-                                    if let Some(second_name) = names.next() {
-                                        // Some celebs are represented by first name and initial of their surname.
-                                        // e.g two Ricky's in series 7, two Emma's in series 17
-                                        let initial = second_name.chars().next().unwrap();
-                                        let name_initial = format!("{} {}.", first_name, initial);
-                                        add(name_initial);
-                                        // A few are represented by their 2 first "names":
-                                        // Dr. Ranj Singh -> Dr. Ranj
-                                        // Judge Rinder -> Judge Rinder
-                                        // Rev. Richard Coles -> Rev. Richard
-                                        let two_names = format!("{} {}", first_name, second_name);
-                                        add(two_names);
-                                    }
-                                    // Most are represented by their first (or only) name in the Week tables.
-                                    add(first_name);
-                                }
-                                *row = CoupleState::default();
+                                row.tr_end(tr)
                             }
                             ref other => {
                                 panic!("Unexpected state {:?}", other);
                             }
                         }
-                        Ok(())
                     })?;
+                    return row.tr_begin(tr);
                 }
                 State::WeekTable(ref mut row) => {
                     row.state = match row.state {
@@ -314,29 +349,20 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
         element!("td", |td| {
             match *state.borrow_mut() {
                 State::Unrecognized => {}
-                State::CouplesTable(ref mut row) => match row.state {
-                    CoupleExpect::Celebrity => {
-                        let state = state.clone();
-                        td.on_end_tag(move |_| {
-                            match *state.borrow_mut() {
-                                State::CouplesTable(ref mut row) => {
-                                    row.state = match row.state {
-                                        CoupleExpect::Celebrity => CoupleExpect::EndRow,
-                                        CoupleExpect::EndRow => CoupleExpect::EndRow,
-                                        ref other => {
-                                            panic!("Unexpected state {:?}", other);
-                                        }
-                                    };
-                                }
-                                ref other => {
-                                    panic!("Unexpected state {:?}", other);
-                                }
+                State::CouplesTable(ref mut row) => {
+                    let state = state.clone();
+                    td.on_end_tag(move |td| {
+                        match *state.borrow_mut() {
+                            State::CouplesTable(ref mut row) => {
+                                row.td_end(td)
                             }
-                            Ok(())
-                        })?;
-                    }
-                    _ => {}
-                },
+                            ref other => {
+                                panic!("Unexpected state {:?}", other);
+                            }
+                        }
+                    })?;
+                    return row.td_begin(td);
+                }
                 State::WeekTable(ref mut row) => {
                     let rows = match td.get_attribute("rowspan") {
                         Some(rowspan) => rowspan.parse()?,
@@ -434,12 +460,9 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
         text!("td", |t| {
             match *state.borrow_mut() {
                 State::Unrecognized => {}
-                State::CouplesTable(ref mut row) => match row.state {
-                    CoupleExpect::Celebrity => {
-                        row.celebrity.push_str(t.as_str());
-                    }
-                    _ => {}
-                },
+                State::CouplesTable(ref mut row) => {
+                    return row.td_text(t);
+                }
                 State::WeekTable(ref mut row) => {
                     if t.user_data().is::<bool>() {
                         // ignore text in sub-elements of td
