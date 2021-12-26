@@ -7,6 +7,32 @@ use std::collections::HashMap;
 use std::error::Error;
 use std::rc::Rc;
 
+trait TableHandler {
+    fn tr_begin(&mut self, _tr: &Element) -> Result<(), Box<dyn Error + Send + Sync>> {
+        Ok(())
+    }
+    fn tr_end(&mut self, _tr: &EndTag) -> Result<(), Box<dyn Error + Send + Sync>> {
+        Ok(())
+    }
+    fn td_begin(&mut self, _td: &Element) -> Result<(), Box<dyn Error + Send + Sync>> {
+        Ok(())
+    }
+    fn td_end(&mut self, _td: &EndTag) -> Result<(), Box<dyn Error + Send + Sync>> {
+        Ok(())
+    }
+    fn td_text(&mut self, _t: &TextChunk) -> Result<(), Box<dyn Error + Send + Sync>> {
+        Ok(())
+    }
+}
+
+struct UnrecognizedTable {}
+impl UnrecognizedTable {
+    fn new() -> UnrecognizedTable {
+        UnrecognizedTable {}
+    }
+}
+impl TableHandler for UnrecognizedTable {}
+
 #[derive(Debug, PartialEq)]
 enum CoupleExpect {
     NewRow,
@@ -27,6 +53,8 @@ impl CoupleTable {
             celeb_moniker_to_name,
         }
     }
+}
+impl TableHandler for CoupleTable {
     fn tr_begin(&mut self, _tr: &Element) -> Result<(), Box<dyn Error + Send + Sync>> {
         self.state = match self.state {
             CoupleExpect::NewRow => CoupleExpect::Celebrity,
@@ -89,9 +117,6 @@ impl CoupleTable {
         Ok(())
     }
 
-    fn td_begin(&mut self, _td: &Element) -> Result<(), Box<dyn Error + Send + Sync>> {
-        Ok(())
-    }
     fn td_end(&mut self, _td: &EndTag) -> Result<(), Box<dyn Error + Send + Sync>> {
         self.state = match self.state {
             CoupleExpect::Celebrity => CoupleExpect::EndRow,
@@ -158,6 +183,8 @@ impl WeekTable {
             note: String::new(),
         }
     }
+}
+impl TableHandler for WeekTable {
     fn tr_begin(&mut self, _tr: &Element) -> Result<(), Box<dyn Error + Send + Sync>> {
         self.state = match self.state {
             WeekExpect::NewRow => {
@@ -358,24 +385,23 @@ pub(crate) struct Row {
 }
 
 pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, RewritingError> {
+    // Cell mutability for shared and mutable access from multiple closures.
     let output = Rc::new(RefCell::<Vec<Row>>::new(vec![]));
     let celeb_moniker_to_name = Rc::new(RefCell::new(HashMap::<String, String>::new()));
+    let current_table = Rc::new(RefCell::new(
+        Box::new(UnrecognizedTable::new()) as Box<dyn TableHandler>
+    ));
+    let mut default_table_retainer: Option<Box<dyn TableHandler>> = None;
 
-    #[derive(Debug)]
-    enum State {
-        Unrecognized,
-        CoupleTable(CoupleTable),
-        WeekTable(WeekTable),
-    }
-    // Cell mutability for shared and mutable access from multiple closures.
-    let state = Rc::new(RefCell::new(State::Unrecognized));
     let element_content_handlers = vec![
         // Find week number
         element!("span.mw-headline", |el| {
             if let Some(id) = el.get_attribute("id") {
                 if id == "Couples" {
-                    *state.borrow_mut() =
-                        State::CoupleTable(CoupleTable::new(celeb_moniker_to_name.clone()));
+                    assert!(default_table_retainer.is_none());
+                    let prev_table = current_table
+                        .replace(Box::new(CoupleTable::new(celeb_moniker_to_name.clone())));
+                    default_table_retainer = Some(prev_table);
                 } else {
                     let mut parts = id.split(&['_', ':'][..]);
                     match parts.next() {
@@ -385,19 +411,38 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                                 .next()
                                 .ok_or_else(|| format!("Bad parse {}", id))?
                                 .parse()?;
-                            *state.borrow_mut() = State::WeekTable(WeekTable::new_for_week(
+                            let week_table = Box::new(WeekTable::new_for_week(
                                 output.clone(),
                                 celeb_moniker_to_name.clone(),
                                 series,
                                 week,
                             ));
+                            let prev = current_table.replace(week_table);
+                            match default_table_retainer {
+                                Some(_) => {
+                                    // default is already in default_table_retainer, so
+                                    // previous table must be previous week.
+                                }
+                                None => {
+                                    default_table_retainer = Some(prev);
+                                }
+                            }
                         }
                         Some("Night" | "Show") => {
-                            // "Night_2_–_Latin", "Show_1" - multiple nights within a week,
-                            // ignore so we keep the state in the Week.
+                            // "Night_2_–_Latin", "Show_1" - multiple shows within a week,
+                            // ignore these headers so we keep the week as the current table.
                         }
                         _ => {
-                            *state.borrow_mut() = State::Unrecognized;
+                            let option_default =
+                                std::mem::replace(&mut default_table_retainer, None);
+                            match option_default {
+                                None => {
+                                    // current_table is already default
+                                }
+                                Some(default) => {
+                                    current_table.replace(default);
+                                }
+                            }
                         }
                     }
                 }
@@ -405,55 +450,14 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
             Ok(())
         }),
         element!("tr", |tr| {
-            match *state.borrow_mut() {
-                State::Unrecognized => {}
-                State::CoupleTable(ref mut table) => {
-                    let state = state.clone();
-                    tr.on_end_tag(move |tr| match *state.borrow_mut() {
-                        State::CoupleTable(ref mut table) => table.tr_end(tr),
-                        ref other => {
-                            panic!("Unexpected state {:?}", other);
-                        }
-                    })?;
-                    return table.tr_begin(tr);
-                }
-                State::WeekTable(ref mut table) => {
-                    let state = state.clone();
-                    tr.on_end_tag(move |tr| match *state.borrow_mut() {
-                        State::WeekTable(ref mut table) => table.tr_end(tr),
-                        ref other => {
-                            panic!("Unexpected state {:?}", other);
-                        }
-                    })?;
-                    return table.tr_begin(tr);
-                }
-            }
-            Ok(())
+            let table = current_table.clone();
+            tr.on_end_tag(move |tr| table.borrow_mut().tr_end(tr))?;
+            current_table.borrow_mut().tr_begin(tr)
         }),
         element!("td", |td| {
-            match *state.borrow_mut() {
-                State::Unrecognized => Ok(()),
-                State::CoupleTable(ref mut table) => {
-                    let state = state.clone();
-                    td.on_end_tag(move |td| match *state.borrow_mut() {
-                        State::CoupleTable(ref mut table) => table.td_end(td),
-                        ref other => {
-                            panic!("Unexpected state {:?}", other);
-                        }
-                    })?;
-                    return table.td_begin(td);
-                }
-                State::WeekTable(ref mut table) => {
-                    let state = state.clone();
-                    td.on_end_tag(move |td| match *state.borrow_mut() {
-                        State::WeekTable(ref mut table) => table.td_end(td),
-                        ref other => {
-                            panic!("Unexpected state {:?}", other);
-                        }
-                    })?;
-                    return table.td_begin(td);
-                }
-            }
+            let table = current_table.clone();
+            td.on_end_tag(move |td| table.borrow_mut().td_end(td))?;
+            current_table.borrow_mut().td_begin(td)
         }),
         text!("td *", |t| {
             // "<td>Anastacia &amp; Gorka<sup>1</sup>\n</td>"
@@ -464,13 +468,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
             t.set_user_data(true);
             Ok(())
         }),
-        text!("td", |t| {
-            match *state.borrow_mut() {
-                State::Unrecognized => Ok(()),
-                State::CoupleTable(ref mut table) => table.td_text(t),
-                State::WeekTable(ref mut table) => table.td_text(t),
-            }
-        }),
+        text!("td", |t| { current_table.borrow_mut().td_text(t) }),
     ];
 
     let mut rewriter = HtmlRewriter::new(
