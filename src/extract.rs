@@ -17,6 +17,9 @@ trait TableHandler {
     fn td_begin(&mut self, _td: &Element) -> Result<(), Box<dyn Error + Send + Sync>> {
         Ok(())
     }
+    fn td_break(&mut self, _td: &Element) -> Result<(), Box<dyn Error + Send + Sync>> {
+        Ok(())
+    }
     fn td_end(&mut self, _td: &EndTag) -> Result<(), Box<dyn Error + Send + Sync>> {
         Ok(())
     }
@@ -229,51 +232,55 @@ impl TableHandler for WeekTable {
             .to_owned();
         let couple_decoded = html_escape::decode_html_entities(&self.couple);
         let couple = couple_decoded.trim();
-        if couple.len() > 0 {
-            let mut i = couple.split(" & ");
-            let celeb_moniker = i.next().unwrap();
+        fn split_couple(
+            celeb_moniker_to_name: &Rc<RefCell<HashMap<String, String>>>,
+            couple: &str,
+        ) -> (String, String) {
+            // Split a string "Celeb & Professional" into tuple `("Celeb's Fullname", "Professional")`
+            let mut names = couple.split(" & ");
+            let celeb_moniker = names.next().unwrap();
             // Some couples have an asterisk at the end to refer to a footnote.
-            let professional = i.next().unwrap().trim_end_matches('*');
-            match i.next() {
-                Some(_) => {
-                    // Dance with multiple couples (e.g. Series 7 week 11)
-                    // ignore
-                }
-                None => {
-                    // Convert the short celeb name to a full name.
-                    let celebrity = match self.celeb_moniker_to_name.borrow().get(celeb_moniker) {
-                        Some(name) if !name.is_empty() => name.clone(),
-                        _ => celeb_moniker.to_owned(),
-                    };
-                    let scores = html_escape::decode_html_entities(&self.score);
-                    let mut i = scores.trim().split_whitespace();
+            let professional = names.next().unwrap().trim_end_matches('*').to_owned();
+            assert!(names.next().is_none());
+            // Convert the short celeb name to a full name.
+            let celebrity = match celeb_moniker_to_name.borrow().get(celeb_moniker) {
+                Some(name) if !name.is_empty() => name.clone(),
+                _ => celeb_moniker.to_owned(),
+            };
+            (celebrity, professional)
+        }
+        if couple.contains(';') {
+            // Group dance with multiple couples (e.g. Series 7 week 11).
+            // These are ranked rather than scored, so we ignore them.
+        } else {
+            let (celebrity, professional) = split_couple(&self.celeb_moniker_to_name, couple);
+            let scores = html_escape::decode_html_entities(&self.score);
+            let mut i = scores.trim().split_whitespace();
 
-                    match i.next().unwrap_or("N/A").parse() {
-                        Ok(total_score) => {
-                            // The second word is the individual judges' scores.
-                            // Count the separating commas and add one to get the
-                            // number of scores.
-                            let score_count = i.next().unwrap().matches(",").count() as u8 + 1;
-                            let avg_score = total_score as f32 / score_count as f32;
-                            assert!(avg_score >= 1.0);
-                            assert!(avg_score <= 10.0);
-                            self.output.borrow_mut().push(Row {
-                                series: self.series,
-                                week: self.week,
-                                celebrity,
-                                professional: professional.to_owned(),
-                                dance,
-                                total_score,
-                                score_count,
-                                avg_score,
-                                note: self.note.clone(),
-                            });
-                        }
-                        Err(_error) => {
-                            // e.g. "N/A\n" for unscored show dance
-                            // ignore this row
-                        }
-                    }
+            match i.next().unwrap_or("N/A").parse() {
+                Ok(total_score) => {
+                    // The second word is the individual judges' scores.
+                    // Count the separating commas and add one to get the
+                    // number of scores.
+                    let score_count = i.next().unwrap().matches(",").count() as u8 + 1;
+                    let avg_score = total_score as f32 / score_count as f32;
+                    assert!(avg_score >= 1.0);
+                    assert!(avg_score <= 10.0);
+                    self.output.borrow_mut().push(Row {
+                        series: self.series,
+                        week: self.week,
+                        celebrity,
+                        professional,
+                        dance,
+                        total_score,
+                        score_count,
+                        avg_score,
+                        note: self.note.clone(),
+                    });
+                }
+                Err(_error) => {
+                    // e.g. "N/A\n" for unscored show dance
+                    // ignore this row
                 }
             }
         }
@@ -317,6 +324,21 @@ impl TableHandler for WeekTable {
             ref other => {
                 panic!("Unexpected state {:?}", other);
             }
+        }
+        Ok(())
+    }
+    fn td_break(&mut self, _td: &Element) -> Result<(), Box<dyn Error + Send + Sync>> {
+        match self.state {
+            WeekExpect::Couple => {
+                self.couple.push_str(";");
+            }
+            WeekExpect::Score => {
+                self.score.push_str(";");
+            }
+            WeekExpect::Dance => {
+                self.dance.push_str(";");
+            }
+            _ => {}
         }
         Ok(())
     }
@@ -458,6 +480,11 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
             let table = current_table.clone();
             td.on_end_tag(move |td| table.borrow_mut().td_end(td))?;
             current_table.borrow_mut().td_begin(td)
+        }),
+        element!("td br", |td| {
+            // `<br />` is used to separate group dances and multiple professionals. In this
+            // case we replace the values with semi-colons to help parse later
+            current_table.borrow_mut().td_break(td)
         }),
         text!("td *", |t| {
             // "<td>Anastacia &amp; Gorka<sup>1</sup>\n</td>"
