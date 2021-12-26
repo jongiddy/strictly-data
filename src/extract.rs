@@ -40,21 +40,80 @@ impl TableHandler for UnrecognizedTable {}
 enum CoupleExpect {
     NewRow,
     Celebrity,
+    KnownFor,
+    Professional,
     EndRow,
 }
 #[derive(Debug)]
 struct CoupleTable {
     state: CoupleExpect,
     celebrity: String,
+    professional: String,
     celeb_moniker_to_name: Rc<RefCell<HashMap<String, String>>>,
+    pro_moniker_to_name: Rc<RefCell<HashMap<String, String>>>,
 }
 impl CoupleTable {
-    fn new(celeb_moniker_to_name: Rc<RefCell<HashMap<String, String>>>) -> CoupleTable {
+    fn new(
+        celeb_moniker_to_name: Rc<RefCell<HashMap<String, String>>>,
+        pro_moniker_to_name: Rc<RefCell<HashMap<String, String>>>,
+    ) -> CoupleTable {
         CoupleTable {
             state: CoupleExpect::NewRow,
             celebrity: String::new(),
+            professional: String::new(),
             celeb_moniker_to_name,
+            pro_moniker_to_name,
         }
+    }
+    fn add_celeb_names(&self, full_name: &str) {
+        if full_name == "DJ Spoony" {
+            // the exception to the rules
+            self.celeb_moniker_to_name
+                .borrow_mut()
+                .insert("Spoony".to_owned(), full_name.to_owned());
+        } else {
+            let add_name = |moniker: String| {
+                let mut c = self.celeb_moniker_to_name.borrow_mut();
+                match c.get(&moniker) {
+                    Some(name) if name == full_name => {
+                        // Mapping same moniker to same full name
+                    }
+                    Some(_) => {
+                        // Two contestants have the same moniker!
+                        // Replace with empty string
+                        c.insert(moniker, "".to_owned());
+                    }
+                    None => {
+                        c.insert(moniker, full_name.to_owned());
+                    }
+                }
+            };
+            let mut names = full_name.split(" ");
+            let first_name = names.next().unwrap().to_owned();
+            if let Some(second_name) = names.next() {
+                // Some celebs are represented by first name and initial of their surname.
+                // e.g two Ricky's in series 7, two Emma's in series 17
+                if let Some(initial) = second_name.chars().next() {
+                    let name_initial = format!("{} {}.", first_name, initial);
+                    add_name(name_initial);
+                }
+                // A few are represented by their 2 first "names":
+                // Dr. Ranj Singh -> Dr. Ranj
+                // Judge Rinder -> Judge Rinder
+                // Rev. Richard Coles -> Rev. Richard
+                let two_names = format!("{} {}", first_name, second_name);
+                add_name(two_names);
+            }
+            // Most are represented by their first (or only) name in the Week tables.
+            add_name(first_name);
+        }
+    }
+    fn add_pro_names(&self, full_name: &str) {
+        let mut names = full_name.split(" ");
+        let first_name = names.next().unwrap().to_owned();
+        self.pro_moniker_to_name
+            .borrow_mut()
+            .insert(first_name, full_name.to_owned());
     }
 }
 impl TableHandler for CoupleTable {
@@ -68,61 +127,46 @@ impl TableHandler for CoupleTable {
         Ok(())
     }
     fn tr_end(&mut self, _tr: &EndTag) -> Result<(), Box<dyn Error + Send + Sync>> {
-        // Create a mapping of celeb monikers (their short name on the show
+        // Create a mapping of contestant monikers (short name on the show
         // and in the Week tables) to their full names. Rather than work out
         // their monikers we just create the common transformations and plug
         // them in.  If doing this creates duplicates, where the same moniker
         // could be two celebs (e.g. same first name), map the moniker to an
         // empty string.
-        let full_name = html_escape::decode_html_entities(&self.celebrity)
-            .trim()
-            .to_owned();
-        if full_name == "DJ Spoony" {
-            // the exception to the rules
-            self.celeb_moniker_to_name
-                .borrow_mut()
-                .insert("Spoony".to_owned(), full_name);
-        } else {
-            let add = |moniker: String| {
-                let mut c = self.celeb_moniker_to_name.borrow_mut();
-                match c.get(&moniker) {
-                    Some(_) => {
-                        // Two celebs have the same moniker!
-                        // Replace with empty string
-                        c.insert(moniker, "".to_string());
-                    }
-                    None => {
-                        c.insert(moniker, full_name.clone());
-                    }
-                }
-            };
-            let mut names = full_name.split(" ");
-            let first_name = names.next().unwrap().to_owned();
-            if let Some(second_name) = names.next() {
-                // Some celebs are represented by first name and initial of their surname.
-                // e.g two Ricky's in series 7, two Emma's in series 17
-                if let Some(initial) = second_name.chars().next() {
-                    let name_initial = format!("{} {}.", first_name, initial);
-                    add(name_initial);
-                }
-                // A few are represented by their 2 first "names":
-                // Dr. Ranj Singh -> Dr. Ranj
-                // Judge Rinder -> Judge Rinder
-                // Rev. Richard Coles -> Rev. Richard
-                let two_names = format!("{} {}", first_name, second_name);
-                add(two_names);
-            }
-            // Most are represented by their first (or only) name in the Week tables.
-            add(first_name);
+        self.add_celeb_names(html_escape::decode_html_entities(&self.celebrity).trim());
+
+        // Where a celebrity dances with more than one professional during a series, we will have
+        // their names separated by semi-colons. e.g.
+        // Robin Windsor;Brendan Cole (Week 9)
+        let professional_decoded = html_escape::decode_html_entities(&self.professional);
+        for professional in professional_decoded.split(';') {
+            let name = professional.split('(').next().unwrap().trim();
+            self.add_pro_names(name);
         }
+
         self.state = CoupleExpect::NewRow;
         self.celebrity.clear();
+        self.professional.clear();
         Ok(())
     }
 
+    fn td_break(&mut self, _td: &Element) -> Result<(), Box<dyn Error + Send + Sync>> {
+        match self.state {
+            CoupleExpect::Celebrity => {
+                self.celebrity.push_str(";");
+            }
+            CoupleExpect::Professional => {
+                self.professional.push_str(";");
+            }
+            _ => {}
+        }
+        Ok(())
+    }
     fn td_end(&mut self, _td: &EndTag) -> Result<(), Box<dyn Error + Send + Sync>> {
         self.state = match self.state {
-            CoupleExpect::Celebrity => CoupleExpect::EndRow,
+            CoupleExpect::Celebrity => CoupleExpect::KnownFor,
+            CoupleExpect::KnownFor => CoupleExpect::Professional,
+            CoupleExpect::Professional => CoupleExpect::EndRow,
             CoupleExpect::EndRow => CoupleExpect::EndRow,
             ref other => {
                 panic!("Unexpected state {:?}", other);
@@ -134,6 +178,9 @@ impl TableHandler for CoupleTable {
         match self.state {
             CoupleExpect::Celebrity => {
                 self.celebrity.push_str(t.as_str());
+            }
+            CoupleExpect::Professional => {
+                self.professional.push_str(t.as_str());
             }
             _ => {}
         }
@@ -163,17 +210,20 @@ struct WeekTable {
     note: String,
     output: Rc<RefCell<Vec<Row>>>,
     celeb_moniker_to_name: Rc<RefCell<HashMap<String, String>>>,
+    pro_moniker_to_name: Rc<RefCell<HashMap<String, String>>>,
 }
 impl WeekTable {
     fn new_for_week(
         output: Rc<RefCell<Vec<Row>>>,
         celeb_moniker_to_name: Rc<RefCell<HashMap<String, String>>>,
+        pro_moniker_to_name: Rc<RefCell<HashMap<String, String>>>,
         series: u16,
         week: u16,
     ) -> Self {
         WeekTable {
             output,
             celeb_moniker_to_name,
+            pro_moniker_to_name,
             state: WeekExpect::NewRow,
             series,
             week,
@@ -185,6 +235,24 @@ impl WeekTable {
             dance_uses: 0,
             note: String::new(),
         }
+    }
+    fn split_couple(&self, couple: &str) -> (String, String) {
+        // Split a string "Celeb & Professional" into tuple `("Celeb's Fullname", "Professional")`
+        let mut names = couple.split(" & ");
+        let celeb_moniker = names.next().unwrap();
+        // Some couples have an asterisk at the end to refer to a footnote.
+        let pro_moniker = names.next().unwrap().trim_end_matches('*');
+        assert!(names.next().is_none());
+        // Convert the short celeb name to a full name.
+        let celebrity = match self.celeb_moniker_to_name.borrow().get(celeb_moniker) {
+            Some(name) if !name.is_empty() => name.clone(),
+            _ => celeb_moniker.to_owned(),
+        };
+        let professional = match self.pro_moniker_to_name.borrow().get(pro_moniker) {
+            Some(name) if !name.is_empty() => name.clone(),
+            _ => pro_moniker.to_owned(),
+        };
+        (celebrity, professional)
     }
 }
 impl TableHandler for WeekTable {
@@ -232,37 +300,19 @@ impl TableHandler for WeekTable {
             .to_owned();
         let couple_decoded = html_escape::decode_html_entities(&self.couple);
         let couple = couple_decoded.trim();
-        fn split_couple(
-            celeb_moniker_to_name: &Rc<RefCell<HashMap<String, String>>>,
-            couple: &str,
-        ) -> (String, String) {
-            // Split a string "Celeb & Professional" into tuple `("Celeb's Fullname", "Professional")`
-            let mut names = couple.split(" & ");
-            let celeb_moniker = names.next().unwrap();
-            // Some couples have an asterisk at the end to refer to a footnote.
-            let professional = names.next().unwrap().trim_end_matches('*').to_owned();
-            assert!(names.next().is_none());
-            // Convert the short celeb name to a full name.
-            let celebrity = match celeb_moniker_to_name.borrow().get(celeb_moniker) {
-                Some(name) if !name.is_empty() => name.clone(),
-                _ => celeb_moniker.to_owned(),
-            };
-            (celebrity, professional)
-        }
         if couple.contains(';') {
             // Group dance with multiple couples (e.g. Series 7 week 11).
             // These are ranked rather than scored, so we ignore them.
         } else {
-            let (celebrity, professional) = split_couple(&self.celeb_moniker_to_name, couple);
-            let scores = html_escape::decode_html_entities(&self.score);
-            let mut i = scores.trim().split_whitespace();
-
-            match i.next().unwrap_or("N/A").parse() {
+            let (celebrity, professional) = self.split_couple(couple);
+            let scores_decoded = html_escape::decode_html_entities(&self.score);
+            let mut scores = scores_decoded.trim().split_whitespace();
+            match scores.next().unwrap_or("N/A").parse() {
                 Ok(total_score) => {
                     // The second word is the individual judges' scores.
                     // Count the separating commas and add one to get the
                     // number of scores.
-                    let score_count = i.next().unwrap().matches(",").count() as u8 + 1;
+                    let score_count = scores.next().unwrap().matches(",").count() as u8 + 1;
                     let avg_score = total_score as f32 / score_count as f32;
                     assert!(avg_score >= 1.0);
                     assert!(avg_score <= 10.0);
@@ -410,6 +460,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
     // Cell mutability for shared and mutable access from multiple closures.
     let output = Rc::new(RefCell::<Vec<Row>>::new(vec![]));
     let celeb_moniker_to_name = Rc::new(RefCell::new(HashMap::<String, String>::new()));
+    let pro_moniker_to_name = Rc::new(RefCell::new(HashMap::<String, String>::new()));
     let current_table = Rc::new(RefCell::new(
         Box::new(UnrecognizedTable::new()) as Box<dyn TableHandler>
     ));
@@ -421,8 +472,10 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
             if let Some(id) = el.get_attribute("id") {
                 if id == "Couples" {
                     assert!(default_table_retainer.is_none());
-                    let prev_table = current_table
-                        .replace(Box::new(CoupleTable::new(celeb_moniker_to_name.clone())));
+                    let prev_table = current_table.replace(Box::new(CoupleTable::new(
+                        celeb_moniker_to_name.clone(),
+                        pro_moniker_to_name.clone(),
+                    )));
                     default_table_retainer = Some(prev_table);
                 } else {
                     let mut parts = id.split(&['_', ':'][..]);
@@ -436,6 +489,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                             let week_table = Box::new(WeekTable::new_for_week(
                                 output.clone(),
                                 celeb_moniker_to_name.clone(),
+                                pro_moniker_to_name.clone(),
                                 series,
                                 week,
                             ));
