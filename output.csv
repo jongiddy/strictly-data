@@ -635,6 +635,11 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 7,11,Ali Bastian,Brian,Charleston,37,4,9.25,
 7,11,Natalie Cassidy,Vincent,Rock 'n' Roll,26,4,6.5,
 7,11,Laila Rouass,Anton,Charleston,31,4,7.75,
+7,11,Ali Bastian,Brian,Viennese Waltz,10,1,10.0,group dance
+7,11,Chris Hollins,Ola,Viennese Waltz,7,1,7.0,group dance
+7,11,Laila Rouass,Anton,Viennese Waltz,8,1,8.0,group dance
+7,11,Natalie Cassidy,Vincent,Viennese Waltz,7,1,7.0,group dance
+7,11,Ricky,Natalie,Viennese Waltz,9,1,9.0,group dance
 7,12,Ali Bastian,Brian,Tango,42,5,8.4,
 7,12,Ali Bastian,Brian,Samba,44,5,8.8,
 7,12,Laila Rouass,Anton,American Smooth,33,5,6.6,
