@@ -87,9 +87,10 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                 if let Some(second_name) = names.next() {
                     // Some celebs are represented by first name and initial of their surname.
                     // e.g two Ricky's in series 7, two Emma's in series 17
-                    let initial = second_name.chars().next().unwrap();
-                    let name_initial = format!("{} {}.", first_name, initial);
-                    add(name_initial);
+                    if let Some(initial) = second_name.chars().next() {
+                        let name_initial = format!("{} {}.", first_name, initial);
+                        add(name_initial);
+                    }
                     // A few are represented by their 2 first "names":
                     // Dr. Ranj Singh -> Dr. Ranj
                     // Judge Rinder -> Judge Rinder
@@ -216,14 +217,13 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
             let dance = html_escape::decode_html_entities(&self.dance)
                 .trim()
                 .to_owned();
-            let couple = html_escape::decode_html_entities(&self.couple)
-                .trim()
-                .to_owned();
+            let couple_decoded = html_escape::decode_html_entities(&self.couple);
+            let couple = couple_decoded.trim();
             if couple.len() > 0 {
                 let mut i = couple.split(" & ");
                 let celeb_moniker = i.next().unwrap();
                 // Some couples have an asterisk at the end to refer to a footnote.
-                let professional = i.next().unwrap().trim_end_matches('*').to_owned();
+                let professional = i.next().unwrap().trim_end_matches('*');
                 match i.next() {
                     Some(_) => {
                         // Dance with multiple couples (e.g. Series 7 week 11)
@@ -233,7 +233,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                         // Convert the short celeb name to a full name.
                         let celebrity = match self.celeb_moniker_to_name.borrow().get(celeb_moniker)
                         {
-                            Some(full_name) if !full_name.is_empty() => full_name.clone(),
+                            Some(name) if !name.is_empty() => name.clone(),
                             _ => celeb_moniker.to_owned(),
                         };
                         let scores = html_escape::decode_html_entities(&self.score);
@@ -252,7 +252,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                                     series: self.series,
                                     week: self.week,
                                     celebrity,
-                                    professional,
+                                    professional: professional.to_owned(),
                                     dance,
                                     total_score,
                                     score_count,
