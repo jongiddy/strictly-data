@@ -1324,7 +1324,7 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 13,1,Anita Rani,Gleb Savchenko,Cha-Cha-Cha,27,4,6.75,
 13,1,Jay McGuiness,Aliona Vilani,Cha-Cha-Cha,27,4,6.75,
 13,1,Kirsty Gallacher,Brendan Cole,Waltz,20,4,5.0,
-13,1,Jeremy Vine,Karen Clifton,Cha-Cha-Cha,19,4,4.75,
+13,1,Jeremy Vine,Karen Hauer,Cha-Cha-Cha,19,4,4.75,Karen danced as Karen Clifton
 13,1,Georgia May Foote,Giovanni Pernice,Jive,27,4,6.75,
 13,1,Ainsley Harriott,Natalie Lowe,Tango,20,4,5.0,
 13,1,Katie Derham,Anton du Beke,Jive,26,4,6.5,
@@ -1342,7 +1342,7 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 13,2,Kellie Bright,Kevin Clifton,Cha-Cha-Cha,27,4,6.75,
 13,2,Anthony Ogogo,Oti Mabuse,Waltz,19,4,4.75,
 13,2,Anita Rani,Gleb Savchenko,Charleston,27,4,6.75,
-13,2,Jeremy Vine,Karen Clifton,American Smooth,17,4,4.25,
+13,2,Jeremy Vine,Karen Hauer,American Smooth,17,4,4.25,Karen danced as Karen Clifton
 13,2,Katie Derham,Anton du Beke,Tango,28,4,7.0,
 13,2,Peter Andre,Janette Manrara,Quickstep,30,4,7.5,
 13,2,Helen George,Aljaž Škorjanec,Cha-Cha-Cha,29,4,7.25,
@@ -1357,14 +1357,14 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 13,3,Kirsty Gallacher,Brendan Cole,American Smooth,23,4,5.75,
 13,3,Peter Andre,Janette Manrara,Paso Doble,28,4,7.0,
 13,3,Jamelia,Tristan MacManus,Salsa,25,4,6.25,
-13,3,Jeremy Vine,Karen Clifton,Charleston,24,4,6.0,
+13,3,Jeremy Vine,Karen Hauer,Charleston,24,4,6.0,Karen danced as Karen Clifton
 13,3,Anita Rani,Gleb Savchenko,American Smooth,29,4,7.25,
 13,3,Jay McGuiness,Aliona Vilani,Jive,37,4,9.25,
 13,4,Anita Rani,Gleb Savchenko,Samba,27,4,6.75,
 13,4,Daniel O'Donnell,Kristina Rihanoff,American Smooth,23,4,5.75,
 13,4,Kirsty Gallacher,Brendan Cole,Paso Doble,21,4,5.25,
 13,4,Georgia May Foote,Giovanni Pernice,Quickstep,31,4,7.75,
-13,4,Jeremy Vine,Karen Clifton,Jive,20,4,5.0,
+13,4,Jeremy Vine,Karen Hauer,Jive,20,4,5.0,Karen danced as Karen Clifton
 13,4,Kellie Bright,Kevin Clifton,Foxtrot,32,4,8.0,
 13,4,Jamelia,Tristan MacManus,Charleston,32,4,8.0,
 13,4,Jay McGuiness,Aliona Vilani,Quickstep,25,4,6.25,
@@ -1381,13 +1381,13 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 13,5,Ainsley Harriott,Natalie Lowe,Jive,21,4,5.25,
 13,5,Jamelia,Tristan MacManus,Foxtrot,26,4,6.5,
 13,5,Katie Derham,Anton du Beke,Salsa,21,4,5.25,
-13,5,Jeremy Vine,Karen Clifton,Waltz,18,4,4.5,
+13,5,Jeremy Vine,Karen Hauer,Waltz,18,4,4.5,Karen danced as Karen Clifton
 13,5,Helen George,Aljaž Škorjanec,Quickstep,35,4,8.75,
 13,5,Jay McGuiness,Aliona Vilani,Paso Doble,33,4,8.25,
 13,5,Kellie Bright,Kevin Clifton,Jive,35,4,8.75,
 13,6,Katie Derham,Anton du Beke,Paso Doble,21,4,5.25,
 13,6,Kirsty Gallacher,Brendan Cole,Charleston,17,4,4.25,
-13,6,Jeremy Vine,Karen Clifton,Salsa,22,4,5.5,
+13,6,Jeremy Vine,Karen Hauer,Salsa,22,4,5.5,Karen danced as Karen Clifton
 13,6,Anita Rani,Gleb Savchenko,Waltz,29,4,7.25,
 13,6,Jamelia,Tristan MacManus,Jive,26,4,6.5,
 13,6,Jay McGuiness,Aliona Vilani,American Smooth,34,4,8.5,
@@ -1404,7 +1404,7 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 13,7,Katie Derham,Anton du Beke,Quickstep,26,4,6.5,
 13,7,Anita Rani,Gleb Savchenko,Jive,34,4,8.5,
 13,7,Kellie Bright,Kevin Clifton,Waltz,32,4,8.0,
-13,7,Jeremy Vine,Karen Clifton,Tango,21,4,5.25,
+13,7,Jeremy Vine,Karen Hauer,Tango,21,4,5.25,Karen danced as Karen Clifton
 13,7,Georgia May Foote,Giovanni Pernice,Samba,35,4,8.75,
 13,8,Anita Rani,Gleb Savchenko,Quickstep,32,4,8.0,
 13,8,Jay McGuiness,Aliona Vilani,Foxtrot,30,4,7.5,
@@ -1414,7 +1414,7 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 13,8,Kellie Bright,Kevin Clifton,Samba,33,4,8.25,
 13,8,Peter Andre,Janette Manrara,Viennese Waltz,34,4,8.5,
 13,8,Georgia May Foote,Giovanni Pernice,Charleston,39,4,9.75,
-13,8,Jeremy Vine,Karen Clifton,Quickstep,21,4,5.25,
+13,8,Jeremy Vine,Karen Hauer,Quickstep,21,4,5.25,Karen danced as Karen Clifton
 13,9,Jay McGuiness,Aliona Vilani,Salsa,36,4,9.0,
 13,9,Jamelia,Tristan MacManus,Quickstep,31,4,7.75,
 13,9,Anita Rani,Gleb Savchenko,Paso Doble,37,4,9.25,
@@ -1471,10 +1471,10 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 14,1,Anastacia,Brendan Cole,Cha-Cha-Cha,28,4,7.0,
 14,1,Ed Balls,Katya Jones,Waltz,21,4,5.25,
 14,1,Claudia Fragapane,AJ Pritchard,Cha-Cha-Cha,26,4,6.5,
-14,1,Will Young,Karen Clifton,Tango,30,4,7.5,
+14,1,Will Young,Karen Hauer,Tango,30,4,7.5,Karen danced as Karen Clifton
 14,2,Ore Oduba,Joanne Clifton,Cha-Cha-Cha,27,4,6.75,
 14,2,Claudia Fragapane,AJ Pritchard,Waltz,30,4,7.5,
-14,2,Will Young,Karen Clifton,Jive,27,4,6.75,
+14,2,Will Young,Karen Hauer,Jive,27,4,6.75,Karen danced as Karen Clifton
 14,2,Lesley Joseph,Anton du Beke,Cha-Cha-Cha,26,4,6.5,
 14,2,Greg Rutherford,Natalie Lowe,Tango,26,4,6.5,
 14,2,Tameka Empson,Gorka Márquez,Charleston,29,4,7.25,
@@ -1491,7 +1491,7 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 14,3,Anastacia,Brendan Cole,Viennese Waltz,27,4,6.75,
 14,3,Danny Mac,Oti Mabuse,Paso Doble,36,4,9.0,
 14,3,Lesley Joseph,Anton du Beke,Quickstep,27,4,6.75,
-14,3,Will Young,Karen Clifton,Salsa,31,4,7.75,
+14,3,Will Young,Karen Hauer,Salsa,31,4,7.75,Karen danced as Karen Clifton
 14,3,Naga Munchetty,Pasha Kovalev,Tango,25,4,6.25,
 14,3,Judge Rinder,Oksana Platero,Charleston,27,4,6.75,
 14,3,Ore Oduba,Joanne Clifton,American Smooth,35,4,8.75,
@@ -1588,7 +1588,7 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 15,1,Gemma Atkinson,Aljaž Škorjanec,Cha-Cha-Cha,20,4,5.0,
 15,1,Brian Conley,Amy Dowden,Tango,16,4,4.0,
 15,1,Alexandra Burke,Gorka Márquez,Waltz,24,4,6.0,
-15,1,Simon Rimmer,Karen Clifton,Paso Doble,17,4,4.25,
+15,1,Simon Rimmer,Karen Hauer,Paso Doble,17,4,4.25,Karen danced as Karen Clifton
 15,1,Charlotte Hawkins,Brendan Cole,Foxtrot,22,4,5.5,
 15,1,Chizzy Akudolu,Pasha Kovalev,Cha-Cha-Cha,21,4,5.25,
 15,1,Jonnie Peacock,Oti Mabuse,Waltz,20,4,5.0,
@@ -1609,13 +1609,13 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 15,2,Gemma Atkinson,Aljaž Škorjanec,Waltz,26,4,6.5,
 15,2,Rev. Richard Coles,Dianne Buswell,American Smooth,17,4,4.25,
 15,2,Ruth Langsford,Anton du Beke,Charleston,20,4,5.0,
-15,2,Simon Rimmer,Karen Clifton,Waltz,19,4,4.75,
+15,2,Simon Rimmer,Karen Hauer,Waltz,19,4,4.75,Karen danced as Karen Clifton
 15,2,Mollie King,AJ Pritchard,Tango,25,4,6.25,
 15,2,Jonnie Peacock,Oti Mabuse,Jive,29,4,7.25,
 15,2,Debbie McGee,Giovanni Pernice,Viennese Waltz,34,4,8.5,
 15,2,Davood Ghadami,Nadiya Bychkova,Quickstep,27,4,6.75,
 15,2,Alexandra Burke,Gorka Márquez,Paso Doble,36,4,9.0,
-15,3,Simon Rimmer,Karen Clifton,Quickstep,19,4,4.75,
+15,3,Simon Rimmer,Karen Hauer,Quickstep,19,4,4.75,Karen danced as Karen Clifton
 15,3,Ruth Langsford,Anton du Beke,Rumba,15,4,3.75,
 15,3,Mollie King,AJ Pritchard,American Smooth,30,4,7.5,
 15,3,Rev. Richard Coles,Dianne Buswell,Paso Doble,14,4,3.5,
@@ -1637,14 +1637,14 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 15,4,Joe McFadden,Katya Jones,Cha-Cha-Cha,24,4,6.0,
 15,4,Ruth Langsford,Anton du Beke,Tango,24,4,6.0,
 15,4,Aston Merrygold,Janette Manrara,Quickstep,32,4,8.0,
-15,4,Simon Rimmer,Karen Clifton,Samba,19,4,4.75,
+15,4,Simon Rimmer,Karen Hauer,Samba,19,4,4.75,Karen danced as Karen Clifton
 15,4,Gemma Atkinson,Aljaž Škorjanec,Paso Doble,35,4,8.75,
 15,4,Alexandra Burke,Gorka Márquez,Jive,39,4,9.75,
 15,4,Jonnie Peacock,Oti Mabuse,American Smooth,31,4,7.75,
 15,4,Susan Calman,Kevin Clifton,Quickstep,30,4,7.5,
 15,5,Davood Ghadami,Nadiya Bychkova,Jive,22,3,7.3333335,
 15,5,Mollie King,AJ Pritchard,Viennese Waltz,24,3,8.0,
-15,5,Simon Rimmer,Karen Clifton,Charleston,16,3,5.3333335,
+15,5,Simon Rimmer,Karen Hauer,Charleston,16,3,5.3333335,Karen danced as Karen Clifton
 15,5,Debbie McGee,Giovanni Pernice,Rumba,27,3,9.0,
 15,5,Brian Conley,Amy Dowden,Jive,16,3,5.3333335,
 15,5,Susan Calman,Kevin Clifton,Cha-Cha-Cha,16,3,5.3333335,
@@ -1656,7 +1656,7 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 15,5,Jonnie Peacock,Oti Mabuse,Quickstep,24,3,8.0,
 15,6,Jonnie Peacock,Oti Mabuse,Cha-Cha-Cha,20,4,5.0,
 15,6,Ruth Langsford,Anton du Beke,Quickstep,22,4,5.5,
-15,6,Simon Rimmer,Karen Clifton,American Smooth,16,4,4.0,
+15,6,Simon Rimmer,Karen Hauer,American Smooth,16,4,4.0,Karen danced as Karen Clifton
 15,6,Gemma Atkinson,Aljaž Škorjanec,Jive,30,4,7.5,
 15,6,Joe McFadden,Katya Jones,Foxtrot,32,4,8.0,
 15,6,Mollie King,AJ Pritchard,Cha-Cha-Cha,27,4,6.75,
@@ -1733,7 +1733,7 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 16,1,Seann Walsh,Katya Jones,Tango,18,4,4.5,
 16,1,Vick Hope,Graziano Di Prima,Jive,18,4,4.5,
 16,1,Susannah Constantine,Anton du Beke,Samba,12,4,3.0,
-16,1,Charles Venn,Karen Clifton,Cha-Cha-Cha,25,4,6.25,
+16,1,Charles Venn,Karen Hauer,Cha-Cha-Cha,25,4,6.25,Karen danced as Karen Clifton
 16,1,Ashley Roberts,Pasha Kovalev,Viennese Waltz,29,4,7.25,
 16,1,Dr. Ranj Singh,Janette Manrara,Cha-Cha-Cha,27,4,6.75,
 16,1,Katie Piper,Gorka Márquez,Waltz,17,4,4.25,
@@ -1743,7 +1743,7 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 16,1,Joe Sugg,Dianne Buswell,Jive,27,4,6.75,
 16,1,Faye Tozer,Giovanni Pernice,Cha-Cha-Cha,29,4,7.25,
 16,2,Stacey Dooley,Kevin Clifton,Cha-Cha-Cha,20,4,5.0,
-16,2,Charles Venn,Karen Clifton,Quickstep,25,4,6.25,
+16,2,Charles Venn,Karen Hauer,Quickstep,25,4,6.25,Karen danced as Karen Clifton
 16,2,Katie Piper,Gorka Márquez,Paso Doble,13,4,3.25,
 16,2,Graeme Swann,Oti Mabuse,American Smooth,15,4,3.75,
 16,2,Kate Silverton,Aljaž Škorjanec,Tango,27,4,6.75,
@@ -1768,7 +1768,7 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 16,3,Katie Piper,Gorka Márquez,Foxtrot,22,4,5.5,
 16,3,Seann Walsh,Katya Jones,Paso Doble,30,4,7.5,
 16,3,Lauren Steadman,AJ Pritchard,Cha-Cha-Cha,20,4,5.0,
-16,3,Charles Venn,Karen Clifton,American Smooth,25,4,6.25,
+16,3,Charles Venn,Karen Hauer,American Smooth,25,4,6.25,Karen danced as Karen Clifton
 16,3,Faye Tozer,Giovanni Pernice,Quickstep,36,4,9.0,
 16,3,Danny John-Jules,Amy Dowden,Paso Doble,28,4,7.0,
 16,4,Joe Sugg,Dianne Buswell,Cha-Cha-Cha,26,4,6.5,
@@ -1776,7 +1776,7 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 16,4,Danny John-Jules,Amy Dowden,Viennese Waltz,27,4,6.75,
 16,4,Faye Tozer,Giovanni Pernice,Rumba,29,4,7.25,
 16,4,Katie Piper,Gorka Márquez,Jive,18,4,4.5,
-16,4,Charles Venn,Karen Clifton,Salsa,25,4,6.25,
+16,4,Charles Venn,Karen Hauer,Salsa,25,4,6.25,Karen danced as Karen Clifton
 16,4,Lauren Steadman,AJ Pritchard,Quickstep,25,4,6.25,
 16,4,Dr. Ranj Singh,Janette Manrara,Paso Doble,27,4,6.75,
 16,4,Kate Silverton,Aljaž Škorjanec,Samba,20,4,5.0,
@@ -1795,7 +1795,7 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 16,5,Kate Silverton,Aljaž Škorjanec,Viennese Waltz,26,4,6.5,
 16,5,Danny John-Jules,Amy Dowden,Jive,37,4,9.25,
 16,5,Faye Tozer,Giovanni Pernice,Foxtrot,33,4,8.25,
-16,5,Charles Venn,Karen Clifton,Street/Commercial,36,4,9.0,
+16,5,Charles Venn,Karen Hauer,Street/Commercial,36,4,9.0,Karen danced as Karen Clifton
 16,6,Graeme Swann,Oti Mabuse,Cha-Cha-Cha,21,4,5.25,
 16,6,Stacey Dooley,Kevin Clifton,Tango,35,4,8.75,
 16,6,Dr. Ranj Singh,Janette Manrara,Jive,20,4,5.0,
@@ -1803,7 +1803,7 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 16,6,Danny John-Jules,Amy Dowden,American Smooth,30,4,7.5,
 16,6,Ashley Roberts,Pasha Kovalev,Charleston,39,4,9.75,
 16,6,Seann Walsh,Katya Jones,Viennese Waltz,20,4,5.0,
-16,6,Charles Venn,Karen Clifton,Jive,25,4,6.25,
+16,6,Charles Venn,Karen Hauer,Jive,25,4,6.25,Karen danced as Karen Clifton
 16,6,Faye Tozer,Giovanni Pernice,Theatre/Jazz,39,4,9.75,
 16,6,Joe Sugg,Dianne Buswell,Foxtrot,35,4,8.75,
 16,6,Lauren Steadman,AJ Pritchard,Paso Doble,29,4,7.25,
@@ -1815,7 +1815,7 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 16,7,Danny John-Jules,Amy Dowden,Quickstep,22,4,5.5,
 16,7,Ashley Roberts,Pasha Kovalev,Foxtrot,39,4,9.75,
 16,7,Faye Tozer,Giovanni Pernice,Tango,38,4,9.5,
-16,7,Charles Venn,Karen Clifton,Viennese Waltz,28,4,7.0,
+16,7,Charles Venn,Karen Hauer,Viennese Waltz,28,4,7.0,Karen danced as Karen Clifton
 16,7,Joe Sugg,Dianne Buswell,Paso Doble,34,4,8.5,
 16,8,Kate Silverton,Aljaž Škorjanec,Quickstep,30,4,7.5,
 16,8,Danny John-Jules,Amy Dowden,Samba,27,4,6.75,
@@ -1825,25 +1825,25 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 16,8,Stacey Dooley,Kevin Clifton,Waltz,32,4,8.0,
 16,8,Joe Sugg,Dianne Buswell,Samba,32,4,8.0,
 16,8,Lauren Steadman,AJ Pritchard,Viennese Waltz,34,4,8.5,
-16,8,Charles Venn,Karen Clifton,Charleston,35,4,8.75,
+16,8,Charles Venn,Karen Hauer,Charleston,35,4,8.75,Karen danced as Karen Clifton
 16,9,Stacey Dooley,Kevin Clifton,Salsa,33,4,8.25,
 16,9,Lauren Steadman,AJ Pritchard,Argentine Tango,25,4,6.25,
 16,9,Graeme Swann,Oti Mabuse,Theatre/Jazz,32,4,8.0,
 16,9,Faye Tozer,Giovanni Pernice,Paso Doble,38,4,9.5,
 16,9,Kate Silverton,Aljaž Škorjanec,American Smooth,30,4,7.5,
-16,9,Charles Venn,Karen Clifton,Samba,38,4,9.5,
+16,9,Charles Venn,Karen Hauer,Samba,38,4,9.5,Karen danced as Karen Clifton
 16,9,Joe Sugg,Dianne Buswell,Quickstep,38,4,9.5,
 16,9,Ashley Roberts,Pasha Kovalev,Jive,40,4,10.0,
 16,10,Graeme Swann,Oti Mabuse,Quickstep,24,4,6.0,
 16,10,Ashley Roberts,Pasha Kovalev,Samba,36,4,9.0,
 16,10,Faye Tozer,Giovanni Pernice,Waltz,39,4,9.75,
 16,10,Joe Sugg,Dianne Buswell,Street/Commercial,35,4,8.75,
-16,10,Charles Venn,Karen Clifton,Tango,30,4,7.5,
+16,10,Charles Venn,Karen Hauer,Tango,30,4,7.5,Karen danced as Karen Clifton
 16,10,Lauren Steadman,AJ Pritchard,Salsa,23,4,5.75,
 16,10,Stacey Dooley,Kevin Clifton,Paso Doble,39,4,9.75,
 16,11,Lauren Steadman,AJ Pritchard,American Smooth,35,4,8.75,
 16,11,Faye Tozer,Giovanni Pernice,Charleston,40,4,10.0,
-16,11,Charles Venn,Karen Clifton,Rumba,35,4,8.75,
+16,11,Charles Venn,Karen Hauer,Rumba,35,4,8.75,Karen danced as Karen Clifton
 16,11,Ashley Roberts,Pasha Kovalev,Quickstep,38,4,9.5,
 16,11,Stacey Dooley,Kevin Clifton,American Smooth,38,4,9.5,
 16,11,Joe Sugg,Dianne Buswell,Salsa,36,4,9.0,

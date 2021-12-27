@@ -236,7 +236,7 @@ impl WeekTable {
             note: String::new(),
         }
     }
-    fn split_couple(&self, couple: &str) -> (String, String) {
+    fn split_couple(&self, couple: &str) -> (String, String, String) {
         // Split a string "Celeb & Professional" into tuple `("Celeb's Fullname", "Professional")`
         let mut names = couple.split(" & ");
         let celeb_moniker = names.next().unwrap();
@@ -248,11 +248,22 @@ impl WeekTable {
             Some(name) if !name.is_empty() => name.clone(),
             _ => celeb_moniker.to_owned(),
         };
+        let mut note = self.note.clone();
         let professional = match self.pro_moniker_to_name.borrow().get(pro_moniker) {
-            Some(name) if !name.is_empty() => name.clone(),
+            Some(name) if !name.is_empty() => {
+                if name == "Karen Clifton" {
+                    // Karen Hauer danced as Karen Clifton for some series.
+                    // For data analysis, use a consistent name for an individual.
+                    assert!(note.is_empty());
+                    note = "Karen danced as Karen Clifton".to_owned();
+                    "Karen Hauer".to_owned()
+                } else {
+                    name.clone()
+                }
+            }
             _ => pro_moniker.to_owned(),
         };
-        (celebrity, professional)
+        (celebrity, professional, note)
     }
 }
 impl TableHandler for WeekTable {
@@ -304,7 +315,7 @@ impl TableHandler for WeekTable {
             // Group dance with multiple couples (e.g. Series 7 week 11).
             // These are ranked rather than scored, so we ignore them.
         } else {
-            let (celebrity, professional) = self.split_couple(couple);
+            let (celebrity, professional, note) = self.split_couple(couple);
             let scores_decoded = html_escape::decode_html_entities(&self.score);
             let mut scores = scores_decoded.trim().split_whitespace();
             match scores.next().unwrap_or("N/A").parse() {
@@ -325,7 +336,7 @@ impl TableHandler for WeekTable {
                         total_score,
                         score_count,
                         avg_score,
-                        note: self.note.clone(),
+                        note,
                     });
                 }
                 Err(_error) => {
