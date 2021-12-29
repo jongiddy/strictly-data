@@ -4,6 +4,7 @@ use lol_html::{element, text, HtmlRewriter, Settings};
 use serde::Serialize;
 use std::cell::RefCell;
 use std::collections::HashMap;
+use std::convert::TryInto;
 use std::error::Error;
 use std::rc::Rc;
 
@@ -65,51 +66,54 @@ impl CoupleTable {
             pro_moniker_to_name,
         }
     }
+    fn add_celeb_name(&self, moniker: String, full_name: &str) {
+        let mut celeb_moniker_to_name = self.celeb_moniker_to_name.borrow_mut();
+        match celeb_moniker_to_name.get(&moniker) {
+            Some(_) => {
+                // Two contestants have the same moniker!
+                // Replace with empty string
+                celeb_moniker_to_name.insert(moniker, "".to_owned());
+            }
+            None => {
+                celeb_moniker_to_name.insert(moniker, full_name.to_owned());
+            }
+        }
+    }
     fn add_celeb_names(&self, full_name: &str) {
+        // Create a mapping of contestant monikers (short name on the show
+        // and in the Week tables) to their full names. Rather than work out
+        // their monikers we just create the common transformations and plug
+        // them in. If doing this creates duplicates, where the same moniker
+        // could be two celebs (e.g. same first name), map the moniker to an
+        // empty string.
         if full_name == "DJ Spoony" {
             // the exception to the rules
-            self.celeb_moniker_to_name
-                .borrow_mut()
-                .insert("Spoony".to_owned(), full_name.to_owned());
+            self.add_celeb_name("Spoony".to_owned(), full_name);
         } else {
-            let add_name = |moniker: String| {
-                let mut c = self.celeb_moniker_to_name.borrow_mut();
-                match c.get(&moniker) {
-                    Some(name) if name == full_name => {
-                        // Mapping same moniker to same full name
-                    }
-                    Some(_) => {
-                        // Two contestants have the same moniker!
-                        // Replace with empty string
-                        c.insert(moniker, "".to_owned());
-                    }
-                    None => {
-                        c.insert(moniker, full_name.to_owned());
-                    }
-                }
-            };
-            let mut names = full_name.split(" ");
+            let mut names = full_name.split(' ');
+            // Split returns at least one item so this `unwrap` will not panic
             let first_name = names.next().unwrap().to_owned();
             if let Some(second_name) = names.next() {
                 // Some celebs are represented by first name and initial of their surname.
                 // e.g two Ricky's in series 7, two Emma's in series 17
                 if let Some(initial) = second_name.chars().next() {
                     let name_initial = format!("{} {}.", first_name, initial);
-                    add_name(name_initial);
+                    self.add_celeb_name(name_initial, full_name);
                 }
                 // A few are represented by their 2 first "names":
                 // Dr. Ranj Singh -> Dr. Ranj
                 // Judge Rinder -> Judge Rinder
                 // Rev. Richard Coles -> Rev. Richard
                 let two_names = format!("{} {}", first_name, second_name);
-                add_name(two_names);
+                self.add_celeb_name(two_names, full_name);
             }
             // Most are represented by their first (or only) name in the Week tables.
-            add_name(first_name);
+            self.add_celeb_name(first_name, full_name);
         }
     }
     fn add_pro_names(&self, full_name: &str) {
-        let mut names = full_name.split(" ");
+        let mut names = full_name.split(' ');
+        // Split returns at least one item so this `unwrap` will not panic
         let first_name = names.next().unwrap().to_owned();
         self.pro_moniker_to_name
             .borrow_mut()
@@ -127,12 +131,6 @@ impl TableHandler for CoupleTable {
         Ok(())
     }
     fn tr_end(&mut self, _tr: &EndTag) -> Result<(), Box<dyn Error + Send + Sync>> {
-        // Create a mapping of contestant monikers (short name on the show
-        // and in the Week tables) to their full names. Rather than work out
-        // their monikers we just create the common transformations and plug
-        // them in.  If doing this creates duplicates, where the same moniker
-        // could be two celebs (e.g. same first name), map the moniker to an
-        // empty string.
         self.add_celeb_names(html_escape::decode_html_entities(&self.celebrity).trim());
 
         // Where a celebrity dances with more than one professional during a series, we will have
@@ -140,6 +138,7 @@ impl TableHandler for CoupleTable {
         // Robin Windsor;Brendan Cole (Week 9)
         let professional_decoded = html_escape::decode_html_entities(&self.professional);
         for professional in professional_decoded.split(';') {
+            // Split returns at least one item so this `unwrap` will not panic
             let name = professional.split('(').next().unwrap().trim();
             self.add_pro_names(name);
         }
@@ -153,10 +152,10 @@ impl TableHandler for CoupleTable {
     fn td_break(&mut self, _td: &Element) -> Result<(), Box<dyn Error + Send + Sync>> {
         match self.state {
             CoupleExpect::Celebrity => {
-                self.celebrity.push_str(";");
+                self.celebrity.push(';');
             }
             CoupleExpect::Professional => {
-                self.professional.push_str(";");
+                self.professional.push(';');
             }
             _ => {}
         }
@@ -239,8 +238,10 @@ impl WeekTable {
     fn split_couple(&self, couple: &str) -> (String, String, String) {
         // Split a string "Celeb & Professional" into tuple `("Celeb's Fullname", "Professional")`
         let mut names = couple.split(" & ");
+         // Split returns at least one item so this `unwrap` will not panic
         let celeb_moniker = names.next().unwrap();
         // Some couples have an asterisk at the end to refer to a footnote.
+        // This `unwrap` can panic
         let pro_moniker = names.next().unwrap().trim_end_matches('*');
         assert!(names.next().is_none());
         // Convert the short celeb name to a full name.
@@ -300,11 +301,11 @@ impl TableHandler for WeekTable {
             self.series,
             self.state
         );
-        assert!(self.couple.len() > 0);
+        assert!(!self.couple.is_empty());
         assert!(self.couple_uses > 0);
-        assert!(self.score.len() > 0);
+        assert!(!self.score.is_empty());
         assert!(self.score_uses > 0);
-        assert!(self.dance.len() > 0);
+        assert!(!self.dance.is_empty());
         assert!(self.dance_uses > 0);
         let dance = html_escape::decode_html_entities(&self.dance)
             .trim()
@@ -322,9 +323,10 @@ impl TableHandler for WeekTable {
                 Ok(total_score) => {
                     // The second word is the individual judges' scores.
                     // Count the separating commas and add one to get the
-                    // number of scores.
-                    let score_count = scores.next().unwrap().matches(",").count() as u8 + 1;
-                    let avg_score = total_score as f32 / score_count as f32;
+                    // number of scores. This `unwrap` can panic.
+                    let comma_count: u8 = scores.next().unwrap().matches(',').count().try_into()?;
+                    let score_count = comma_count + 1;
+                    let avg_score = f32::from(total_score) / f32::from(score_count);
                     assert!(avg_score >= 1.0);
                     assert!(avg_score <= 10.0);
                     self.output.borrow_mut().push(Row {
@@ -391,13 +393,13 @@ impl TableHandler for WeekTable {
     fn td_break(&mut self, _td: &Element) -> Result<(), Box<dyn Error + Send + Sync>> {
         match self.state {
             WeekExpect::Couple => {
-                self.couple.push_str(";");
+                self.couple.push(';');
             }
             WeekExpect::Score => {
-                self.score.push_str(";");
+                self.score.push(';');
             }
             WeekExpect::Dance => {
-                self.dance.push_str(";");
+                self.dance.push(';');
             }
             _ => {}
         }
@@ -467,9 +469,9 @@ pub(crate) struct Row {
     note: String,
 }
 
-pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, RewritingError> {
+pub(crate) fn extract_rows(series: u16, page: &str) -> Result<Vec<Row>, RewritingError> {
     // Cell mutability for shared and mutable access from multiple closures.
-    let output = Rc::new(RefCell::<Vec<Row>>::new(vec![]));
+    let rows = Rc::new(RefCell::<Vec<Row>>::new(vec![]));
     let celeb_moniker_to_name = Rc::new(RefCell::new(HashMap::<String, String>::new()));
     let pro_moniker_to_name = Rc::new(RefCell::new(HashMap::<String, String>::new()));
     let current_table = Rc::new(RefCell::new(
@@ -498,7 +500,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                                 .ok_or_else(|| format!("Bad parse {}", id))?
                                 .parse()?;
                             let week_table = Box::new(WeekTable::new_for_week(
-                                output.clone(),
+                                rows.clone(),
                                 celeb_moniker_to_name.clone(),
                                 pro_moniker_to_name.clone(),
                                 series,
@@ -520,14 +522,13 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
                             // ignore these headers so we keep the week as the current table.
                         }
                         _ => {
-                            let option_default =
-                                std::mem::replace(&mut default_table_retainer, None);
-                            match option_default {
+                            // Use the default no-op table for any other sections.
+                            match default_table_retainer.take() {
                                 None => {
                                     // current_table is already default
                                 }
-                                Some(default) => {
-                                    current_table.replace(default);
+                                Some(default_table) => {
+                                    current_table.replace(default_table);
                                 }
                             }
                         }
@@ -572,7 +573,7 @@ pub(crate) fn extract_rows(series: u16, page: String) -> Result<Vec<Row>, Rewrit
     );
     rewriter.write(page.as_ref())?;
     rewriter.end()?;
-    let result = output.replace(Vec::new());
+    let result = rows.replace(Vec::new());
     Ok(result)
 }
 
@@ -601,7 +602,7 @@ mod tests {
         let expected_output = std::fs::read_to_string(format!("{}/test-data/test1.out", top))?;
 
         let mut wtr = csv::Writer::from_writer(vec![]);
-        for row in extract_rows(1, page)? {
+        for row in extract_rows(1, &page)? {
             wtr.serialize(row)?;
         }
         let actual_output = String::from_utf8(wtr.into_inner()?)?;
@@ -621,7 +622,7 @@ mod tests {
         let expected_output = std::fs::read_to_string(format!("{}/test-data/test2.out", top))?;
 
         let mut wtr = csv::Writer::from_writer(vec![]);
-        for row in extract_rows(1, page)? {
+        for row in extract_rows(1, &page)? {
             wtr.serialize(row)?;
         }
         let actual_output = String::from_utf8(wtr.into_inner()?)?;
@@ -641,7 +642,7 @@ mod tests {
         let expected_output = std::fs::read_to_string(format!("{}/test-data/test3.out", top))?;
 
         let mut wtr = csv::Writer::from_writer(vec![]);
-        for row in extract_rows(1, page)? {
+        for row in extract_rows(1, &page)? {
             wtr.serialize(row)?;
         }
         let actual_output = String::from_utf8(wtr.into_inner()?)?;

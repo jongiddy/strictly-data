@@ -17,7 +17,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     let mut wtr = csv::Writer::from_writer(std::io::stdout());
     for series in 1..=LATEST_SERIES {
         let page = fetch_page(series)?;
-        for row in extract_rows(series, page)? {
+        for row in extract_rows(series, &page)? {
             wtr.serialize(row)?;
         }
     }
