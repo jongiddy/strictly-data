@@ -1002,18 +1002,12 @@ series,week,celebrity,professional,dance,total_score,score_count,avg_score,note
 10,9,Lisa Riley,Robin Windsor,Quickstep,31,4,7.75,
 10,9,Denise van Outen,James Jordan,Salsa,32,4,8.0,
 10,9,Louis Smith,Flavia Cacace,Charleston,37,4,9.25,
-10,10,Denise van Outen,James Jordan,Jive,35,4,8.75,combined dance
-10,10,Denise van Outen,James Jordan,Quickstep,35,4,8.75,combined dance
-10,10,Lisa Riley,Robin Windsor,Cha-Cha-Cha,30,4,7.5,combined dance
-10,10,Lisa Riley,Robin Windsor,Tango,30,4,7.5,combined dance
-10,10,Nicky Byrne,Karen Hauer,American Smooth,27,4,6.75,combined dance
-10,10,Nicky Byrne,Karen Hauer,Samba,27,4,6.75,combined dance
-10,10,Dani Harmer,Vincent Simone,Charleston,38,4,9.5,combined dance
-10,10,Dani Harmer,Vincent Simone,Quickstep,38,4,9.5,combined dance
-10,10,Louis Smith,Flavia Cacace,Tango,37,4,9.25,combined dance
-10,10,Louis Smith,Flavia Cacace,Rumba,37,4,9.25,combined dance
-10,10,Kimberley Walsh,Pasha Kovalev,Cha-Cha-Cha,40,4,10.0,combined dance
-10,10,Kimberley Walsh,Pasha Kovalev,Tango,40,4,10.0,combined dance
+10,10,Denise van Outen,James Jordan,Jive/Quickstep,35,4,8.75,combined dance
+10,10,Lisa Riley,Robin Windsor,Cha-Cha-Cha/Tango,30,4,7.5,combined dance
+10,10,Nicky Byrne,Karen Hauer,American Smooth/Samba,27,4,6.75,combined dance
+10,10,Dani Harmer,Vincent Simone,Charleston/Quickstep,38,4,9.5,combined dance
+10,10,Louis Smith,Flavia Cacace,Tango/Rumba,37,4,9.25,combined dance
+10,10,Kimberley Walsh,Pasha Kovalev,Cha-Cha-Cha/Tango,40,4,10.0,combined dance
 10,11,Dani Harmer,Vincent Simone,American Smooth,34,4,8.5,
 10,11,Dani Harmer,Vincent Simone,Argentine Tango,38,4,9.5,
 10,11,Louis Smith,Flavia Cacace,Jive,31,4,7.75,

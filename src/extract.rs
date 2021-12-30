@@ -207,6 +207,7 @@ struct WeekTable {
     score_uses: u8,
     dance: String,
     dance_uses: u8,
+    combined_dance: bool,
     note: String,
     output: Rc<RefCell<Vec<Row>>>,
     celeb_moniker_to_name: Rc<RefCell<HashMap<String, String>>>,
@@ -233,6 +234,7 @@ impl WeekTable {
             score_uses: 0,
             dance: String::new(),
             dance_uses: 0,
+            combined_dance: false,
             note: String::new(),
         }
     }
@@ -308,47 +310,49 @@ impl TableHandler for WeekTable {
         assert!(self.score_uses > 0);
         assert!(!self.dance.is_empty());
         assert!(self.dance_uses > 0);
-        let dance = html_escape::decode_html_entities(&self.dance)
-            .trim()
-            .to_owned();
-        let couple_decoded = html_escape::decode_html_entities(&self.couple);
-        let couple = couple_decoded.trim();
-        if couple.contains(';') {
-            // Group dance with multiple couples (e.g. Series 7 week 11).
-            // These are ranked rather than scored, so we ignore them.
-        } else {
-            let (celebrity, professional, note) = self.split_couple(couple);
-            let scores_decoded = html_escape::decode_html_entities(&self.score);
-            let scores = scores_decoded.trim();
-            match scores.split_once(' ') {
-                None => {
-                    // No space in scores. Perhaps "N/A" for unscored showdance.
-                    const NONSCORED: [&str; 4] = ["Showdance", "N/A", "", "*"];
-                    assert!(NONSCORED.contains(&scores), "{}", scores);
-                }
-                Some((first, remainder)) => {
-                    if let Ok(total_score) = u8::from_str(first) {
-                        // The remainder is the individual judges' scores.
-                        // Count the separating commas and add one to get the
-                        // number of scores. This `unwrap` can panic.
-                        let comma_count: u8 = remainder.matches(',').count().try_into()?;
-                        let score_count = comma_count + 1;
-                        let avg_score = f32::from(total_score) / f32::from(score_count);
-                        assert!(avg_score >= 1.0);
-                        assert!(avg_score <= 10.0);
-                        self.output.borrow_mut().push(Row {
-                            series: self.series,
-                            week: self.week,
-                            celebrity,
-                            professional,
-                            dance,
-                            total_score,
-                            score_count,
-                            avg_score,
-                            note,
-                        });
-                    } else {
-                        assert!(scores == "Not scored", "{}", scores);
+        if !self.combined_dance {
+            let dance = html_escape::decode_html_entities(&self.dance)
+                .trim()
+                .to_owned();
+            let couple_decoded = html_escape::decode_html_entities(&self.couple);
+            let couple = couple_decoded.trim();
+            if couple.contains(';') {
+                // Group dance with multiple couples (e.g. Series 7 week 11).
+                // These are ranked rather than scored, so we ignore them.
+            } else {
+                let (celebrity, professional, note) = self.split_couple(couple);
+                let scores_decoded = html_escape::decode_html_entities(&self.score);
+                let scores = scores_decoded.trim();
+                match scores.split_once(' ') {
+                    None => {
+                        // No space in scores. Perhaps "N/A" for unscored showdance.
+                        const NONSCORED: [&str; 4] = ["Showdance", "N/A", "", "*"];
+                        assert!(NONSCORED.contains(&scores), "{}", scores);
+                    }
+                    Some((first, remainder)) => {
+                        if let Ok(total_score) = u8::from_str(first) {
+                            // The remainder is the individual judges' scores.
+                            // Count the separating commas and add one to get the
+                            // number of scores. This `unwrap` can panic.
+                            let comma_count: u8 = remainder.matches(',').count().try_into()?;
+                            let score_count = comma_count + 1;
+                            let avg_score = f32::from(total_score) / f32::from(score_count);
+                            assert!(avg_score >= 1.0);
+                            assert!(avg_score <= 10.0);
+                            self.output.borrow_mut().push(Row {
+                                series: self.series,
+                                week: self.week,
+                                celebrity,
+                                professional,
+                                dance,
+                                total_score,
+                                score_count,
+                                avg_score,
+                                note,
+                            });
+                        } else {
+                            assert!(scores == "Not scored", "{}", scores);
+                        }
                     }
                 }
             }
@@ -379,12 +383,22 @@ impl TableHandler for WeekTable {
                     // this week, the scores have rowspan > 1.
                     let len = self.note.len();
                     self.note.replace_range(..len, "combined dance");
+                    self.dance.clear();
+                    self.combined_dance = true;
                 } else {
                     self.note.clear();
                 }
             }
             WeekExpect::Dance => {
-                self.dance.clear();
+                if !self.dance.is_empty() {
+                    if self.combined_dance {
+                        self.dance.retain(|c| c != '\n');
+                        self.dance.push('/');
+                        self.combined_dance = false;
+                    } else {
+                        self.dance.clear();
+                    }
+                }
                 self.dance_uses = rows;
             }
             WeekExpect::EndRow => {
