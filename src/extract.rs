@@ -7,6 +7,7 @@ use std::collections::HashMap;
 use std::convert::TryInto;
 use std::error::Error;
 use std::rc::Rc;
+use std::str::FromStr;
 
 trait TableHandler {
     fn tr_begin(&mut self, _tr: &Element) -> Result<(), Box<dyn Error + Send + Sync>> {
@@ -238,7 +239,7 @@ impl WeekTable {
     fn split_couple(&self, couple: &str) -> (String, String, String) {
         // Split a string "Celeb & Professional" into tuple `("Celeb's Fullname", "Professional")`
         let mut names = couple.split(" & ");
-         // Split returns at least one item so this `unwrap` will not panic
+        // Split returns at least one item so this `unwrap` will not panic
         let celeb_moniker = names.next().unwrap();
         // Some couples have an asterisk at the end to refer to a footnote.
         // This `unwrap` can panic
@@ -318,32 +319,37 @@ impl TableHandler for WeekTable {
         } else {
             let (celebrity, professional, note) = self.split_couple(couple);
             let scores_decoded = html_escape::decode_html_entities(&self.score);
-            let mut scores = scores_decoded.trim().split_whitespace();
-            match scores.next().unwrap_or("N/A").parse() {
-                Ok(total_score) => {
-                    // The second word is the individual judges' scores.
-                    // Count the separating commas and add one to get the
-                    // number of scores. This `unwrap` can panic.
-                    let comma_count: u8 = scores.next().unwrap().matches(',').count().try_into()?;
-                    let score_count = comma_count + 1;
-                    let avg_score = f32::from(total_score) / f32::from(score_count);
-                    assert!(avg_score >= 1.0);
-                    assert!(avg_score <= 10.0);
-                    self.output.borrow_mut().push(Row {
-                        series: self.series,
-                        week: self.week,
-                        celebrity,
-                        professional,
-                        dance,
-                        total_score,
-                        score_count,
-                        avg_score,
-                        note,
-                    });
+            let scores = scores_decoded.trim();
+            match scores.split_once(' ') {
+                None => {
+                    // No space in scores. Perhaps "N/A" for unscored showdance.
+                    const NONSCORED: [&str; 4] = ["Showdance", "N/A", "", "*"];
+                    assert!(NONSCORED.contains(&scores), "{}", scores);
                 }
-                Err(_error) => {
-                    // e.g. "N/A\n" for unscored show dance
-                    // ignore this row
+                Some((first, remainder)) => {
+                    if let Ok(total_score) = u8::from_str(first) {
+                        // The remainder is the individual judges' scores.
+                        // Count the separating commas and add one to get the
+                        // number of scores. This `unwrap` can panic.
+                        let comma_count: u8 = remainder.matches(',').count().try_into()?;
+                        let score_count = comma_count + 1;
+                        let avg_score = f32::from(total_score) / f32::from(score_count);
+                        assert!(avg_score >= 1.0);
+                        assert!(avg_score <= 10.0);
+                        self.output.borrow_mut().push(Row {
+                            series: self.series,
+                            week: self.week,
+                            celebrity,
+                            professional,
+                            dance,
+                            total_score,
+                            score_count,
+                            avg_score,
+                            note,
+                        });
+                    } else {
+                        assert!(scores == "Not scored", "{}", scores);
+                    }
                 }
             }
         }
