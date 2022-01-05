@@ -23,8 +23,8 @@ pub(crate) struct UltimateRow {
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
-    const TOP_DIR: Option<&str> = option_env!("CARGO_MANIFEST_DIR");
-    let top_dir = Path::new(TOP_DIR.unwrap_or("."));
+    const TOP_DIR: &str = env!("CARGO_MANIFEST_DIR");
+    let top_dir = Path::new(TOP_DIR);
 
     let csv_file = top_dir.join("output.csv");
     println!("Parsing {}", csv_file.display());
