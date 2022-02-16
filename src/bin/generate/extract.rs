@@ -205,6 +205,7 @@ struct WeekTable {
     couple_uses: u8,
     score: String,
     score_uses: u8,
+    dances: Rc<HashMap<&'static str, &'static str>>,
     dance: String,
     dance_uses: u8,
     combined_dance: bool,
@@ -218,6 +219,7 @@ impl WeekTable {
         output: Rc<RefCell<Vec<Row>>>,
         celeb_moniker_to_name: Rc<RefCell<HashMap<String, String>>>,
         pro_moniker_to_name: Rc<RefCell<HashMap<String, String>>>,
+        dances: Rc<HashMap<&'static str, &'static str>>,
         series: u16,
         week: u16,
     ) -> Self {
@@ -232,6 +234,7 @@ impl WeekTable {
             couple_uses: 0,
             score: String::new(),
             score_uses: 0,
+            dances,
             dance: String::new(),
             dance_uses: 0,
             combined_dance: false,
@@ -311,9 +314,6 @@ impl TableHandler for WeekTable {
         assert!(!self.dance.is_empty());
         assert!(self.dance_uses > 0);
         if !self.combined_dance {
-            let dance = html_escape::decode_html_entities(&self.dance)
-                .trim()
-                .to_owned();
             let couple_decoded = html_escape::decode_html_entities(&self.couple);
             let couple = couple_decoded.trim();
             if couple.contains(';') {
@@ -339,6 +339,13 @@ impl TableHandler for WeekTable {
                             let avg_score = f32::from(total_score) / f32::from(score_count);
                             assert!(avg_score >= 1.0);
                             assert!(avg_score <= 10.0);
+                            let dance = match self
+                                .dances
+                                .get(html_escape::decode_html_entities(&self.dance).trim())
+                            {
+                                None => panic!("unrecognized dance {:?}", self.dance.trim()),
+                                Some(dance) => *dance,
+                            };
                             self.output.borrow_mut().push(Row {
                                 series: self.series,
                                 week: self.week,
@@ -482,7 +489,7 @@ pub(crate) struct Row {
     week: u16,
     celebrity: String,
     professional: String,
-    dance: String,
+    dance: &'static str,
     total_score: u8,
     score_count: u8,
     avg_score: f32,
@@ -498,6 +505,38 @@ pub(crate) fn extract_rows(series: u16, page: &str) -> Result<Vec<Row>, Rewritin
         Box::new(UnrecognizedTable::new()) as Box<dyn TableHandler>
     ));
     let mut default_table_retainer: Option<Box<dyn TableHandler>> = None;
+    // Ensure dances have consistent names.
+    let mut dance_map = HashMap::new();
+    dance_map.insert("American Smooth", "American Smooth");
+    dance_map.insert("American Smooth/Samba", "American Smooth/Samba");
+    dance_map.insert("Argentine Tango", "Argentine Tango");
+    dance_map.insert("Cha Cha Cha", "Cha-Cha-Cha");
+    dance_map.insert("Cha-Cha-Cha", "Cha-Cha-Cha");
+    dance_map.insert("Cha-Cha-Cha/Tango", "Cha-Cha-Cha/Tango");
+    dance_map.insert("Charleston", "Charleston");
+    dance_map.insert("Charleston/Quickstep", "Charleston/Quickstep");
+    dance_map.insert("Contemporary", "Contemporary");
+    dance_map.insert("Couple's Choice", "Couple's Choice");
+    dance_map.insert("Foxtrot", "Foxtrot");
+    dance_map.insert("Jazz", "Theatre/Jazz");
+    dance_map.insert("Jive", "Jive");
+    dance_map.insert("Jive/Quickstep", "Jive/Quickstep");
+    dance_map.insert("Lindy Hop", "Lindy Hop");
+    dance_map.insert("Paso Doble", "Paso Doble");
+    dance_map.insert("Quickstep", "Quickstep");
+    dance_map.insert("Rock 'n' Roll", "Rock 'n' Roll");
+    dance_map.insert("Rumba", "Rumba");
+    dance_map.insert("Salsa", "Salsa");
+    dance_map.insert("Samba", "Samba");
+    dance_map.insert("Showdance", "Showdance");
+    dance_map.insert("Street", "Street/Commercial");
+    dance_map.insert("Street/Commercial", "Street/Commercial");
+    dance_map.insert("Tango", "Tango");
+    dance_map.insert("Tango/Rumba", "Tango/Rumba");
+    dance_map.insert("Theatre/Jazz", "Theatre/Jazz");
+    dance_map.insert("Viennese Waltz", "Viennese Waltz");
+    dance_map.insert("Waltz", "Waltz");
+    let dances = Rc::new(dance_map);
 
     let element_content_handlers = vec![
         // Find week number
@@ -523,6 +562,7 @@ pub(crate) fn extract_rows(series: u16, page: &str) -> Result<Vec<Row>, Rewritin
                                 rows.clone(),
                                 celeb_moniker_to_name.clone(),
                                 pro_moniker_to_name.clone(),
+                                dances.clone(),
                                 series,
                                 week,
                             ));
