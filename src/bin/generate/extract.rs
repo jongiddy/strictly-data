@@ -258,7 +258,10 @@ impl WeekTable {
         let mut note = self.note.clone();
         let professional = match self.pro_moniker_to_name.borrow().get(pro_moniker) {
             Some(name) if !name.is_empty() => {
-                if name == "Karen Clifton" {
+                if name == "Anton du Beke" {
+                    // Wikipedia is currently inconsistent, but Du is capitalized
+                    "Anton Du Beke".to_owned()
+                } else if name == "Karen Clifton" {
                     // Karen Hauer danced as Karen Clifton for some series.
                     // For data analysis, use a consistent name for an individual.
                     assert!(note.is_empty());
