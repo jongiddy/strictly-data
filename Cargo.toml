@@ -7,6 +7,6 @@ default-run = "generate"
 [dependencies]
 csv = "1.1"
 html-escape = "0.2.9"
-lol_html = "1.0.0"
+lol_html = "0.4"
 reqwest = { version = "0.11.3", features = ["blocking"] }
 serde = { version = "1", features = ["derive"] }
